@@ -1,0 +1,15 @@
+Ultrasonic.py:
+    imported math library
+    get_distance()
+        made the number of measurements dependent on a variable (hardcoded inside the function)
+        Changed the number of iterations to be dependent on this, instead of a constant 3 (3 seemed to be a mistake.)
+        the result is either the median value of the measured distances (if number of measurements is odd)
+        or the average of the 2 median values (if the number of measurements is even).
+        Modified the formula for calculation of the distance
+            (following this guide https://howtomechatronics.com/tutorials/arduino/ultrasonic-sensor-hc-sr04/)
+        
+    wait_for_echo()
+        instead of using the decrementing of a counter in a loop as the timer, we use the time module.
+
+    run_motor()
+        made variables, instead of using "magic numbers"
