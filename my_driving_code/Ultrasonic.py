@@ -66,7 +66,12 @@ class Ultrasonic:
         elif direction == right_str:
             self.PWM.setMotorModel(1500, 1500, -1500, -1500)
 
-    def run_motor(self, left, mid, right):
+    def turn_around_car(self):
+        time_to_turn = 2
+        self.rotate_car("r")
+        time.sleep(time_to_turn)
+
+    def run_motor_1(self, left, mid, right):
         close_distance = 30
         closer_distance = 20
         closest_distance = 10
@@ -94,6 +99,20 @@ class Ultrasonic:
         else:
             self.PWM.setMotorModel(600, 600, 600, 600)
 
+    def run_motor_2(self, left, mid, right):
+        close_distance = 30
+        closer_distance = 20
+        closest_distance = 10
+
+        if (left < close_distance and mid < close_distance and right < close_distance) or mid < close_distance:
+            # Drive backwards
+            self.PWM.setMotorModel(-1450, -1450, -1450, -1450)
+            time.sleep(0.1)
+            # Turn around
+            self.turn_around_car()
+        else:
+            self.PWM.setMotorModel(600, 600, 600, 600)
+
     def run(self):
         self.PWM = Motor()
         self.pwm_S = Servo()
@@ -116,7 +135,7 @@ class Ultrasonic:
                     M = self.get_distance()
                 else:
                     R = self.get_distance()
-                self.run_motor(L, M, R)
+                self.run_motor_1(L, M, R)
             for i in range(30, 151, 60):
                 self.pwm_S.setServoPwm('0', i)
                 time.sleep(0.2)
@@ -126,7 +145,8 @@ class Ultrasonic:
                     M = self.get_distance()
                 else:
                     R = self.get_distance()
-                self.run_motor(L, M, R)
+                # self.run_motor_1(L, M, R)
+                self.run_motor_2(L, M, R)
 
 
 ultrasonic = Ultrasonic()

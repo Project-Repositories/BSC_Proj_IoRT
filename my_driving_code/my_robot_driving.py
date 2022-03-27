@@ -1,4 +1,8 @@
+import Ultrasonic as ul
+from Motor import *
 
+from Led import *
+from rpi_ws281x import * # to get the Color() class, I think.
 
 """
 Goal:
@@ -24,3 +28,25 @@ When the cars are done driving, the statistics should be written to a file.
 This marks the end of the program.
 
 """
+
+
+ultrasonic = ul.Ultrasonic()
+if __name__ == '__main__':
+    print('Program is starting ... ')
+    try:
+        led.colorWipe(led.strip, Color(255, 0, 0))  # Red wipe
+        # TODO: Send message to LP to begin TSCH
+        # TODO: read messages from LP using PySerial
+        # TODO: wait until LP tells us TSCH is ready (another device connected
+        led.colorWipe(led.strip, Color(0, 255, 0))  # Green wipe
+        # TODO: Begin running the driving code (ultrasonic or linetracking)
+        # periodically check the latest message of the LP.
+
+        ultrasonic.run()
+    except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
+        ultrasonic.PWM.setMotorModel(0, 0, 0, 0)
+        ultrasonic.pwm_S.setServoPwm('0', 90)
+
+        led.colorWipe(led.strip, Color(0, 0, 0))  # turn off LED
+
+
