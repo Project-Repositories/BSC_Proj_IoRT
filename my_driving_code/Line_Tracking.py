@@ -27,7 +27,7 @@ class Line_Tracking:
                 le_mi_ri += 2
             if GPIO.input(self.IR03):
                 le_mi_ri += 1
-            motor_values = action_dict.get(self.LMR, default=(600, 600, 600, 600))
+            motor_values = action_dict.get(le_mi_ri, default=(600, 600, 600, 600))
             if action_dict in (0, 5, 7):
                 direction *= -1  # invert direction
             motor_values = [direction * num for num in motor_values]
