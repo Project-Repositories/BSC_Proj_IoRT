@@ -32,6 +32,7 @@ class Line_Tracking:
                 direction *= -1  # invert direction
             motor_values = [direction * num for num in motor_values]
             PWM.setMotorModel(*motor_values)
+            time.sleep(0.1)
 
 
 infrared = Line_Tracking()
