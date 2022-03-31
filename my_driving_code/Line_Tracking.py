@@ -50,13 +50,14 @@ class Line_Tracking:
                     direction *= -1  # invert direction
                     time_to_change = False
                 motor_values = [direction * num for num in motor_values]
-            elif le_mi_ri in (1, 3, 4, 6) and \
-                    direction == -1:  # if turning and driving backwards
+            elif False and direction == -1 and \
+                    le_mi_ri in (1, 3, 4, 6):  # if turning and driving backwards
                 # Switch PWM of wheels of left-side with right-side
                 motor_values = motor_values[2:4] + motor_values[0:2]
             PWM.setMotorModel(*motor_values)
-            time.sleep(0.05)  # time to drive before checking again
+            time.sleep(0.05 + (0.1 * time_to_change))  # time to drive before checking again
             # + (0.1 * time_to_change)
+
 
 infrared = Line_Tracking()
 # Main program logic follows:
