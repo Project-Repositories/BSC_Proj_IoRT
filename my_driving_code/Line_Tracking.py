@@ -18,13 +18,19 @@ class Line_Tracking:
         direction = 1
 
         # Old values:
-        # 1: (2500, 2500, -1500, -1500) turn sharp left
+        # 1: (2500, 2500, -1500, -1500) turn sharp
+        # (800, 800, -400, -400)
         # 3: (4000, 4000, -2000, -2000) turn soft left
+        # (1000, 1000, -500, -500)
         # 4: (-1500, -1500, 2500, 2500) turn sharp right
+        # (-400, -400, 800, 800)
         # 6: (-2000, -2000, 4000, 4000) turn soft left
-        action_dict = {1: (800, 800, -400, -400), 2: (600, 600, 600, 600),
-                       3: (1000, 1000, -500, -500), 4: (-400, -400, 800, 800),
-                       6: (-500, -500, 1000, 1000)}
+        # (-500, -500, 1000, 1000)
+        # TODO: Sharper turns, check sensors more frequently.
+        # Too low values results in poor turning/driving.
+        action_dict = {1: (2500, 2500, -1500, -1500), 2: (600, 600, 600, 600),
+                       3: (4000, 4000, -2000, -2000), 4: (-1500, -1500, 2500, 2500),
+                       6: (-2000, -2000, 4000, 4000)}
 
         while True:
             le_mi_ri = 0  # accumulating value for the three infrared sensors.
@@ -44,11 +50,12 @@ class Line_Tracking:
             if le_mi_ri == 2:  # if not turning
                 # consider the direction
                 motor_values = [direction * num for num in motor_values]
-            elif le_mi_ri in (1, 3, 4, 6):  # if turning
+            elif le_mi_ri in (1, 3, 4, 6) and \
+                    direction == -1:  # if turning and driving backwards
                 # Switch PWM of wheels of left-side with right-side
-                motor_values = motor_values[2:4]+motor_values[0:2]
+                motor_values = motor_values[2:4] + motor_values[0:2]
             PWM.setMotorModel(*motor_values)
-            time.sleep(0.25)
+            time.sleep(0.05)  # time to drive before checking again
 
 
 infrared = Line_Tracking()
