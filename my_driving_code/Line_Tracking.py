@@ -14,7 +14,7 @@ class Line_Tracking:
         GPIO.setup(self.IR03, GPIO.IN)
 
     def run(self):
-        time_to_change = False
+        can_inverse = False
         direction = 1
 
         # Old values:
@@ -45,18 +45,18 @@ class Line_Tracking:
             if le_mi_ri in (0, 2):
                 if le_mi_ri == 2:  # if driving straight
                     # can now invert direction, the next time line is not detected.
-                    time_to_change = True
-                elif le_mi_ri == 0 and time_to_change:
+                    can_inverse = True
+                elif le_mi_ri == 0 and can_inverse:
                     direction *= -1  # invert direction
-                    time_to_change = False
+                    can_inverse = False
                 motor_values = [direction * num for num in motor_values]
             elif False and direction == -1 and \
                     le_mi_ri in (1, 3, 4, 6):  # if turning and driving backwards
-                pass # Switch PWM of wheels of left-side with right-side
+                pass  # Switch PWM of wheels of left-side with right-side
             motor_values = motor_values[2:4] + motor_values[0:2]
             PWM.setMotorModel(*motor_values)
-            time.sleep(0.05 + (0.1 * time_to_change))  # time to drive before checking again
-            # + (0.1 * time_to_change)
+            time.sleep(0.05 + (0.1 * (direction == -1)))  # time to drive before checking again
+            # + (0.1 * can_inverse)
 
 
 infrared = Line_Tracking()
