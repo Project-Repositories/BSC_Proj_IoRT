@@ -40,7 +40,7 @@ class Line_Tracking:
                 le_mi_ri += 2
             if GPIO.input(self.IR03):  # Right
                 le_mi_ri += 1
-            motor_values = action_dict.get(le_mi_ri, (0, 0, 0, 0))  # default value is to stop the motor
+            motor_values = action_dict.get(le_mi_ri, (600, 600, 600, 600))  # default value is to slowly drive straight.
             # motor_values = (600, 600, 600, 600)
             if le_mi_ri in (0, 2):
                 if le_mi_ri == 2:  # if driving straight
