@@ -68,7 +68,7 @@ class Line_Tracking:
             if GPIO.input(self.IR03):  # Right
                 le_mi_ri += 1
             if le_mi_ri == 2:
-                PWM.setMotorModel(-800, -800, -800, -800)
+                PWM.setMotorModel(800, 800, 800, 800)
             elif le_mi_ri == 4:
                 PWM.setMotorModel(-1500, -1500, 2500, 2500)
             elif le_mi_ri == 6:
