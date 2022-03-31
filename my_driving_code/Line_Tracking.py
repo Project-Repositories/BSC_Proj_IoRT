@@ -41,9 +41,14 @@ class Line_Tracking:
                 time_to_change = False
             elif le_mi_ri == 0:
                 time_to_change = True
-            motor_values = [direction * num for num in motor_values]
+            if le_mi_ri == 2:  # if not turning
+                # consider the direction
+                motor_values = [direction * num for num in motor_values]
+            elif le_mi_ri in (1, 3, 4, 6):  # if turning
+                # Switch PWM of wheels of left-side with right-side
+                motor_values = motor_values[2:4]+motor_values[0:2]
             PWM.setMotorModel(*motor_values)
-            time.sleep(0.5)
+            time.sleep(0.25)
 
 
 infrared = Line_Tracking()
