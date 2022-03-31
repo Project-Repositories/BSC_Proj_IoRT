@@ -43,12 +43,12 @@ class Line_Tracking:
             motor_values = action_dict.get(le_mi_ri, (600, 600, 600, 600))  # default value is to slowly drive straight.
             # motor_values = (600, 600, 600, 600)
             if le_mi_ri in (0, 2):
-                if le_mi_ri == 2:  # if driving straight
-                    # can now invert direction, the next time line is not detected.
-                    can_inverse = True
-                elif le_mi_ri == 0 and can_inverse:
+                if le_mi_ri == 0 and can_inverse:
                     direction *= -1  # invert direction
                     can_inverse = False
+                elif le_mi_ri == 2:  # if driving straight
+                    # can now invert direction, the next time line is not detected.
+                    can_inverse = True
                 motor_values = [direction * num for num in motor_values]
             elif False and direction == -1 and \
                     le_mi_ri in (1, 3, 4, 6):  # if turning and driving backwards
@@ -68,7 +68,7 @@ class Line_Tracking:
             if GPIO.input(self.IR03):  # Right
                 le_mi_ri += 1
             if le_mi_ri == 2:
-                PWM.setMotorModel(800, 800, 800, 800)
+                PWM.setMotorModel(-800, -800, -800, -800)
             elif le_mi_ri == 4:
                 PWM.setMotorModel(-1500, -1500, 2500, 2500)
             elif le_mi_ri == 6:
