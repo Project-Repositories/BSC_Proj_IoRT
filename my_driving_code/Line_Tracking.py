@@ -120,7 +120,7 @@ class Line_Tracking:
             time.sleep(0.05)
             # + (0.1 * (direction == -1)))  # time to drive before checking again
             # + (0.1 * can_inverse)
-    
+
     def run4(self):
         can_inverse = False
         direction = -1
@@ -162,24 +162,26 @@ class Line_Tracking:
             PWM.setMotorModel(*motor_values)
             time.sleep(0.05 + (0.1 * (direction == -1)))  # time to drive before checking again
             # + (0.1 * can_inverse)
-    
+
     def run5(self):
-        fwd_motor_values = [1000, 1000, 600, 600]
+        fwd_motor_values = [1000, 1000, 600, 600]  # configured to calibrate for the robot's left-leaning tendency
+
         def drive(direction):
             motor_values = [direction * num for num in fwd_motor_values]
-            if direction==-1:
+            if direction == -1:
                 motor_values = motor_values[2:4] + motor_values[0:2]
                 pass
             PWM.setMotorModel(*motor_values)
+
         direction = 1
-        
+
         le_mi_ri = 0  # accumulating value for the three infrared sensors.
         inversed = False
         while True:
             drive(direction)
             le_mi_ri = 0
             le_mi_ri = (GPIO.input(self.IR01) * 4) + (GPIO.input(self.IR02) * 2) + (GPIO.input(self.IR03) * 1)
-            if le_mi_ri != 0: # and not inversed:
+            if le_mi_ri != 0:  # and not inversed:
                 direction *= -1
                 # inversed = True
                 drive(direction)
@@ -188,9 +190,7 @@ class Line_Tracking:
             if False and inversed:
                 time.sleep(0.1)
                 inversed = False
-            
 
-            
     def test(self):
         while True:
             le_mi_ri = 0  # accumulating value for the three infrared sensors.
