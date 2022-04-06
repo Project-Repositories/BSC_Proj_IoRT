@@ -1,5 +1,7 @@
 import time
-from Motor import *
+from multiprocessing import Value
+
+from Motor import PWM
 import RPi.GPIO as GPIO
 
 
@@ -178,6 +180,35 @@ class Line_Tracking:
         le_mi_ri = 0  # accumulating value for the three infrared sensors.
         inversed = False
         while True:
+            drive(direction)
+            le_mi_ri = 0
+            le_mi_ri = (GPIO.input(self.IR01) * 4) + (GPIO.input(self.IR02) * 2) + (GPIO.input(self.IR03) * 1)
+            if le_mi_ri != 0:  # and not inversed:
+                direction *= -1
+                # inversed = True
+                drive(direction)
+                print(le_mi_ri)
+                time.sleep(0.5)
+            if False and inversed:
+                time.sleep(0.1)
+                inversed = False
+
+    def oscillate_async(self, is_conn: Value):
+        fwd_motor_values = [1000, 1000, 600, 600]  # configured to calibrate for the robot's left-leaning tendency
+
+        def drive(direction):
+            motor_values = [direction * num for num in fwd_motor_values]
+            if direction == -1:
+                motor_values = motor_values[2:4] + motor_values[0:2]
+                pass
+            PWM.setMotorModel(*motor_values)
+
+        direction = 1
+
+        le_mi_ri = 0  # accumulating value for the three infrared sensors.
+        inversed = False
+
+        while is_conn.value:
             drive(direction)
             le_mi_ri = 0
             le_mi_ri = (GPIO.input(self.IR01) * 4) + (GPIO.input(self.IR02) * 2) + (GPIO.input(self.IR03) * 1)
