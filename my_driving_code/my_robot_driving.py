@@ -53,31 +53,45 @@ def check_rpl_connected(port_name, attempts_left) -> bool:
         return False
     print("\tchecking connection... ")
     with serial.Serial(port_name, baudrate=115200, timeout=1) as ser:
+        ser.readall()  # Clear out the message buffer
         ser.write(b'rpl-status\n')
+        time.sleep(0.2)
         n_attempts = 3  # number of lines to check after writing to launchpad
         for _ in range(n_attempts):
             line = ser.readline()
             line = line.decode()
             line.strip()
-            if "--  Instance:" in line:
+            print("line = {0}".format(line))
+            if "-- Instance:" in line:
                 rpl_instance = line[line.index(": ") + 2:]
-                if rpl_instance == "None":
+                if "None" in rpl_instance:
                     print("\tRPL not connected")
                     return False
                 else:
                     print("\tRPL is connected")
                     return True
     time.sleep(1)
-    check_rpl_connected(port_name, attempts_left - 1)
+    return check_rpl_connected(port_name, attempts_left - 1)
 
+def refresh_rpl_routes(port_name):
+    with serial.Serial(port_name, baudrate=115200, timeout=1) as ser:
+        ser.write(b'rpl-refresh-routes\n')
+        ser.readall()  # Clear out the message buffer
 
 def async_connection_check(port_name, is_conn):
+    refreshcounter = 0
+    maxcounter = 5
     while True:
-        is_conn.value = check_rpl_connected(port_name, 1)
+        is_conn.value = int(check_rpl_connected(port_name, 1))
         if is_conn.value:
             led.colorWipe(led.strip, Color(0, 255, 0))  # Green wipe
+            refreshcounter += 1
         else:
             led.colorWipe(led.strip, Color(255, 255, 51))  # Yellow wipe
+            refreshcounter = 0
+        if refreshcounter >= 5:
+            refresh_rpl_routes(port_name)
+            maxcounter = 0
         time.sleep(10)
 
 

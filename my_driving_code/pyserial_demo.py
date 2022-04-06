@@ -13,7 +13,7 @@ def demo_UART(port_name):
             # content = content.split('\n')[-1:-3:-1]
             # content = [txt.strip() for txt in content]
             if content != "[INFO: TSCH      ] scanning on channel 20":
-                print(f"{content = }")
+                print("content = {0}".format(content))
             else:
                 print("t")
             # , parity=serial.PARITY_EVEN, rtscts=1
@@ -35,7 +35,7 @@ def demo_multi_prcessing():
     count = 0
     p.start()
     while t.value:
-        print(f"{count = }")
+        print("count = {0}".format(count))
         count += 1
         time.sleep(1)
     print("ENDING DEMO: MULTI_PROCESSING")
@@ -44,6 +44,6 @@ def demo_multi_prcessing():
 
 
 if __name__ == '__main__':
-    port_name = "COM8"
-    # demo_UART(port_name)
-    demo_multi_prcessing()
+    port_name = "/dev/ttyACM0"
+    demo_UART(port_name)
+    # demo_multi_prcessing()
