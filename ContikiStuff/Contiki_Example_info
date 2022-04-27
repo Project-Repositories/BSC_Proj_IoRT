@@ -1,0 +1,36 @@
+Steps for testing out an example:
+1. Go to the corresponding example folder
+2. To create the correct .bin file:
+	make TARGET=cc26x0-cc13x0 BOARD=launchpad/cc2650 <example_make_rule>
+3. use UniFlash to flash the .bin file to the board.
+4. use make TARGET=cc26x0-cc13x0 BOARD=launchpad/cc2650 PORT=<port_name> login
+	(the port_name is usually /dev/ttyACM0 or /dev/ttyACM2. ../ttyACM1 and ttyACM3 are used for flashing the board).
+4a. To avoid specifying TARGET and BOARD everytime, use
+	make savetarget TARGET=cc26x0-cc13x0 BOARD=launchpad/cc2650
+	
+
+Make sure the device is connected by USB before the Contiki VM is started - else, Contiki cannot find the usb device (no ttyACM# shows up when using ls /dev).
+
+
+
+
+
+Tutorials completed:
+--- Basics ---
+1. Hello-world!
+2. Logging
+3. Shell
+4. RAM and ROM usage (How to save on memory-resources)
+5. Simple energy usage estimation (read it, its a logging system to determine when each component is turned on or off).
+6. Custom Energest application (built the example code).
+7. Timers and Events (How to set up processes, events and callback functions)
+---  Networking ---
+8. IPv6 Ping (CSMA protocol, Continue from Hello-world + Shell enabled)
+9. Switching from CSMA to TSCH 
+	(Modified the project-conf.h slightly from tutorial, don't know if it made it work or if 		it only sped up the connection process. 
+	Just wait a bit (5minutes max) while 1 node is set as coordinator, and both are running the TSCH code. 
+	Added: 
+	#define TSCH_CONF_DEFAULT_HOPPING_SEQUENCE TSCH_HOPPING_SEQUENCE_1_1
+	#define TSCH_CONF_KEEPALIVE_TIMEOUT (8 * CLOCK_SECOND)
+)
+10. RPL basics

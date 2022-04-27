@@ -1,0 +1,16 @@
+programs installed:
+
+Using "sudo apt-get" or "sudo apt":
+libpython2.7
+python2-minimal
+pyhton2.7
+libusb-0.1-4
+libconf-2-4
+libc6-i386
+libtinfo5
+
+
+installed using installers:
+TI uniflash
+TI Code Composer Studio
+

@@ -1,0 +1,3 @@
+Changes to IPv6 Ping (TSCH version) tutorial:
+	Reduced the "TSCH_KEEPALIVE_TIMEOUT" to 8 (https://github.com/contiki-ng/contiki-ng/issues/657)
+	Defined the default hopping sequence as "#define TSCH_CONF_DEFAULT_HOPPING_SEQUENCE TSCH_HOPPING_SEQUENCE_1_1" (https://github.com/contiki-ng/contiki-ng/issues/920)
