@@ -166,7 +166,8 @@ class Line_Tracking:
             # + (0.1 * can_inverse)
 
     def run5(self):
-        fwd_motor_values = [1000, 1000, 600, 600]  # configured to calibrate for the robot's left-leaning tendency
+        fwd_motor_values = [1000, 1000, 1000, 1000]
+        # needs to be configured to calibrate for the robot's left-leaning tendency
 
         def drive(direction):
             motor_values = [direction * num for num in fwd_motor_values]
