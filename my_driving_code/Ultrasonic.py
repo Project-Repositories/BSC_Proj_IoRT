@@ -30,30 +30,33 @@ class Ultrasonic:
         passed_time = 0
         sec_to_microsec = 1000000  # 1.000.000
         while GPIO.input(self.echo_pin) != value and (passed_time < timeout):
-            passed_time = (time.time() - start_time) * sec_to_microsec  # microseconds.
+            passed_time = (time.time() - start_time) # * sec_to_microsec  # microseconds.
 
     def get_distance(self, num_measurements: int = 5):
-        sound_speed_cm_per_second = 34
+        sound_speed_cm_per_second = 34300
         distance_cm = [0] * num_measurements
         for i in range(num_measurements):
             self.send_trigger_pulse()
-            self.wait_for_echo(True, 10000)
+            self.wait_for_echo(True, 1) # 10000
             start = time.time()
-            self.wait_for_echo(False, 10000)
+            self.wait_for_echo(False, 1)
             finish = time.time()
             pulse_len = finish - start
             distance = pulse_len * sound_speed_cm_per_second  # distance = time * speed
             distance /= 2  # divide by 2 since the soundwave travels forth and back before received.
             distance_cm[i] = distance
+            
         distance_cm = sorted(distance_cm)
         if num_measurements % 2:  # case of Odd
             # take the median value of the distances
             middle_index = num_measurements // 2
+            print("measured distance : ".format(int(distance_cm[middle_index])))
             return int(distance_cm[middle_index])
         else:  # case of Even
             # take the average value of the 2 median values.
             medians = (distance_cm[math.floor(num_measurements / 2)],
                        distance_cm[math.ceil(num_measurements / 2)])
+            print("measured distance : ".format(round((medians[0] + medians[1]) / 2)))
             return round((medians[0] + medians[1]) / 2)
 
     def rotate_car(self, direction):
