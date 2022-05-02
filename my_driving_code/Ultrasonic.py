@@ -37,9 +37,9 @@ class Ultrasonic:
         distance_cm = [0] * num_measurements
         for i in range(num_measurements):
             self.send_trigger_pulse()
-            self.wait_for_echo(True, 1) # 10000
+            self.wait_for_echo(True, 2) # 10000
             start = time.time()
-            self.wait_for_echo(False, 1)
+            self.wait_for_echo(False, 2)
             finish = time.time()
             pulse_len = finish - start
             distance = pulse_len * sound_speed_cm_per_second  # distance = time * speed
@@ -50,7 +50,7 @@ class Ultrasonic:
         if num_measurements % 2:  # case of Odd
             # take the median value of the distances
             middle_index = num_measurements // 2
-            print("measured distance : ".format(int(distance_cm[middle_index])))
+            # print("measured distance : {}".format(int(distance_cm[middle_index])))
             return int(distance_cm[middle_index])
         else:  # case of Even
             # take the average value of the 2 median values.

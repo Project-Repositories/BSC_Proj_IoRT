@@ -149,8 +149,8 @@ class SimpleDriver:
                     # timeout aligner for some more time:
                     previous_align = time.time() + 2.5
             align_value = self.aligner.get_direction_correction(base_speed)
-            
-            if direction == 1:S
+
+            if direction == 1:
                 if align_value > 0: # turn right
                     fwd_motor_values = [base_speed] * 2 + [base_speed - align_value] * 2
                 elif align_value < 0:
