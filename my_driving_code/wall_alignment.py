@@ -37,6 +37,7 @@ class WallAligner:
 
         # Needs to be evaluated experimentally:
         self.pid = PID(1, 0, 0, setpoint=0)
+        # TODO: Set the negative bound to larger magnitude; possibly -150
         self.pid.output_limits = (-50, 50)
 
     def get_direction_correction(self, speed_magnitude: int):
@@ -77,7 +78,7 @@ class SimpleDriver:
         align_time = 0.5
         previous_turn = previous_align = time.time()
 
-        aligned_speed = base_speed = 800
+        aligned_speed = base_speed = 1000
         fwd_motor_values = [base_speed] * 4
         
         while True:
@@ -92,6 +93,9 @@ class SimpleDriver:
                     fwd_motor_values = ([base_speed] * 2) + ([aligned_speed] * 2)
                 elif self.direction == Direction.RIGHT:
                     fwd_motor_values = ([aligned_speed] * 2) + ([base_speed] * 2) 
+
+            # TODO: Test this out
+            fwd_motor_values = [base_speed, base_speed, 400, 400]
             drive(direction, fwd_motor_values)
 
 
