@@ -38,7 +38,11 @@ class WallAligner:
 
         # Needs to be evaluated experimentally:
         self.pid = PID(-70, -0.5, -40, setpoint=0) # -50, -0.5, -25
-        # TODO: Set the negative bound to larger magnitude; possibly -150
+        # TODO: Add "error mapping" function, which takes the current measured distance
+        # then calculates the difference from the target (currently takes difference as error)
+        # This way, we can "punish" a measured distance closer to 0 (robot approaching wall),
+        # and large measured distances (robot approaching opposite wall, going off course),
+        # by possibly using exponential or square transformation.
         self.pid.output_limits = (None, None) # -1000, 1000
 
     def get_direction_correction(self, speed_magnitude: int):
@@ -60,10 +64,14 @@ class WallAligner:
             # Turn away from enum direction.
         return control_value # controlled_wheel_magnitude
 
+# TODO: Move to separate python script ("commons")
 # https://stackoverflow.com/a/58470178
 def clamp(value, lower, upper):
     return lower if value < lower else upper if value > upper else value
 
+
+# TODO: Move to separate python script ("experiment_1")
+# Then, add support for Command Line Arguments, such as base speed & direction.
 class SimpleDriver:
     def __init__(self):
         self.IR01 = 14
@@ -74,7 +82,7 @@ class SimpleDriver:
         GPIO.setup(self.IR02, GPIO.IN)
         GPIO.setup(self.IR03, GPIO.IN)
         
-        self.direction = Direction.LEFT
+        self.direction = Direction.RIGHT
         self.aligner = WallAligner(self.direction)
 
     def turn_left(self, base_speed, turn_speed):
@@ -111,13 +119,14 @@ class SimpleDriver:
                 
         direction = 1
 
-        turn_time = 2.5
+        turn_time = 3.1
         align_time = 0.5
         previous_turn = previous_align = time.time()
 
-        base_speed = 1500
+        base_speed = 1000
         aligned_modifier = 0
-        align_coeff = (base_speed / 1000)**0.5
+        # to scale alignment accordingly to the speed the PID was tested with (1000):
+        align_coeff = (base_speed / 1000)**0.5    
         fwd_motor_values = [base_speed] * 4
         
         i = 0
@@ -173,34 +182,38 @@ class SimpleDriver:
             if direction == 1:
                 # align_value *= 1.25
                 # align_half *= 1
-                align_half *= 1
+                # align_half *= 1
                 if align_value > 0: # turn right
-                    
                     # align_value = min(base_speed // 2, align_value)
                     # fwd_motor_values = [base_speed] * 2 + [base_speed - align_value] * 2
                     fwd_motor_values = [base_speed + align_half] * 2 + \
                         [base_speed - align_half] * 2
                 elif align_value < 0:
-                    
                     # align_value = max(-base_speed // 2, align_value)
                     # fwd_motor_values = [base_speed + align_value] * 2 + [base_speed ] * 2
                     fwd_motor_values = [base_speed + align_half * 1.5] * 2 + \
                         [base_speed - align_half * 1.5] * 2
             elif direction == -1:
                 # align_value *= 0.75
-                align_half *= 0.75 
+                #align_half *= 0.75
+                align_half *= 1
+                # TODO: check if this works, if its the same as "direction == 1"
                 if align_value < 0:
                     # align_value = max(-base_speed // 2, align_value)
                     # fwd_motor_values = [base_speed] * 2 + [base_speed + align_value] * 2
                     # fwd_motor_values = [base_speed + align_value] * 2 + [base_speed] * 2
-                    fwd_motor_values = [base_speed - align_half] * 2 + \
-                        [base_speed + align_half] * 2
+                    #fwd_motor_values = [base_speed - align_half] * 2 + \
+                    #    [base_speed + align_half] * 2
+                    fwd_motor_values = [base_speed + align_half] * 2 + \
+                        [base_speed - align_half] * 2
                 elif align_value > 0:
                     # align_value *= 1.55
                     # align_value = min(base_speed // 2, align_value)
                     # fwd_motor_values =  [base_speed ] * 2 + [base_speed - align_value] * 2
-                    fwd_motor_values = [base_speed - align_half] * 2 + \
-                        [base_speed + align_half] * 2
+                    #fwd_motor_values = [base_speed - align_half] * 2 + \
+                    #    [base_speed + align_half] * 2
+                    fwd_motor_values = [base_speed + align_half] * 2 + \
+                        [base_speed - align_half] * 2
             if i % 30 == 0:
                 print("----")
                 print("direction:{}".format(direction))
