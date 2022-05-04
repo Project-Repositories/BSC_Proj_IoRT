@@ -37,7 +37,7 @@ class WallAligner:
         print("target distance: {}".format(self.target_distance))
 
         # Needs to be evaluated experimentally:
-        self.pid = PID(-50, -0.5, -25, setpoint=0) # -50, -0.5, -25
+        self.pid = PID(-70, -0.5, -40, setpoint=0) # -50, -0.5, -25
         # TODO: Set the negative bound to larger magnitude; possibly -150
         self.pid.output_limits = (None, None) # -1000, 1000
 
@@ -74,7 +74,7 @@ class SimpleDriver:
         GPIO.setup(self.IR02, GPIO.IN)
         GPIO.setup(self.IR03, GPIO.IN)
         
-        self.direction = Direction.RIGHT
+        self.direction = Direction.LEFT
         self.aligner = WallAligner(self.direction)
 
     def turn_left(self, base_speed, turn_speed):
@@ -169,26 +169,40 @@ class SimpleDriver:
             align_value = self.aligner.get_direction_correction(base_speed)
             align_value *= (align_coeff)
             align_value = clamp(align_value, -base_speed // 1.5, base_speed // 1.5)
-            if i % 1 == 0:
-                if direction == 1:
-                    align_value *= 1.25
-                    if align_value > 0: # turn right
-                        # align_value = min(base_speed // 2, align_value)
-                        fwd_motor_values = [base_speed] * 2 + [base_speed - align_value] * 2
-                    elif align_value < 0:
-                        # align_value = max(-base_speed // 2, align_value)
-                        fwd_motor_values = [base_speed + align_value] * 2 + [base_speed ] * 2
-                elif direction == -1:
-                    align_value *= 0.75
-                    if align_value < 0:
-                        # align_value = max(-base_speed // 2, align_value)
-                        # fwd_motor_values = [base_speed] * 2 + [base_speed + align_value] * 2
-                        fwd_motor_values = [base_speed + align_value] * 2 + [base_speed] * 2 
-                    elif align_value > 0:
-                        # align_value *= 1.55
-                        # align_value = min(base_speed // 2, align_value)
-                        fwd_motor_values =  [base_speed ] * 2 + [base_speed - align_value] * 2
+            align_half = align_value / 2
+            if direction == 1:
+                # align_value *= 1.25
+                # align_half *= 1
+                align_half *= 1
+                if align_value > 0: # turn right
+                    
+                    # align_value = min(base_speed // 2, align_value)
+                    # fwd_motor_values = [base_speed] * 2 + [base_speed - align_value] * 2
+                    fwd_motor_values = [base_speed + align_half] * 2 + \
+                        [base_speed - align_half] * 2
+                elif align_value < 0:
+                    
+                    # align_value = max(-base_speed // 2, align_value)
+                    # fwd_motor_values = [base_speed + align_value] * 2 + [base_speed ] * 2
+                    fwd_motor_values = [base_speed + align_half * 1.5] * 2 + \
+                        [base_speed - align_half * 1.5] * 2
+            elif direction == -1:
+                # align_value *= 0.75
+                align_half *= 0.75 
+                if align_value < 0:
+                    # align_value = max(-base_speed // 2, align_value)
+                    # fwd_motor_values = [base_speed] * 2 + [base_speed + align_value] * 2
+                    # fwd_motor_values = [base_speed + align_value] * 2 + [base_speed] * 2
+                    fwd_motor_values = [base_speed - align_half] * 2 + \
+                        [base_speed + align_half] * 2
+                elif align_value > 0:
+                    # align_value *= 1.55
+                    # align_value = min(base_speed // 2, align_value)
+                    # fwd_motor_values =  [base_speed ] * 2 + [base_speed - align_value] * 2
+                    fwd_motor_values = [base_speed - align_half] * 2 + \
+                        [base_speed + align_half] * 2
             if i % 30 == 0:
+                print("----")
                 print("direction:{}".format(direction))
                 print("align_value:{}".format(align_value))
                 print("fwd_motor_values:{}".format(fwd_motor_values))
