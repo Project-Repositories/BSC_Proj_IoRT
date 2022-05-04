@@ -1,4 +1,5 @@
 import time
+import math
 from enum import Enum
 from servo import Servo
 from Ultrasonic import Ultrasonic
@@ -36,9 +37,9 @@ class WallAligner:
         print("target distance: {}".format(self.target_distance))
 
         # Needs to be evaluated experimentally:
-        self.pid = PID(-50, -0.5, -100, setpoint=0) # -50, -0.5, -25
+        self.pid = PID(-50, -0.5, -25, setpoint=0) # -50, -0.5, -25
         # TODO: Set the negative bound to larger magnitude; possibly -150
-        self.pid.output_limits = (-1000, 1000)
+        self.pid.output_limits = (None, None) # -1000, 1000
 
     def get_direction_correction(self, speed_magnitude: int):
         # calculate error by measuring difference of current distance to target distance:
@@ -59,6 +60,9 @@ class WallAligner:
             # Turn away from enum direction.
         return control_value # controlled_wheel_magnitude
 
+# https://stackoverflow.com/a/58470178
+def clamp(value, lower, upper):
+    return lower if value < lower else upper if value > upper else value
 
 class SimpleDriver:
     def __init__(self):
@@ -92,15 +96,28 @@ class SimpleDriver:
         def drive(direction,fwd_motor_values):
             motor_values = [direction * int(num) for num in fwd_motor_values]
             PWM.setMotorModel(*motor_values)
-
+        def reversal(speed):
+            speed_sign = int(math.copysign(1,speed))
+            new_speed = speed
+            step_size = 500
+            n_steps = abs(speed) // step_size
+            for step in range(n_steps+1):
+                if speed_sign is 1:
+                    new_speed = max(new_speed - step_size,0)
+                else:
+                    new_speed = min(new_speed + step_size,0)
+                PWM.setMotorModel(*[new_speed]*4)
+                time.sleep(0.15)
+                
         direction = 1
 
         turn_time = 2.5
         align_time = 0.5
         previous_turn = previous_align = time.time()
 
-        base_speed = 1000
+        base_speed = 1500
         aligned_modifier = 0
+        align_coeff = (base_speed / 1000)**0.5
         fwd_motor_values = [base_speed] * 4
         
         i = 0
@@ -110,10 +127,10 @@ class SimpleDriver:
             current_time = time.time()
             if current_time - previous_turn >= turn_time:
                 previous_turn = current_time
+                reversal(base_speed * direction)
                 direction *= -1
-                drive(direction, [0]*4)
-                time.sleep(0.25)
-                
+                # drive(direction, [0]*4)
+                # time.sleep(0.25)
             if False: # current_time - previous_align >= align_time:
                 previous_align = current_time
                 align_modifier = self.aligner.get_direction_correction(base_speed)
@@ -140,6 +157,7 @@ class SimpleDriver:
             
             if False: #current_time - previous_align >= align_time:
                 align_modifier = self.aligner.get_direction_correction(base_speed)
+                
                 previous_align = time.time()
                 if align_modifier > 25:
                     
@@ -149,19 +167,29 @@ class SimpleDriver:
                     # timeout aligner for some more time:
                     previous_align = time.time() + 2.5
             align_value = self.aligner.get_direction_correction(base_speed)
-            
-            if direction == 1:S
-                if align_value > 0: # turn right
-                    fwd_motor_values = [base_speed] * 2 + [base_speed - align_value] * 2
-                elif align_value < 0:
-                    fwd_motor_values = [base_speed + align_value] * 2 + [base_speed ] * 2
-            elif direction == -2:
-                align_value /= 10
-                if align_value < 0:
-                    fwd_motor_values = [base_speed] * 2 + [base_speed + align_value] * 2
-                elif align_value > 0:
-                    fwd_motor_values = [base_speed - align_value] * 2 + [base_speed ] * 2
-            if i % 50 == 0:
+            align_value *= (align_coeff)
+            align_value = clamp(align_value, -base_speed // 1.5, base_speed // 1.5)
+            if i % 1 == 0:
+                if direction == 1:
+                    align_value *= 1.25
+                    if align_value > 0: # turn right
+                        # align_value = min(base_speed // 2, align_value)
+                        fwd_motor_values = [base_speed] * 2 + [base_speed - align_value] * 2
+                    elif align_value < 0:
+                        # align_value = max(-base_speed // 2, align_value)
+                        fwd_motor_values = [base_speed + align_value] * 2 + [base_speed ] * 2
+                elif direction == -1:
+                    align_value *= 0.75
+                    if align_value < 0:
+                        # align_value = max(-base_speed // 2, align_value)
+                        # fwd_motor_values = [base_speed] * 2 + [base_speed + align_value] * 2
+                        fwd_motor_values = [base_speed + align_value] * 2 + [base_speed] * 2 
+                    elif align_value > 0:
+                        # align_value *= 1.55
+                        # align_value = min(base_speed // 2, align_value)
+                        fwd_motor_values =  [base_speed ] * 2 + [base_speed - align_value] * 2
+            if i % 30 == 0:
+                print("direction:{}".format(direction))
                 print("align_value:{}".format(align_value))
                 print("fwd_motor_values:{}".format(fwd_motor_values))
                 
