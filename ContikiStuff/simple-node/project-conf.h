@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015, SICS Swedish ICT.
+ * Copyright (c) 2018, University of Bristol - http://www.bristol.ac.uk
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,10 +31,11 @@
 
 /**
  * \author Simon Duquennoy <simonduq@sics.se>
+ *         Atis Elsts <atis.elsts@bristol.ac.uk>
  */
 
-#ifndef PROJECT_CONF_H_
-#define PROJECT_CONF_H_
+#ifndef __PROJECT_CONF_H__
+#define __PROJECT_CONF_H__
 
 /* Set to enable TSCH security */
 #ifndef WITH_SECURITY
@@ -58,11 +60,17 @@
  * Larger values result in less frequent active slots: reduces capacity and saves energy. */
 #define TSCH_SCHEDULE_CONF_DEFAULT_LENGTH 3
 
-/* my change: 
- * reduce the number of channels to search, and the keep-alive time */
+
+/*******************************************************/
+/* 
+Modification:
+*/
 #define TSCH_CONF_DEFAULT_HOPPING_SEQUENCE TSCH_HOPPING_SEQUENCE_2_2
-// #define TSCH_CONF_KEEPALIVE_TIMEOUT (8 * CLOCK_SECOND)
- 
+#define TSCH_CONF_EB_PERIOD (10 * CLOCK_SECOND)
+// IMPORTANT: Saving the day VV!!
+#define TSCH_CONF_ASSOCIATION_POLL_FREQUENCY 1000
+
+/*******************************************************/
 
 
 #if WITH_SECURITY
@@ -76,6 +84,15 @@
 /************* Other system configuration **************/
 /*******************************************************/
 
+
+/*******************************************************/
+/* 
+Modification of Logging: 
+FRAMER used to be LOG_LEVEL_WARN
+CONF_PER_SLOT used to be 0
+*/
+/*******************************************************/
+
 /* Logging */
 #define LOG_CONF_LEVEL_RPL                         LOG_LEVEL_WARN
 #define LOG_CONF_LEVEL_TCPIP                       LOG_LEVEL_WARN
@@ -86,4 +103,8 @@
 #define TSCH_LOG_CONF_PER_SLOT                     1
 
 
-#endif /* PROJECT_CONF_H_ */
+
+#endif /* __PROJECT_CONF_H__ */
+
+
+

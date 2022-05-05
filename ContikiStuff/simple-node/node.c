@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015, SICS Swedish ICT.
+ * Copyright (c) 2018, University of Bristol - http://www.bristol.ac.uk
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,65 +30,156 @@
  */
 /**
  * \file
- *         A RPL+TSCH node able to act as either a simple node (6ln),
- *         DAG Root (6dr) or DAG Root with security (6dr-sec)
- *         Press use button at startup to configure.
+ *         A RPL+TSCH node demonstrating application-level time syncrhonization.
  *
- * \author Simon Duquennoy <simonduq@sics.se>
+ * \author Atis Elsts <atis.elsts@bristol.ac.uk>
+ *         Simon Duquennoy <simonduq@sics.se>
  */
 
 #include "contiki.h"
-#include "sys/node-id.h"
-#include "sys/log.h"
-#include "net/ipv6/uip-ds6-route.h"
-#include "net/ipv6/uip-sr.h"
-#include "net/mac/tsch/tsch.h"
 #include "net/routing/routing.h"
+#include "net/netstack.h"
+#include "net/ipv6/simple-udp.h"
+#include "net/mac/tsch/tsch.h"
+#include "lib/random.h"
+#include "sys/node-id.h"
 
-#define DEBUG DEBUG_PRINT
-#include "net/ipv6/uip-debug.h"
+#include "sys/log.h"
+#define LOG_MODULE "App"
+#define LOG_LEVEL LOG_LEVEL_INFO
 
+#define UDP_CLIENT_PORT	8765
+#define UDP_SERVER_PORT	5678
+
+#define SEND_INTERVAL		  (60 * CLOCK_SECOND)
 /*---------------------------------------------------------------------------*/
+static struct simple_udp_connection client_conn, server_conn;
+
 PROCESS(node_process, "RPL Node");
 AUTOSTART_PROCESSES(&node_process);
+/*---------------------------------------------------------------------------*/
+static void
+udp_rx_callback(struct simple_udp_connection *c,
+         const uip_ipaddr_t *sender_addr,
+         uint16_t sender_port,
+         const uip_ipaddr_t *receiver_addr,
+         uint16_t receiver_port,
+         const uint8_t *data,
+         uint16_t datalen)
+{
+  uint64_t local_time_clock_ticks = tsch_get_network_uptime_ticks();
+  uint64_t remote_time_clock_ticks;
+
+  if(datalen >= sizeof(remote_time_clock_ticks)) {
+    memcpy(&remote_time_clock_ticks, data, sizeof(remote_time_clock_ticks));
+    
+    int16_t RSSI = (int16_t)uipbuf_get_attr(UIPBUF_ATTR_RSSI);
+    
+    LOG_INFO("Received from ");
+    LOG_INFO_6ADDR(sender_addr);
+    LOG_INFO_(", created at %lu, now %lu, latency %lu clock ticks, rssi %d, lqi %u\n",
+              (unsigned long)remote_time_clock_ticks,
+              (unsigned long)local_time_clock_ticks,
+              (unsigned long)(local_time_clock_ticks - remote_time_clock_ticks),
+              RSSI,
+              uipbuf_get_attr(UIPBUF_ATTR_LINK_QUALITY));
+              
+    /* Modification: After receiving a ping, send a ping back to the child. */
+    simple_udp_sendto(&server_conn, &RSSI, sizeof(RSSI), sender_addr);
+    LOG_INFO("Sent RSSI %hd to child node ", RSSI);
+    LOG_INFO_6ADDR(sender_addr);
+    LOG_INFO_("\n");
+  }
+}
+
+
+/* 
+Modification: Add a call-back function for the child node to print the RSSI
+*/
+
+static void
+udp_child_rx_callback(struct simple_udp_connection *c,
+         const uip_ipaddr_t *sender_addr,
+         uint16_t sender_port,
+         const uip_ipaddr_t *receiver_addr,
+         uint16_t receiver_port,
+         const uint8_t *data,
+         uint16_t datalen)
+{
+	int16_t RSSI;
+	if(datalen >= sizeof(RSSI)) {
+	    memcpy(&RSSI, data, sizeof(RSSI));
+	    
+	    LOG_INFO("Received from ");
+	    LOG_INFO_6ADDR(sender_addr);
+	    LOG_INFO("The received RSSI: %hi\n", RSSI);
+	    RSSI = (int16_t)uipbuf_get_attr(UIPBUF_ATTR_RSSI);
+		//LOG_INFO("RSSI from latest ping: %hi\n", RSSI);
+		printf("RSSI from latest ping: %hi\n", RSSI);
+	}
+}
+
 
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(node_process, ev, data)
 {
+  static struct etimer periodic_timer;
   int is_coordinator;
+  uip_ipaddr_t dest_ipaddr;
 
   PROCESS_BEGIN();
 
   is_coordinator = 0;
 
-#if CONTIKI_TARGET_COOJA || CONTIKI_TARGET_Z1
+#if CONTIKI_TARGET_COOJA
   is_coordinator = (node_id == 1);
 #endif
 
   if(is_coordinator) {
     NETSTACK_ROUTING.root_start();
   }
+
+  /* Initialize UDP connections */
+  /*if(tsch_is_coordinator) {
+	  simple_udp_register(&server_conn, UDP_SERVER_PORT, NULL,
+		                  UDP_CLIENT_PORT, udp_rx_callback);  
+  }
+  else {
+  		simple_udp_register(&server_conn, UDP_SERVER_PORT, NULL,
+		                  UDP_CLIENT_PORT, udp_child_rx_callback);  
+  }*/
+  simple_udp_register(&server_conn, UDP_SERVER_PORT, NULL,
+		                  UDP_CLIENT_PORT, udp_rx_callback);
+  simple_udp_register(&client_conn, UDP_CLIENT_PORT, NULL,
+                      UDP_SERVER_PORT, udp_child_rx_callback);
+
   NETSTACK_MAC.on();
 
+  etimer_set(&periodic_timer, random_rand() % SEND_INTERVAL);
 
-#if WITH_PERIODIC_ROUTES_PRINT
-  {
-    static struct etimer et;
-    /* Print out routing tables every minute */
-    etimer_set(&et, CLOCK_SECOND * 60);
-    while(1) {
-      /* Used for non-regression testing */
-      #if (UIP_MAX_ROUTES != 0)
-        PRINTF("Routing entries: %u\n", uip_ds6_route_num_routes());
-      #endif
-      #if (UIP_SR_LINK_NUM != 0)
-        PRINTF("Routing links: %u\n", uip_sr_num_nodes());
-      #endif
-      PROCESS_YIELD_UNTIL(etimer_expired(&et));
-      etimer_reset(&et);
+  while(1) {
+    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&periodic_timer));
+    
+    if(tsch_is_coordinator) {
+      break;
     }
+    // Child pings root:
+    if(NETSTACK_ROUTING.node_is_reachable() && NETSTACK_ROUTING.get_root_ipaddr(&dest_ipaddr)) {
+      /* Send network uptime timestamp to the DAG root */
+      uint64_t network_uptime;
+      network_uptime = tsch_get_network_uptime_ticks();
+      simple_udp_sendto(&client_conn, &network_uptime, sizeof(network_uptime), &dest_ipaddr);
+      LOG_INFO("Sent network uptime timestamp %lu to ", (unsigned long)network_uptime);
+      LOG_INFO_6ADDR(&dest_ipaddr);
+      LOG_INFO_("\n");
+    } else {
+      LOG_INFO("Not reachable yet\n");
+    }
+
+    /* Add some jitter */
+    etimer_set(&periodic_timer, SEND_INTERVAL
+               - CLOCK_SECOND + (random_rand() % (2 * CLOCK_SECOND)));
   }
-#endif /* WITH_PERIODIC_ROUTES_PRINT */
 
   PROCESS_END();
 }
