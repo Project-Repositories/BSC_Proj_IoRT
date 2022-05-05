@@ -27,7 +27,7 @@ class SimpleDriver:
         GPIO.setup(self.IR02, GPIO.IN)
         GPIO.setup(self.IR03, GPIO.IN)
 
-        self.direction = Direction.RIGHT
+        self.direction = Direction.LEFT
         self.aligner = WallAligner(self.direction)
         self.head = Head.FORWARDS
 
@@ -45,6 +45,7 @@ class SimpleDriver:
             PWM.setMotorModel(*motor_values)
 
         def reversal(pwm_magnitude):
+            print("reversing")
             speed_sign = self.head.value
             new_speed = pwm_magnitude
             step_size = 500
@@ -57,10 +58,10 @@ class SimpleDriver:
                 else:
                     new_speed = min(new_speed + step_size, 0)
                 PWM.setMotorModel(*[new_speed] * 4)
-                time.sleep(0.15)
+                time.sleep(0.2)
             self.reverse_head()
 
-        turn_time = 3.1
+        turn_time = 2
         previous_turn = time.time()
 
         base_speed = 1000
@@ -71,32 +72,34 @@ class SimpleDriver:
         i = 0
         while True:
             i += 1
-            fwd_motor_values = [base_speed] * 4
+            # fwd_motor_values = [base_speed] * 4
             current_time = time.time()
             if current_time - previous_turn >= turn_time:
                 previous_turn = current_time
                 reversal(base_speed)
-
-            align_value = self.aligner.get_direction_correction(base_speed)
-            align_value *= align_coeff
-            # Clamp the alignment, to limit it from stopping a set of wheels completely, or even reversing the direction.
-            align_value = clamp(align_value, -base_speed // 1.5, base_speed // 1.5)
-            # Split the "burden" of alignment in two parts:
-            # One side drives faster, another drives slower, compared to base_speed.
-            # Will result in less sudden changes of PWM in a set of wheels, and also be closer to "base speed"
-            align_half = align_value / 2
-            if self.direction == Direction.RIGHT:
-                fwd_motor_values = [base_speed + align_half] * 2 + \
-                                   [base_speed - align_half] * 2
-            elif self.direction == Direction.LEFT:
-                fwd_motor_values = [base_speed - align_half] * 2 + \
-                                   [base_speed + align_half] * 2
+            if i % 5 == 0:
+                
+                align_value = self.aligner.get_direction_correction(base_speed)
+                align_value *= align_coeff
+                # Clamp the alignment, to limit it from stopping a set of wheels completely, or even reversing the direction.
+                align_value = clamp(align_value, -base_speed // 1, base_speed // 1)
+                # Split the "burden" of alignment in two parts:
+                # One side drives faster, another drives slower, compared to base_speed.
+                # Will result in less sudden changes of PWM in a set of wheels, and also be closer to "base speed"
+                align_half = align_value / 2
+                if self.direction == Direction.RIGHT:
+                    # align_half * 1.5
+                    fwd_motor_values = [base_speed + align_half] * 2 + \
+                                       [base_speed - align_half] * 2
+                elif self.direction == Direction.LEFT:
+                    fwd_motor_values = [base_speed - align_half] * 2 + \
+                                       [base_speed + align_half] * 2
             if i % 30 == 0:
                 print("----")
                 print("head:{}".format(self.head))
                 print("align_value:{}".format(align_value))
                 print("fwd_motor_values:{}".format(fwd_motor_values))
-
+                print("p, i, d: {}, {}, {}".format(*self.aligner.pid.components))
             drive(fwd_motor_values)
 
 

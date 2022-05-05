@@ -35,7 +35,7 @@ class WallAligner:
         print("target distance: {}".format(self.target_distance))
 
         # Needs to be evaluated experimentally:
-        self.pid = PID(-70, -0.5, -40, setpoint=0)  # -50, -0.5, -25
+        self.pid = PID(-50, -0.5, -20, setpoint=0)  # -50, -0.5, -25
 
         # TODO: Add "error mapping" function, which takes the current measured distance
         # then calculates the difference from the target (currently takes difference as error)
@@ -45,16 +45,20 @@ class WallAligner:
         def error_mapping(measured_distance):
             min_distance = 7
             max_distance = None  # 30, should be set according to the physical environment
-            distance_error = measured_distance - self.target_distance
+            # PID takes the negative of the input error.
+            # This doesn't make much sense, as measured distance can't be negative.
+            measured_distance = abs(measured_distance)
+            distance_error = (measured_distance) - self.target_distance
+            # print("target_dist:{}\nmeasured_dist:{}\ndist.err:{}".format(self.target_distance,measured_distance,distance_error))
             if measured_distance < min_distance or (max_distance and measured_distance > max_distance):
-                distance_error *= 1.5
-            return distance_error
+                distance_error = distance_error * 1.5
+            return -distance_error
         self.pid.error_map = error_mapping
 
         # The range of PWM for the car wheels are [-4096,4096]. So the output limits should probably be half of this.
         # (only set to avoid "integral windup", since we clamp the PID control value afterwards anyways.)
         max_pwm = 4096
-        self.pid.output_limits = (-max_pwm // 2, max_pwm // 2)  # -1000, 1000
+        self.pid.output_limits = (None, None) #(-max_pwm // 2, max_pwm // 2)  # -1000, 1000
 
     def get_direction_correction(self, speed_magnitude: int):
         # calculate error by measuring difference of current distance to target distance:
@@ -62,8 +66,11 @@ class WallAligner:
         # distance_error = self.ultrasonic.get_distance() - self.target_distance
         # control_value = self.pid(distance_error)
         current_distance = self.ultrasonic.get_distance()
+        # print("current distance:{}".format(current_distance))
+        # print("current distance:{}".format(current_distance))
         control_value = self.pid(current_distance)
-
+        
+        # print("ctrl value:{}".format(control_value))
         # When distance has increased since start, then control_value > 0,
         # Then, turn towards enum direction.
         # When distance has decreased, control_value < 0.
