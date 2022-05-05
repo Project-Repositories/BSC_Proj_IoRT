@@ -51,7 +51,9 @@
 #define UDP_CLIENT_PORT	8765
 #define UDP_SERVER_PORT	5678
 
-#define SEND_INTERVAL		  (60 * CLOCK_SECOND)
+#define SEND_INTERVAL		  (10 * CLOCK_SECOND)
+#define ALPHA 0.75f
+
 /*---------------------------------------------------------------------------*/
 static struct simple_udp_connection client_conn, server_conn;
 
@@ -93,6 +95,100 @@ udp_rx_callback(struct simple_udp_connection *c,
 }
 
 
+
+/*---------------------------------------------------------------------------*/
+// Using Exponentially Weighted Moving Average of RSSI to determine if 
+// the link between root and node is "weak". 
+/*---------------------------------------------------------------------------*/
+
+
+float get_ewma(int new_RSSI) {
+	static float EWMA = 0.f;
+	EWMA = (0.75f * new_RSSI) + (1 - 0.75f) * EWMA;
+	return EWMA;
+}
+
+
+void active_connectivity_speed(int new_RSSI) {
+	static bool speed_change = false;
+	static bool change_acceleration = false;
+	static bool brake = false;
+	static bool accelerate = false;	
+	
+	float EWMA = get_ewma(new_RSSI);
+	static float EWMA_tmp = 0;
+	const int min_threshold = -65;
+	printf("EWMA: %d",(int)EWMA);
+	if (EWMA <= min_threshold) {
+
+		if (!speed_change){
+			EWMA_tmp = EWMA;
+			speed_change = 1;
+			printf("%d  rssi_ewma_tmp\n",  (int)EWMA_tmp);
+
+			
+			if (random_rand() % 2) {
+			  brake = 1;
+			  accelerate =0;
+			}
+			else {
+			  accelerate = 1;
+			  brake = 0;
+			}
+		  }
+
+		  if (brake){
+			printf("%d slow down1\n", node_id);
+		  }
+
+		  if (accelerate) {
+			printf("%d accelerate1\n", node_id);
+
+		  }
+
+	}
+	// If RSSI decreased, meaning we chose the wrong action:
+	// (added 'speed_change &&'), though its technically unnecesarry.
+	if (speed_change && (EWMA_tmp - EWMA >= 3)){
+
+	  if (accelerate && !change_acceleration){
+		printf("%d slow down2\n", node_id);
+		accelerate = 0;
+		brake = 1;
+		change_acceleration = 1;
+
+	  }
+
+	  if (brake && !change_acceleration)  {
+		printf("%d accelerate2\n", node_id);
+		accelerate = 1;
+		brake = 0;
+		change_acceleration = 1;
+	  }
+
+	}  
+
+	if (EWMA >= -60 && speed_change){
+
+	  if (accelerate){
+		printf("%d slow down\n", node_id);
+		accelerate = 0;
+		brake = 1;
+	  }
+
+	  else {
+		printf("%d accelerate\n", node_id);
+		accelerate = 1;
+		brake = 0;
+	  }
+
+	  speed_change = 0 ;
+
+	}
+
+}
+
+
 /* 
 Modification: Add a call-back function for the child node to print the RSSI
 */
@@ -116,6 +212,11 @@ udp_child_rx_callback(struct simple_udp_connection *c,
 	    RSSI = (int16_t)uipbuf_get_attr(UIPBUF_ATTR_RSSI);
 		//LOG_INFO("RSSI from latest ping: %hi\n", RSSI);
 		printf("RSSI from latest ping: %hi\n", RSSI);
+		
+		
+		// float EWMA = get_ewma((int)RSSI);
+		// printf("resulting EWMA: %d\n", (int)EWMA);
+		active_connectivity_speed((int)RSSI);
 	}
 }
 
@@ -140,14 +241,6 @@ PROCESS_THREAD(node_process, ev, data)
   }
 
   /* Initialize UDP connections */
-  /*if(tsch_is_coordinator) {
-	  simple_udp_register(&server_conn, UDP_SERVER_PORT, NULL,
-		                  UDP_CLIENT_PORT, udp_rx_callback);  
-  }
-  else {
-  		simple_udp_register(&server_conn, UDP_SERVER_PORT, NULL,
-		                  UDP_CLIENT_PORT, udp_child_rx_callback);  
-  }*/
   simple_udp_register(&server_conn, UDP_SERVER_PORT, NULL,
 		                  UDP_CLIENT_PORT, udp_rx_callback);
   simple_udp_register(&client_conn, UDP_CLIENT_PORT, NULL,
