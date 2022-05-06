@@ -34,10 +34,14 @@ Archive member included to satisfy reference by file (symbol)
                               build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o (memset)
 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-reent.o)
                               build/cc26x0-cc13x0/launchpad/cc2650/obj/syscalls.o (errno)
+/usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
+                              node.o (strcat)
 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
                               build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o (strchr)
 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
                               build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o (strcmp)
+/usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
+                              /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o) (strcpy)
 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strlen-stub.o)
                               build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-ble.o (strlen)
 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strncmp.o)
@@ -1747,12 +1751,6 @@ Discarded input sections
  .text          0x00000000        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
  .data          0x00000000        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
  .bss           0x00000000        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
- .text.buffer_str
-                0x00000000       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
- .text.sprintf  0x00000000       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
- .comment       0x00000000       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
- .ARM.attributes
-                0x00000000       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
  .text          0x00000000        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/snprintf.o
  .data          0x00000000        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/snprintf.o
  .bss           0x00000000        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/snprintf.o
@@ -2213,8 +2211,10 @@ Discarded input sections
  .bss           0x00000000        0x0 node.o
  .text.drive_msg
                 0x00000000        0xc node.o
+ .text.experiment_log
+                0x00000000        0xc node.o
  .text.get_ewma
-                0x00000000       0x2c node.o
+                0x00000000       0x44 node.o
  .text          0x00000000      0x254 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
  .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
@@ -2278,11 +2278,17 @@ Discarded input sections
  .debug_frame   0x00000000       0x64 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-reent.o)
  .ARM.attributes
                 0x00000000       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-reent.o)
+ .text          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
+ .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
+ .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
  .text          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
  .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
  .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
+ .text          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
+ .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
+ .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
  .text          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strlen-stub.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strlen-stub.o)
  .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strlen-stub.o)
@@ -2609,7 +2615,7 @@ END GROUP
                 0x00000000                _Min_Heap_Size = 0x0
                 0x00000400                _Min_Stack_Size = 0x400
 
-.text           0x00000000    0x1567d
+.text           0x00000000    0x157ed
                 0x00000000                _text = .
  *(SORT_BY_ALIGNMENT(.vectors))
  .vectors       0x00000000       0xc8 build/cc26x0-cc13x0/launchpad/cc2650/obj/startup_gcc.o
@@ -3591,1249 +3597,1259 @@ END GROUP
  .text.printf   0x00008298       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/printf.o
                 0x00008298                printf
  .text.buffer_str
-                0x000082bc       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/snprintf.o
+                0x000082bc       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
+ .text.sprintf  0x000082d4       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
+                0x000082d4                sprintf
+ .text.buffer_str
+                0x00008308       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/snprintf.o
  .text.snprintf
-                0x000082e4       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/snprintf.o
-                0x000082e4                snprintf
+                0x00008330       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/snprintf.o
+                0x00008330                snprintf
  .text.tsch_queue_flush_nbr_queue
-                0x0000831c       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x00008368       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
  .text.tsch_queue_add_nbr
-                0x00008398       0x88 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x00008398                tsch_queue_add_nbr
+                0x000083e4       0x88 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x000083e4                tsch_queue_add_nbr
  .text.tsch_queue_get_nbr
-                0x00008420       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x00008420                tsch_queue_get_nbr
+                0x0000846c       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x0000846c                tsch_queue_get_nbr
  .text.tsch_queue_get_time_source
-                0x00008440       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x00008440                tsch_queue_get_time_source
+                0x0000848c       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x0000848c                tsch_queue_get_time_source
  .text.tsch_queue_get_nbr_address
-                0x00008474        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x00008474                tsch_queue_get_nbr_address
+                0x000084c0        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x000084c0                tsch_queue_get_nbr_address
  .text.tsch_queue_update_time_source
-                0x00008480       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x00008480                tsch_queue_update_time_source
+                0x000084cc       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x000084cc                tsch_queue_update_time_source
  .text.tsch_queue_add_packet
-                0x000084d4       0xe0 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x000084d4                tsch_queue_add_packet
+                0x00008520       0xe0 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x00008520                tsch_queue_add_packet
  .text.tsch_queue_global_packet_count
-                0x000085b4       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x000085b4                tsch_queue_global_packet_count
+                0x00008600       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x00008600                tsch_queue_global_packet_count
  .text.tsch_queue_nbr_packet_count
-                0x000085c8       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x000085c8                tsch_queue_nbr_packet_count
+                0x00008614       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x00008614                tsch_queue_nbr_packet_count
  .text.tsch_queue_free_packet
-                0x000085d8       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x000085d8                tsch_queue_free_packet
+                0x00008624       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x00008624                tsch_queue_free_packet
  .text.tsch_queue_packet_sent
-                0x000085f8       0x90 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x000085f8                tsch_queue_packet_sent
+                0x00008644       0x90 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x00008644                tsch_queue_packet_sent
  .text.tsch_queue_reset
-                0x00008688       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x00008688                tsch_queue_reset
+                0x000086d4       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x000086d4                tsch_queue_reset
  .text.tsch_queue_free_unused_neighbors
-                0x000086c0       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x000086c0                tsch_queue_free_unused_neighbors
+                0x0000870c       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x0000870c                tsch_queue_free_unused_neighbors
  .text.tsch_queue_get_packet_for_nbr
-                0x0000872c       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x0000872c                tsch_queue_get_packet_for_nbr
+                0x00008778       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x00008778                tsch_queue_get_packet_for_nbr
  .text.tsch_queue_get_unicast_packet_for_any
-                0x00008774       0x4c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x00008774                tsch_queue_get_unicast_packet_for_any
+                0x000087c0       0x4c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x000087c0                tsch_queue_get_unicast_packet_for_any
  .text.tsch_queue_update_all_backoff_windows
-                0x000087c0       0x74 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x000087c0                tsch_queue_update_all_backoff_windows
+                0x0000880c       0x74 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x0000880c                tsch_queue_update_all_backoff_windows
  .text.tsch_queue_init
-                0x00008834       0x40 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
-                0x00008834                tsch_queue_init
+                0x00008880       0x40 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x00008880                tsch_queue_init
  .text.turn_off
-                0x00008874       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x000088c0       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .text.tsch_reset
-                0x00008884       0xb8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x000088d0       0xb8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .text.process_thread_tsch_send_eb_process
-                0x0000893c      0x17c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00008988      0x17c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .text.send_packet
-                0x00008ab8      0x15c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00008b04      0x15c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .text.tsch_init
-                0x00008c14      0x190 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00008c60      0x190 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .text.packet_input
-                0x00008da4       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00008df0       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .text.keepalive_send
-                0x00008e20       0x70 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00008e6c       0x70 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .text.max_payload
-                0x00008e90       0x80 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- .text.turn_on  0x00008f10       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00008edc       0x80 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ .text.turn_on  0x00008f5c       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .text.keepalive_packet_sent
-                0x00008f58       0xc8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00008fa4       0xc8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .text.process_thread_tsch_pending_events_process
-                0x00009020      0x2b8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x0000906c      0x2b8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .text.tsch_set_coordinator
-                0x000092d8       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x000092d8                tsch_set_coordinator
+                0x00009324       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00009324                tsch_set_coordinator
  .text.tsch_set_pan_secured
-                0x0000930c        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x0000930c                tsch_set_pan_secured
+                0x00009358        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00009358                tsch_set_pan_secured
  .text.tsch_set_join_priority
-                0x00009318        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x00009318                tsch_set_join_priority
+                0x00009364        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00009364                tsch_set_join_priority
  .text.tsch_set_ka_timeout
-                0x00009324       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x00009324                tsch_set_ka_timeout
+                0x00009370       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00009370                tsch_set_ka_timeout
  .text.tsch_set_eb_period
-                0x00009348       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x00009348                tsch_set_eb_period
+                0x00009394       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00009394                tsch_set_eb_period
  .text.tsch_schedule_keepalive
-                0x0000935c       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x0000935c                tsch_schedule_keepalive
+                0x000093a8       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x000093a8                tsch_schedule_keepalive
  .text.tsch_disassociate
-                0x00009384       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x00009384                tsch_disassociate
+                0x000093d0       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x000093d0                tsch_disassociate
  .text.tsch_scan
-                0x000093ac      0x4a8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x000093ac                tsch_scan
+                0x000093f8      0x4a8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x000093f8                tsch_scan
  .text.process_thread_tsch_process
-                0x00009854       0xe0 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x000098a0       0xe0 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .text.tsch_schedule_remove_link.part.0
-                0x00009934       0xa4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00009980       0xa4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
  .text.tsch_schedule_add_slotframe
-                0x000099d8       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
-                0x000099d8                tsch_schedule_add_slotframe
+                0x00009a24       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00009a24                tsch_schedule_add_slotframe
  .text.tsch_schedule_remove_slotframe
-                0x00009a54       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
-                0x00009a54                tsch_schedule_remove_slotframe
+                0x00009aa0       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00009aa0                tsch_schedule_remove_slotframe
  .text.tsch_schedule_remove_all_slotframes
-                0x00009aa8       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
-                0x00009aa8                tsch_schedule_remove_all_slotframes
+                0x00009af4       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00009af4                tsch_schedule_remove_all_slotframes
  .text.tsch_schedule_remove_link_by_timeslot
-                0x00009ac8       0x68 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
-                0x00009ac8                tsch_schedule_remove_link_by_timeslot
+                0x00009b14       0x68 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00009b14                tsch_schedule_remove_link_by_timeslot
  .text.tsch_schedule_add_link
-                0x00009b30      0x134 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
-                0x00009b30                tsch_schedule_add_link
+                0x00009b7c      0x134 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00009b7c                tsch_schedule_add_link
  .text.tsch_schedule_get_next_active_link
-                0x00009c64      0x1e8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
-                0x00009c64                tsch_schedule_get_next_active_link
+                0x00009cb0      0x1e8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00009cb0                tsch_schedule_get_next_active_link
  .text.tsch_schedule_init
-                0x00009e4c       0x30 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
-                0x00009e4c                tsch_schedule_init
+                0x00009e98       0x30 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00009e98                tsch_schedule_init
  .text.tsch_schedule_create_minimal
-                0x00009e7c       0x40 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
-                0x00009e7c                tsch_schedule_create_minimal
+                0x00009ec8       0x40 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00009ec8                tsch_schedule_create_minimal
  .text.tsch_schedule_slotframe_head
-                0x00009ebc        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
-                0x00009ebc                tsch_schedule_slotframe_head
+                0x00009f08        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00009f08                tsch_schedule_slotframe_head
  .text.tsch_schedule_slotframe_next
-                0x00009ec8        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
-                0x00009ec8                tsch_schedule_slotframe_next
+                0x00009f14        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00009f14                tsch_schedule_slotframe_next
  .text.get_packet_and_neighbor_for_link.constprop.0
-                0x00009ecc       0x78 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x00009f18       0x78 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
  .text.tsch_schedule_slot_operation.constprop.0
-                0x00009f44       0x60 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x00009f90       0x60 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
  .text.tsch_tx_slot.constprop.0
-                0x00009fa4      0x48c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x00009ff0      0x48c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
  .text.tsch_slot_operation
-                0x0000a430      0x724 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x0000a47c      0x724 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
  .text.tsch_is_locked
-                0x0000ab54        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
-                0x0000ab54                tsch_is_locked
+                0x0000aba0        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x0000aba0                tsch_is_locked
  .text.tsch_get_lock
-                0x0000ab60       0x50 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
-                0x0000ab60                tsch_get_lock
+                0x0000abac       0x50 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x0000abac                tsch_get_lock
  .text.tsch_release_lock
-                0x0000abb0        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
-                0x0000abb0                tsch_release_lock
+                0x0000abfc        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x0000abfc                tsch_release_lock
  .text.tsch_get_network_uptime_ticks
-                0x0000abbc       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
-                0x0000abbc                tsch_get_network_uptime_ticks
+                0x0000ac08       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x0000ac08                tsch_get_network_uptime_ticks
  .text.tsch_slot_operation_start
-                0x0000ac28       0x94 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
-                0x0000ac28                tsch_slot_operation_start
+                0x0000ac74       0x94 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x0000ac74                tsch_slot_operation_start
  .text.tsch_slot_operation_sync
-                0x0000acbc       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
-                0x0000acbc                tsch_slot_operation_sync
+                0x0000ad08       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x0000ad08                tsch_slot_operation_sync
  .text.tsch_packet_eackbuf_attr
-                0x0000ad10        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
-                0x0000ad10                tsch_packet_eackbuf_attr
+                0x0000ad5c        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
+                0x0000ad5c                tsch_packet_eackbuf_attr
  .text.tsch_packet_create_eack
-                0x0000ad1c       0xa8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
-                0x0000ad1c                tsch_packet_create_eack
+                0x0000ad68       0xa8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
+                0x0000ad68                tsch_packet_create_eack
  .text.tsch_packet_parse_eack
-                0x0000adc4       0xb4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
-                0x0000adc4                tsch_packet_parse_eack
+                0x0000ae10       0xb4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
+                0x0000ae10                tsch_packet_parse_eack
  .text.tsch_packet_create_eb
-                0x0000ae78      0x158 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
-                0x0000ae78                tsch_packet_create_eb
+                0x0000aec4      0x158 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
+                0x0000aec4                tsch_packet_create_eb
  .text.tsch_packet_update_eb
-                0x0000afd0       0x40 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
-                0x0000afd0                tsch_packet_update_eb
+                0x0000b01c       0x40 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
+                0x0000b01c                tsch_packet_update_eb
  .text.tsch_packet_parse_eb
-                0x0000b010       0xd4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
-                0x0000b010                tsch_packet_parse_eb
+                0x0000b05c       0xd4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
+                0x0000b05c                tsch_packet_parse_eb
  .text.tsch_packet_set_frame_pending
-                0x0000b0e4        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
-                0x0000b0e4                tsch_packet_set_frame_pending
+                0x0000b130        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
+                0x0000b130                tsch_packet_set_frame_pending
  .text.tsch_packet_get_frame_pending
-                0x0000b0f0        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
-                0x0000b0f0                tsch_packet_get_frame_pending
+                0x0000b13c        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
+                0x0000b13c                tsch_packet_get_frame_pending
  .text.tsch_roots_add_address
-                0x0000b0f8        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-roots.o
-                0x0000b0f8                tsch_roots_add_address
+                0x0000b144        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-roots.o
+                0x0000b144                tsch_roots_add_address
  .text.tsch_roots_set_self_to_root
-                0x0000b0fc        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-roots.o
-                0x0000b0fc                tsch_roots_set_self_to_root
+                0x0000b148        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-roots.o
+                0x0000b148                tsch_roots_set_self_to_root
  .text.tsch_roots_init
-                0x0000b100        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-roots.o
-                0x0000b100                tsch_roots_init
+                0x0000b14c        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-roots.o
+                0x0000b14c                tsch_roots_init
  .text.tsch_security_set_packetbuf_attr
-                0x0000b104        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-security.o
-                0x0000b104                tsch_security_set_packetbuf_attr
+                0x0000b150        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-security.o
+                0x0000b150                tsch_security_set_packetbuf_attr
  .text.tsch_rpl_callback_ka_sent
-                0x0000b108       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
-                0x0000b108                tsch_rpl_callback_ka_sent
+                0x0000b154       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
+                0x0000b154                tsch_rpl_callback_ka_sent
  .text.tsch_rpl_callback_joining_network
-                0x0000b128        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
-                0x0000b128                tsch_rpl_callback_joining_network
+                0x0000b174        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
+                0x0000b174                tsch_rpl_callback_joining_network
  .text.tsch_rpl_callback_leaving_network
-                0x0000b12c       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
-                0x0000b12c                tsch_rpl_callback_leaving_network
+                0x0000b178       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
+                0x0000b178                tsch_rpl_callback_leaving_network
  .text.tsch_rpl_callback_new_dio_interval
-                0x0000b148       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
-                0x0000b148                tsch_rpl_callback_new_dio_interval
+                0x0000b194       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
+                0x0000b194                tsch_rpl_callback_new_dio_interval
  .text.tsch_rpl_callback_parent_switch
-                0x0000b190       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
-                0x0000b190                tsch_rpl_callback_parent_switch
+                0x0000b1dc       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
+                0x0000b1dc                tsch_rpl_callback_parent_switch
  .text.tsch_rpl_check_dodag_joined
-                0x0000b1b4        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
-                0x0000b1b4                tsch_rpl_check_dodag_joined
+                0x0000b200        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
+                0x0000b200                tsch_rpl_check_dodag_joined
  .text.tsch_adaptive_timesync_get_drift_ppm
-                0x0000b1c0       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
-                0x0000b1c0                tsch_adaptive_timesync_get_drift_ppm
+                0x0000b20c       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
+                0x0000b20c                tsch_adaptive_timesync_get_drift_ppm
  .text.tsch_timesync_update
-                0x0000b1d4      0x130 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
-                0x0000b1d4                tsch_timesync_update
+                0x0000b220      0x130 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
+                0x0000b220                tsch_timesync_update
  .text.tsch_timesync_adaptive_compensate
-                0x0000b304      0x1fc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
-                0x0000b304                tsch_timesync_adaptive_compensate
+                0x0000b350      0x1fc build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
+                0x0000b350                tsch_timesync_adaptive_compensate
  .text.tsch_adaptive_timesync_reset
-                0x0000b500       0x30 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
-                0x0000b500                tsch_adaptive_timesync_reset
+                0x0000b54c       0x30 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
+                0x0000b54c                tsch_adaptive_timesync_reset
  .text.uipbuf_clear
-                0x0000b530       0x30 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
-                0x0000b530                uipbuf_clear
+                0x0000b57c       0x30 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x0000b57c                uipbuf_clear
  .text.uipbuf_add_ext_hdr
-                0x0000b560       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
-                0x0000b560                uipbuf_add_ext_hdr
+                0x0000b5ac       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x0000b5ac                uipbuf_add_ext_hdr
  .text.uipbuf_set_len
-                0x0000b598       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
-                0x0000b598                uipbuf_set_len
+                0x0000b5e4       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x0000b5e4                uipbuf_set_len
  .text.uipbuf_set_len_field
-                0x0000b5b0        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
-                0x0000b5b0                uipbuf_set_len_field
+                0x0000b5fc        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x0000b5fc                uipbuf_set_len_field
  .text.uipbuf_get_len_field
-                0x0000b5b8        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
-                0x0000b5b8                uipbuf_get_len_field
+                0x0000b604        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x0000b604                uipbuf_get_len_field
  .text.uipbuf_get_next_header
-                0x0000b5c4       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
-                0x0000b5c4                uipbuf_get_next_header
+                0x0000b610       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x0000b610                uipbuf_get_next_header
  .text.uipbuf_get_last_header
-                0x0000b630       0x70 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
-                0x0000b630                uipbuf_get_last_header
+                0x0000b67c       0x70 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x0000b67c                uipbuf_get_last_header
  .text.uipbuf_search_header
-                0x0000b6a0       0x88 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
-                0x0000b6a0                uipbuf_search_header
+                0x0000b6ec       0x88 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x0000b6ec                uipbuf_search_header
  .text.uipbuf_get_attr
-                0x0000b728       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
-                0x0000b728                uipbuf_get_attr
+                0x0000b774       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x0000b774                uipbuf_get_attr
  .text.uipbuf_set_attr
-                0x0000b73c       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
-                0x0000b73c                uipbuf_set_attr
+                0x0000b788       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x0000b788                uipbuf_set_attr
  .text.uipbuf_init
-                0x0000b754       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
-                0x0000b754                uipbuf_init
+                0x0000b7a0       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x0000b7a0                uipbuf_init
  .text.echo_reply_input
-                0x0000b774       0x70 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
+                0x0000b7c0       0x70 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
  .text.echo_request_input
-                0x0000b7e4       0x84 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
+                0x0000b830       0x84 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
  .text.uip_icmp6_input
-                0x0000b868       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
-                0x0000b868                uip_icmp6_input
+                0x0000b8b4       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
+                0x0000b8b4                uip_icmp6_input
  .text.uip_icmp6_register_input_handler
-                0x0000b8a4        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
-                0x0000b8a4                uip_icmp6_register_input_handler
+                0x0000b8f0        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
+                0x0000b8f0                uip_icmp6_register_input_handler
  .text.uip_icmp6_error_output
-                0x0000b8b0      0x148 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
-                0x0000b8b0                uip_icmp6_error_output
+                0x0000b8fc      0x148 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
+                0x0000b8fc                uip_icmp6_error_output
  .text.uip_icmp6_send
-                0x0000b9f8       0xb0 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
-                0x0000b9f8                uip_icmp6_send
+                0x0000ba44       0xb0 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
+                0x0000ba44                uip_icmp6_send
  .text.uip_icmp6_echo_reply_callback_add
-                0x0000baa8       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
-                0x0000baa8                uip_icmp6_echo_reply_callback_add
+                0x0000baf4       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
+                0x0000baf4                uip_icmp6_echo_reply_callback_add
  .text.uip_icmp6_init
-                0x0000bac0       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
-                0x0000bac0                uip_icmp6_init
+                0x0000bb0c       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
+                0x0000bb0c                uip_icmp6_init
  .text.uip_sr_num_nodes
-                0x0000bae4        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
-                0x0000bae4                uip_sr_num_nodes
+                0x0000bb30        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x0000bb30                uip_sr_num_nodes
  .text.uip_sr_get_node
-                0x0000baf0       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
-                0x0000baf0                uip_sr_get_node
+                0x0000bb3c       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x0000bb3c                uip_sr_get_node
  .text.uip_sr_is_addr_reachable
-                0x0000bb44       0x4c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
-                0x0000bb44                uip_sr_is_addr_reachable
+                0x0000bb90       0x4c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x0000bb90                uip_sr_is_addr_reachable
  .text.uip_sr_expire_parent
-                0x0000bb90       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
-                0x0000bb90                uip_sr_expire_parent
+                0x0000bbdc       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x0000bbdc                uip_sr_expire_parent
  .text.uip_sr_update_node
-                0x0000bbd4      0x114 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
-                0x0000bbd4                uip_sr_update_node
+                0x0000bc20      0x114 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x0000bc20                uip_sr_update_node
  .text.uip_sr_init
-                0x0000bce8       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
-                0x0000bce8                uip_sr_init
+                0x0000bd34       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x0000bd34                uip_sr_init
  .text.uip_sr_node_head
-                0x0000bd0c        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
-                0x0000bd0c                uip_sr_node_head
+                0x0000bd58        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x0000bd58                uip_sr_node_head
  .text.uip_sr_node_next
-                0x0000bd18        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
-                0x0000bd18                uip_sr_node_next
+                0x0000bd64        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x0000bd64                uip_sr_node_next
  .text.uip_sr_periodic
-                0x0000bd1c       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
-                0x0000bd1c                uip_sr_periodic
+                0x0000bd68       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x0000bd68                uip_sr_periodic
  .text.uip_sr_free_all
-                0x0000bd98       0x4c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
-                0x0000bd98                uip_sr_free_all
+                0x0000bde4       0x4c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x0000bde4                uip_sr_free_all
  .text.uip_sr_link_snprint
-                0x0000bde4       0x98 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
-                0x0000bde4                uip_sr_link_snprint
+                0x0000be30       0x98 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x0000be30                uip_sr_link_snprint
  .text.uip_ds6_addr_rm.part.0
-                0x0000be7c       0x88 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000bec8       0x88 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
  .text.uip_ds6_default_prefix
-                0x0000bf04        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000bf04                uip_ds6_default_prefix
+                0x0000bf50        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000bf50                uip_ds6_default_prefix
  .text.uip_ds6_periodic
-                0x0000bf0c       0x58 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000bf0c                uip_ds6_periodic
+                0x0000bf58       0x58 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000bf58                uip_ds6_periodic
  .text.uip_ds6_prefix_add
-                0x0000bf64       0xb0 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000bf64                uip_ds6_prefix_add
+                0x0000bfb0       0xb0 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000bfb0                uip_ds6_prefix_add
  .text.uip_ds6_is_addr_onlink
-                0x0000c014       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000c014                uip_ds6_is_addr_onlink
+                0x0000c060       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000c060                uip_ds6_is_addr_onlink
  .text.uip_ds6_addr_rm
-                0x0000c058        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000c058                uip_ds6_addr_rm
+                0x0000c0a4        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000c0a4                uip_ds6_addr_rm
  .text.uip_ds6_addr_lookup
-                0x0000c060       0x50 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000c060                uip_ds6_addr_lookup
+                0x0000c0ac       0x50 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000c0ac                uip_ds6_addr_lookup
  .text.uip_ds6_get_link_local
-                0x0000c0b0       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000c0b0                uip_ds6_get_link_local
+                0x0000c0fc       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000c0fc                uip_ds6_get_link_local
  .text.uip_ds6_maddr_add
-                0x0000c104       0x80 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000c104                uip_ds6_maddr_add
+                0x0000c150       0x80 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000c150                uip_ds6_maddr_add
  .text.uip_ds6_addr_add
-                0x0000c184       0xd4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000c184                uip_ds6_addr_add
+                0x0000c1d0       0xd4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000c1d0                uip_ds6_addr_add
  .text.uip_ds6_init
-                0x0000c258      0x13c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000c258                uip_ds6_init
+                0x0000c2a4      0x13c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000c2a4                uip_ds6_init
  .text.uip_ds6_maddr_lookup
-                0x0000c394       0x50 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000c394                uip_ds6_maddr_lookup
+                0x0000c3e0       0x50 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000c3e0                uip_ds6_maddr_lookup
  .text.uip_ds6_select_src
-                0x0000c3e4      0x118 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000c3e4                uip_ds6_select_src
+                0x0000c430      0x118 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000c430                uip_ds6_select_src
  .text.uip_ds6_set_addr_iid
-                0x0000c4fc       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000c4fc                uip_ds6_set_addr_iid
+                0x0000c548       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000c548                uip_ds6_set_addr_iid
  .text.uip_ds6_set_lladdr_from_iid
-                0x0000c514       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x0000c514                uip_ds6_set_lladdr_from_iid
+                0x0000c560       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x0000c560                uip_ds6_set_lladdr_from_iid
  .text.uip_udp_packet_sendto
-                0x0000c52c       0x84 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-udp-packet.o
-                0x0000c52c                uip_udp_packet_sendto
+                0x0000c578       0x84 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-udp-packet.o
+                0x0000c578                uip_udp_packet_sendto
  .text.uip_ds6_route_init
-                0x0000c5b0       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
-                0x0000c5b0                uip_ds6_route_init
+                0x0000c5fc       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x0000c5fc                uip_ds6_route_init
  .text.uip_ds6_route_nexthop
-                0x0000c5cc        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
-                0x0000c5cc                uip_ds6_route_nexthop
+                0x0000c618        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x0000c618                uip_ds6_route_nexthop
  .text.uip_ds6_route_lookup
-                0x0000c5d0        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
-                0x0000c5d0                uip_ds6_route_lookup
+                0x0000c61c        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x0000c61c                uip_ds6_route_lookup
  .text.uip_ds6_route_rm
-                0x0000c5d4        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
-                0x0000c5d4                uip_ds6_route_rm
+                0x0000c620        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x0000c620                uip_ds6_route_rm
  .text.uip_ds6_defrt_rm
-                0x0000c5d8       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
-                0x0000c5d8                uip_ds6_defrt_rm
+                0x0000c624       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x0000c624                uip_ds6_defrt_rm
  .text.uip_ds6_defrt_lookup
-                0x0000c614       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
-                0x0000c614                uip_ds6_defrt_lookup
+                0x0000c660       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x0000c660                uip_ds6_defrt_lookup
  .text.uip_ds6_defrt_add
-                0x0000c64c       0xa8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
-                0x0000c64c                uip_ds6_defrt_add
+                0x0000c698       0xa8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x0000c698                uip_ds6_defrt_add
  .text.uip_ds6_defrt_choose
-                0x0000c6f4       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
-                0x0000c6f4                uip_ds6_defrt_choose
+                0x0000c740       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x0000c740                uip_ds6_defrt_choose
  .text.uip_ds6_defrt_periodic
-                0x0000c728       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
-                0x0000c728                uip_ds6_defrt_periodic
+                0x0000c774       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x0000c774                uip_ds6_defrt_periodic
  .text.uip_ds6_nbr_rm
-                0x0000c76c       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c76c                uip_ds6_nbr_rm
+                0x0000c7b8       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c7b8                uip_ds6_nbr_rm
  .text.uip_ds6_neighbors_init
-                0x0000c790       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c790                uip_ds6_neighbors_init
+                0x0000c7dc       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c7dc                uip_ds6_neighbors_init
  .text.uip_ds6_nbr_add
-                0x0000c7ac       0x40 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c7ac                uip_ds6_nbr_add
+                0x0000c7f8       0x40 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c7f8                uip_ds6_nbr_add
  .text.uip_ds6_nbr_update_ll
-                0x0000c7ec      0x138 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c7ec                uip_ds6_nbr_update_ll
+                0x0000c838      0x138 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c838                uip_ds6_nbr_update_ll
  .text.uip_ds6_nbr_get_ipaddr
-                0x0000c924        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c924                uip_ds6_nbr_get_ipaddr
+                0x0000c970        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c970                uip_ds6_nbr_get_ipaddr
  .text.uip_ds6_nbr_get_ll
-                0x0000c928        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c928                uip_ds6_nbr_get_ll
+                0x0000c974        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c974                uip_ds6_nbr_get_ll
  .text.uip_ds6_nbr_head
-                0x0000c934        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c934                uip_ds6_nbr_head
+                0x0000c980        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c980                uip_ds6_nbr_head
  .text.uip_ds6_nbr_next
-                0x0000c940        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c940                uip_ds6_nbr_next
+                0x0000c98c        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c98c                uip_ds6_nbr_next
  .text.uip_ds6_nbr_lookup
-                0x0000c94c       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c94c                uip_ds6_nbr_lookup
+                0x0000c998       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c998                uip_ds6_nbr_lookup
  .text.uip_ds6_nbr_ipaddr_from_lladdr
-                0x0000c988        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c988                uip_ds6_nbr_ipaddr_from_lladdr
+                0x0000c9d4        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c9d4                uip_ds6_nbr_ipaddr_from_lladdr
  .text.uip_ds6_nbr_lladdr_from_ipaddr
-                0x0000c994       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c994                uip_ds6_nbr_lladdr_from_ipaddr
+                0x0000c9e0       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c9e0                uip_ds6_nbr_lladdr_from_ipaddr
  .text.uip_ds6_link_callback
-                0x0000c9b0        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
-                0x0000c9b0                uip_ds6_link_callback
- .text.udp_new  0x0000c9b4       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
-                0x0000c9b4                udp_new
+                0x0000c9fc        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x0000c9fc                uip_ds6_link_callback
+ .text.udp_new  0x0000ca00       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
+                0x0000ca00                udp_new
  .text.tcpip_input
-                0x0000c9cc       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
-                0x0000c9cc                tcpip_input
+                0x0000ca18       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
+                0x0000ca18                tcpip_input
  .text.tcpip_ipv6_output
-                0x0000c9f8      0x234 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
-                0x0000c9f8                tcpip_ipv6_output
+                0x0000ca44      0x234 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
+                0x0000ca44                tcpip_ipv6_output
  .text.process_thread_tcpip_process
-                0x0000cc2c       0xe8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
+                0x0000cc78       0xe8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
  .text.tcpip_uipcall
-                0x0000cd14       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
-                0x0000cd14                tcpip_uipcall
- .text.chksum   0x0000cd40       0x64 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x0000cd60       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
+                0x0000cd60                tcpip_uipcall
+ .text.chksum   0x0000cd8c       0x64 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
  .text.ext_hdr_options_process
-                0x0000cda4       0xe4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x0000cdf0       0xe4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
  .text.uip_update_ttl.isra.0
-                0x0000ce88       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x0000ced4       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
  .text.upper_layer_chksum
-                0x0000cea4       0x78 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x0000cef0       0x78 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
  .text.uip_icmp6chksum
-                0x0000cf1c        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x0000cf1c                uip_icmp6chksum
+                0x0000cf68        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x0000cf68                uip_icmp6chksum
  .text.uip_init
-                0x0000cf24       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x0000cf24                uip_init
+                0x0000cf70       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x0000cf70                uip_init
  .text.uip_remove_ext_hdr
-                0x0000cf68       0xa0 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x0000cf68                uip_remove_ext_hdr
+                0x0000cfb4       0xa0 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x0000cfb4                uip_remove_ext_hdr
  .text.uip_udp_new
-                0x0000d008       0xa4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x0000d008                uip_udp_new
+                0x0000d054       0xa4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x0000d054                uip_udp_new
  .text.uip_process
-                0x0000d0ac      0x6b0 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x0000d0ac                uip_process
+                0x0000d0f8      0x6b0 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x0000d0f8                uip_process
  .text.uip_htonl
-                0x0000d75c        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x0000d75c                uip_htonl
+                0x0000d7a8        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x0000d7a8                uip_htonl
  .text.ns_input
-                0x0000d760      0x2e8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
+                0x0000d7ac      0x2e8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
  .text.uip_nd6_init
-                0x0000da48        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
-                0x0000da48                uip_nd6_init
+                0x0000da94        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
+                0x0000da94                uip_nd6_init
  .text.process_thread_simple_udp_process
-                0x0000da54       0xac build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
+                0x0000daa0       0xac build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
  .text.simple_udp_sendto
-                0x0000db00       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
-                0x0000db00                simple_udp_sendto
+                0x0000db4c       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
+                0x0000db4c                simple_udp_sendto
  .text.simple_udp_register
-                0x0000db28       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
-                0x0000db28                simple_udp_register
+                0x0000db74       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
+                0x0000db74                simple_udp_register
  .text.sicslowpan_init
-                0x0000dba4       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
-                0x0000dba4                sicslowpan_init
+                0x0000dbf0       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x0000dbf0                sicslowpan_init
  .text.set_packet_attrs
-                0x0000dbb4       0x74 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x0000dc00       0x74 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .text.compress_addr_64
-                0x0000dc28       0xa0 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x0000dc74       0xa0 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .text.packet_sent
-                0x0000dcc8       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x0000dd14       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .text.uncompress_addr
-                0x0000dd1c       0x9c build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
- .text.input    0x0000ddb8      0x710 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
- .text.output   0x0000e4c8      0x7a8 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x0000dd68       0x9c build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+ .text.input    0x0000de04      0x710 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+ .text.output   0x0000e514      0x7a8 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .text.uiplib_ipaddr_snprint.part.0
-                0x0000ec70       0xfc build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
+                0x0000ecbc       0xfc build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
  .text.uiplib_ip6addrconv
-                0x0000ed6c       0xe8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
-                0x0000ed6c                uiplib_ip6addrconv
+                0x0000edb8       0xe8 build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
+                0x0000edb8                uiplib_ip6addrconv
  .text.uiplib_ipaddr_snprint
-                0x0000ee54       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
-                0x0000ee54                uiplib_ipaddr_snprint
+                0x0000eea0       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
+                0x0000eea0                uiplib_ipaddr_snprint
  .text.dao_ack_input
-                0x0000ee70       0x74 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x0000eebc       0x74 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
  .text.dao_input
-                0x0000eee4      0x190 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x0000ef30      0x190 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
  .text.dis_input
-                0x0000f074       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x0000f0c0       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
  .text.dio_input
-                0x0000f0a0      0x244 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x0000f0ec      0x244 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
  .text.rpl_icmp6_update_nbr_table
-                0x0000f2e4       0xa0 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
-                0x0000f2e4                rpl_icmp6_update_nbr_table
+                0x0000f330       0xa0 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x0000f330                rpl_icmp6_update_nbr_table
  .text.rpl_icmp6_dis_output
-                0x0000f384       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
-                0x0000f384                rpl_icmp6_dis_output
+                0x0000f3d0       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x0000f3d0                rpl_icmp6_dis_output
  .text.rpl_icmp6_dio_output
-                0x0000f3bc      0x2b8 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
-                0x0000f3bc                rpl_icmp6_dio_output
+                0x0000f408      0x2b8 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x0000f408                rpl_icmp6_dio_output
  .text.rpl_icmp6_dao_output
-                0x0000f674       0xd4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
-                0x0000f674                rpl_icmp6_dao_output
+                0x0000f6c0       0xd4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x0000f6c0                rpl_icmp6_dao_output
  .text.rpl_icmp6_dao_ack_output
-                0x0000f748       0x4c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
-                0x0000f748                rpl_icmp6_dao_ack_output
+                0x0000f794       0x4c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x0000f794                rpl_icmp6_dao_ack_output
  .text.rpl_icmp6_init
-                0x0000f794       0x30 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
-                0x0000f794                rpl_icmp6_init
+                0x0000f7e0       0x30 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x0000f7e0                rpl_icmp6_init
  .text.remove_neighbor
-                0x0000f7c4       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000f810       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
  .text.best_parent
-                0x0000f800       0xac build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000f84c       0xac build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
  .text.rpl_neighbor_snprint
-                0x0000f8ac      0x1f0 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000f8ac                rpl_neighbor_snprint
+                0x0000f8f8      0x1f0 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000f8f8                rpl_neighbor_snprint
  .text.rpl_neighbor_count
-                0x0000fa9c       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000fa9c                rpl_neighbor_count
+                0x0000fae8       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000fae8                rpl_neighbor_count
  .text.rpl_neighbor_get_from_lladdr
-                0x0000fad0       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000fad0                rpl_neighbor_get_from_lladdr
+                0x0000fb1c       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000fb1c                rpl_neighbor_get_from_lladdr
  .text.rpl_neighbor_rank_via_nbr
-                0x0000fae0       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000fae0                rpl_neighbor_rank_via_nbr
+                0x0000fb2c       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000fb2c                rpl_neighbor_rank_via_nbr
  .text.rpl_neighbor_get_ipaddr
-                0x0000faf8       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000faf8                rpl_neighbor_get_ipaddr
+                0x0000fb44       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000fb44                rpl_neighbor_get_ipaddr
  .text.rpl_neighbor_get_link_stats
-                0x0000fb10       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000fb10                rpl_neighbor_get_link_stats
+                0x0000fb5c       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000fb5c                rpl_neighbor_get_link_stats
  .text.rpl_neighbor_is_fresh
-                0x0000fb28       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000fb28                rpl_neighbor_is_fresh
+                0x0000fb74       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000fb74                rpl_neighbor_is_fresh
  .text.rpl_neighbor_set_preferred_parent
-                0x0000fb44       0x60 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000fb44                rpl_neighbor_set_preferred_parent
+                0x0000fb90       0x60 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000fb90                rpl_neighbor_set_preferred_parent
  .text.rpl_neighbor_remove_all
-                0x0000fba4       0x5c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000fba4                rpl_neighbor_remove_all
+                0x0000fbf0       0x5c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000fbf0                rpl_neighbor_remove_all
  .text.rpl_neighbor_get_from_ipaddr
-                0x0000fc00       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000fc00                rpl_neighbor_get_from_ipaddr
+                0x0000fc4c       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000fc4c                rpl_neighbor_get_from_ipaddr
  .text.rpl_neighbor_select_best
-                0x0000fc1c       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000fc1c                rpl_neighbor_select_best
+                0x0000fc68       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000fc68                rpl_neighbor_select_best
  .text.rpl_neighbor_init
-                0x0000fc88       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
-                0x0000fc88                rpl_neighbor_init
+                0x0000fcd4       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x0000fcd4                rpl_neighbor_init
  .text.init_dag
-                0x0000fc9c       0xcc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x0000fce8       0xcc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
  .text.init_dag_from_dio
-                0x0000fd68       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x0000fdb4       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
  .text.rpl_dag_update_state.part.0
-                0x0000fdd4      0x14c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x0000fe20      0x14c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
  .text.rpl_dag_get_root_ipaddr
-                0x0000ff20       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x0000ff20                rpl_dag_get_root_ipaddr
+                0x0000ff6c       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x0000ff6c                rpl_dag_get_root_ipaddr
  .text.rpl_dag_leave
-                0x0000ff4c       0x5c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x0000ff4c                rpl_dag_leave
+                0x0000ff98       0x5c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x0000ff98                rpl_dag_leave
  .text.rpl_dag_poison_and_leave
-                0x0000ffa8       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x0000ffa8                rpl_dag_poison_and_leave
+                0x0000fff4       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x0000fff4                rpl_dag_poison_and_leave
  .text.rpl_dag_periodic
-                0x0000ffb8       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x0000ffb8                rpl_dag_periodic
+                0x00010004       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00010004                rpl_dag_periodic
  .text.rpl_is_addr_in_our_dag
-                0x0000fffc       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x0000fffc                rpl_is_addr_in_our_dag
+                0x00010048       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00010048                rpl_is_addr_in_our_dag
  .text.rpl_refresh_routes
-                0x00010024       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x00010024                rpl_refresh_routes
+                0x00010070       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00010070                rpl_refresh_routes
  .text.rpl_global_repair
-                0x00010048       0x58 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x00010048                rpl_global_repair
+                0x00010094       0x58 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00010094                rpl_global_repair
  .text.rpl_local_repair
-                0x000100a0       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x000100a0                rpl_local_repair
+                0x000100ec       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x000100ec                rpl_local_repair
  .text.rpl_dag_ready_to_advertise
-                0x000100d4       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x000100d4                rpl_dag_ready_to_advertise
+                0x00010120       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00010120                rpl_dag_ready_to_advertise
  .text.rpl_dag_update_state
-                0x000100f8       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x000100f8                rpl_dag_update_state
+                0x00010144       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00010144                rpl_dag_update_state
  .text.rpl_process_dio
-                0x00010108      0x284 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x00010108                rpl_process_dio
+                0x00010154      0x284 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00010154                rpl_process_dio
  .text.rpl_process_dis
-                0x0001038c       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x0001038c                rpl_process_dis
+                0x000103d8       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x000103d8                rpl_process_dis
  .text.rpl_process_dao
-                0x000103b4       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x000103b4                rpl_process_dao
+                0x00010400       0x7c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00010400                rpl_process_dao
  .text.rpl_process_dao_ack
-                0x00010430       0x60 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x00010430                rpl_process_dao_ack
+                0x0001047c       0x60 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x0001047c                rpl_process_dao_ack
  .text.rpl_process_hbh
-                0x00010490       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x00010490                rpl_process_hbh
+                0x000104dc       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x000104dc                rpl_process_hbh
  .text.rpl_dag_init_root
-                0x000104bc       0xb4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x000104bc                rpl_dag_init_root
+                0x00010508       0xb4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00010508                rpl_dag_init_root
  .text.rpl_dag_init
-                0x00010570       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
-                0x00010570                rpl_dag_init
+                0x000105bc       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x000105bc                rpl_dag_init
  .text.new_dio_interval
-                0x00010580       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x000105cc       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .text.handle_unicast_dio_timer
-                0x000105ec       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010638       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .text.resend_dao
-                0x00010608       0x64 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010654       0x64 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .text.handle_dao_ack_timer
-                0x0001066c       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x000106b8       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .text.handle_leaving_timer
-                0x00010680       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x000106cc       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .text.handle_state_update
-                0x00010690        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x000106dc        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .text.handle_dio_timer
-                0x00010694       0x70 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x000106e0       0x70 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .text.send_new_dao
-                0x00010704       0x64 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010750       0x64 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .text.handle_periodic_timer
-                0x00010768       0x98 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x000107b4       0x98 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .text.handle_dis_timer
-                0x00010800       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x0001084c       0x6c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .text.rpl_timers_schedule_periodic_dis
-                0x0001086c       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x0001086c                rpl_timers_schedule_periodic_dis
+                0x000108b8       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x000108b8                rpl_timers_schedule_periodic_dis
  .text.rpl_timers_dio_reset
-                0x000108b0       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x000108b0                rpl_timers_dio_reset
+                0x000108fc       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x000108fc                rpl_timers_dio_reset
  .text.rpl_timers_schedule_unicast_dio
-                0x000108e4       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x000108e4                rpl_timers_schedule_unicast_dio
+                0x00010930       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010930                rpl_timers_schedule_unicast_dio
  .text.rpl_timers_schedule_dao
-                0x00010908       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x00010908                rpl_timers_schedule_dao
+                0x00010954       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010954                rpl_timers_schedule_dao
  .text.rpl_timers_schedule_dao_ack
-                0x0001093c       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x0001093c                rpl_timers_schedule_dao_ack
+                0x00010988       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010988                rpl_timers_schedule_dao_ack
  .text.rpl_timers_notify_dao_ack
-                0x00010978       0x58 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x00010978                rpl_timers_notify_dao_ack
+                0x000109c4       0x58 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x000109c4                rpl_timers_notify_dao_ack
  .text.get_probing_target
-                0x000109d0       0xdc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x000109d0                get_probing_target
+                0x00010a1c       0xdc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010a1c                get_probing_target
  .text.handle_probing_timer
-                0x00010aac       0x5c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010af8       0x5c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .text.rpl_schedule_probing
-                0x00010b08       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x00010b08                rpl_schedule_probing
+                0x00010b54       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010b54                rpl_schedule_probing
  .text.rpl_schedule_probing_now
-                0x00010b4c       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x00010b4c                rpl_schedule_probing_now
+                0x00010b98       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010b98                rpl_schedule_probing_now
  .text.rpl_timers_unschedule_leaving
-                0x00010b78       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x00010b78                rpl_timers_unschedule_leaving
+                0x00010bc4       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010bc4                rpl_timers_unschedule_leaving
  .text.rpl_timers_schedule_leaving
-                0x00010ba0       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x00010ba0                rpl_timers_schedule_leaving
+                0x00010bec       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010bec                rpl_timers_schedule_leaving
  .text.rpl_timers_init
-                0x00010bd4       0x5c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x00010bd4                rpl_timers_init
+                0x00010c20       0x5c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010c20                rpl_timers_init
  .text.rpl_timers_stop_dag_timers
-                0x00010c30       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x00010c30                rpl_timers_stop_dag_timers
+                0x00010c7c       0x44 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010c7c                rpl_timers_stop_dag_timers
  .text.rpl_timers_unschedule_state_update
-                0x00010c74       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x00010c74                rpl_timers_unschedule_state_update
+                0x00010cc0       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010cc0                rpl_timers_unschedule_state_update
  .text.rpl_timers_schedule_state_update
-                0x00010c88       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
-                0x00010c88                rpl_timers_schedule_state_update
+                0x00010cd4       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00010cd4                rpl_timers_schedule_state_update
  .text.update_hbh_header.part.0
-                0x00010ca4       0x94 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+                0x00010cf0       0x94 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
  .text.rpl_ext_header_srh_get_next_hop
-                0x00010d38       0x80 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
-                0x00010d38                rpl_ext_header_srh_get_next_hop
+                0x00010d84       0x80 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+                0x00010d84                rpl_ext_header_srh_get_next_hop
  .text.rpl_ext_header_srh_update
-                0x00010db8      0x110 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
-                0x00010db8                rpl_ext_header_srh_update
+                0x00010e04      0x110 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+                0x00010e04                rpl_ext_header_srh_update
  .text.rpl_ext_header_hbh_update
-                0x00010ec8       0xfc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
-                0x00010ec8                rpl_ext_header_hbh_update
+                0x00010f14       0xfc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+                0x00010f14                rpl_ext_header_hbh_update
  .text.rpl_ext_header_remove
-                0x00010fc4       0xb8 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
-                0x00010fc4                rpl_ext_header_remove
+                0x00011010       0xb8 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+                0x00011010                rpl_ext_header_remove
  .text.rpl_ext_header_update
-                0x0001107c      0x370 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
-                0x0001107c                rpl_ext_header_update
+                0x000110c8      0x370 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+                0x000110c8                rpl_ext_header_update
  .text.rpl_has_joined
-                0x000113ec       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
-                0x000113ec                rpl_has_joined
+                0x00011438       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x00011438                rpl_has_joined
  .text.rpl_is_reachable
-                0x00011404       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
-                0x00011404                rpl_is_reachable
+                0x00011450       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x00011450                rpl_is_reachable
  .text.neighbor_state_changed
-                0x00011420        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x0001146c        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
  .text.rpl_get_leaf_only
-                0x00011424        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
-                0x00011424                rpl_get_leaf_only
- .text.init     0x00011430       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x00011470        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x00011470                rpl_get_leaf_only
+ .text.init     0x0001147c       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
  .text.rpl_link_callback
-                0x00011468       0x30 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
-                0x00011468                rpl_link_callback
+                0x000114b4       0x30 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x000114b4                rpl_link_callback
  .text.get_sr_node_ipaddr
-                0x00011498       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x000114e4       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
  .text.drop_route
-                0x000114c4        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x00011510        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
  .text.rpl_lollipop_greater_than
-                0x000114c8       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
-                0x000114c8                rpl_lollipop_greater_than
+                0x00011514       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x00011514                rpl_lollipop_greater_than
  .text.rpl_get_global_address
-                0x00011504       0x64 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
-                0x00011504                rpl_get_global_address
+                0x00011550       0x64 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x00011550                rpl_get_global_address
  .text.rpl_reset_prefix
-                0x00011568       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
-                0x00011568                rpl_reset_prefix
+                0x000115b4       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x000115b4                rpl_reset_prefix
  .text.rpl_set_prefix_from_addr
-                0x000115b0       0x94 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
-                0x000115b0                rpl_set_prefix_from_addr
+                0x000115fc       0x94 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x000115fc                rpl_set_prefix_from_addr
  .text.rpl_nbr_gc_get_worst
-                0x00011644       0x40 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-nbr-policy.o
-                0x00011644                rpl_nbr_gc_get_worst
- .text.reset    0x00011684        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
+                0x00011690       0x40 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-nbr-policy.o
+                0x00011690                rpl_nbr_gc_get_worst
+ .text.reset    0x000116d0        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
  .text.update_metric_container
-                0x00011688        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
+                0x000116d4        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
  .text.nbr_link_metric
-                0x00011694       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
+                0x000116e0       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
  .text.nbr_path_cost
-                0x000116a8       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
+                0x000116f4       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
  .text.within_hysteresis
-                0x000116e4       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
+                0x00011730       0x3c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
  .text.nbr_has_usable_link
-                0x00011720       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
+                0x0001176c       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
  .text.nbr_is_acceptable_parent
-                0x00011738       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
+                0x00011784       0x2c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
  .text.best_parent
-                0x00011764       0xb4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
+                0x000117b0       0xb4 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
  .text.rank_via_nbr
-                0x00011818       0x5c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
+                0x00011864       0x5c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
  .text.rpl_dag_root_set_prefix
-                0x00011874       0x64 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
-                0x00011874                rpl_dag_root_set_prefix
+                0x000118c0       0x64 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
+                0x000118c0                rpl_dag_root_set_prefix
  .text.rpl_dag_root_start
-                0x000118d8       0xa0 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
-                0x000118d8                rpl_dag_root_start
+                0x00011924       0xa0 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
+                0x00011924                rpl_dag_root_start
  .text.rpl_dag_root_is_root
-                0x00011978       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
-                0x00011978                rpl_dag_root_is_root
+                0x000119c4       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
+                0x000119c4                rpl_dag_root_is_root
  .text.process_thread_node_process
-                0x00011994      0x134 node.o
+                0x000119e0      0x134 node.o
  .text.udp_rx_callback
-                0x00011ac8       0xc4 node.o
+                0x00011b14       0xc4 node.o
  .text.active_connectivity_speed
-                0x00011b8c      0x1b8 node.o
-                0x00011b8c                active_connectivity_speed
+                0x00011bd8      0x1e8 node.o
+                0x00011bd8                active_connectivity_speed
  .text.udp_child_rx_callback
-                0x00011d44       0x78 node.o
- .text          0x00011dbc      0x168 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
-                0x00011dbc                __mulsf3
-                0x00011dbc                __aeabi_fmul
- .text          0x00011f24      0x21c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
-                0x00011f24                __aeabi_frsub
-                0x00011f2c                __subsf3
-                0x00011f2c                __aeabi_fsub
-                0x00011f30                __aeabi_fadd
-                0x00011f30                __addsf3
-                0x00012090                __aeabi_ui2f
-                0x00012090                __floatunsisf
-                0x00012098                __aeabi_i2f
-                0x00012098                __floatsisf
-                0x000120b4                __floatundisf
-                0x000120b4                __aeabi_ul2f
-                0x000120c4                __floatdisf
-                0x000120c4                __aeabi_l2f
- .text          0x00012140       0xec /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
-                0x00012140                __gtsf2
-                0x00012140                __gesf2
-                0x00012148                __lesf2
-                0x00012148                __ltsf2
-                0x00012150                __nesf2
-                0x00012150                __eqsf2
-                0x00012150                __cmpsf2
-                0x000121b0                __aeabi_cfrcmple
-                0x000121b8                __aeabi_cfcmple
-                0x000121b8                __aeabi_cfcmpeq
-                0x000121c8                __aeabi_fcmpeq
-                0x000121dc                __aeabi_fcmplt
-                0x000121f0                __aeabi_fcmple
-                0x00012204                __aeabi_fcmpge
-                0x00012218                __aeabi_fcmpgt
- .text          0x0001222c       0x4c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
-                0x0001222c                __fixsfsi
-                0x0001222c                __aeabi_f2iz
- .text          0x00012278       0xa0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
-                0x00012278                __aeabi_ldivmod
- .text          0x00012318       0x30 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
-                0x00012318                __aeabi_uldivmod
- .text          0x00012348      0x2d4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
-                0x00012348                __udivmoddi4
- .text          0x0001261c        0x4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
-                0x0001261c                __aeabi_ldiv0
-                0x0001261c                __aeabi_idiv0
- .text.memcmp   0x00012620       0x68 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcmp.o)
-                0x00012620                memcmp
- .text          0x00012688       0xec /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcpy.o)
-                0x00012688                memcpy
- .text.memmove  0x00012774       0xf8 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memmove.o)
-                0x00012774                memmove
- .text.memset   0x0001286c       0xa4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memset.o)
-                0x0001286c                memset
- .text.strchr   0x00012910       0xcc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
-                0x00012910                strchr
- .text          0x000129dc      0x1bc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
-                0x000129dc                strcmp
+                0x00011dc0       0x78 node.o
+ .text          0x00011e38      0x168 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
+                0x00011e38                __mulsf3
+                0x00011e38                __aeabi_fmul
+ .text          0x00011fa0      0x21c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+                0x00011fa0                __aeabi_frsub
+                0x00011fa8                __subsf3
+                0x00011fa8                __aeabi_fsub
+                0x00011fac                __aeabi_fadd
+                0x00011fac                __addsf3
+                0x0001210c                __aeabi_ui2f
+                0x0001210c                __floatunsisf
+                0x00012114                __aeabi_i2f
+                0x00012114                __floatsisf
+                0x00012130                __floatundisf
+                0x00012130                __aeabi_ul2f
+                0x00012140                __floatdisf
+                0x00012140                __aeabi_l2f
+ .text          0x000121bc       0xec /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
+                0x000121bc                __gtsf2
+                0x000121bc                __gesf2
+                0x000121c4                __lesf2
+                0x000121c4                __ltsf2
+                0x000121cc                __nesf2
+                0x000121cc                __eqsf2
+                0x000121cc                __cmpsf2
+                0x0001222c                __aeabi_cfrcmple
+                0x00012234                __aeabi_cfcmple
+                0x00012234                __aeabi_cfcmpeq
+                0x00012244                __aeabi_fcmpeq
+                0x00012258                __aeabi_fcmplt
+                0x0001226c                __aeabi_fcmple
+                0x00012280                __aeabi_fcmpge
+                0x00012294                __aeabi_fcmpgt
+ .text          0x000122a8       0x4c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
+                0x000122a8                __fixsfsi
+                0x000122a8                __aeabi_f2iz
+ .text          0x000122f4       0xa0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
+                0x000122f4                __aeabi_ldivmod
+ .text          0x00012394       0x30 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+                0x00012394                __aeabi_uldivmod
+ .text          0x000123c4      0x2d4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+                0x000123c4                __udivmoddi4
+ .text          0x00012698        0x4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
+                0x00012698                __aeabi_ldiv0
+                0x00012698                __aeabi_idiv0
+ .text.memcmp   0x0001269c       0x68 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcmp.o)
+                0x0001269c                memcmp
+ .text          0x00012704       0xec /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcpy.o)
+                0x00012704                memcpy
+ .text.memmove  0x000127f0       0xf8 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memmove.o)
+                0x000127f0                memmove
+ .text.memset   0x000128e8       0xa4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memset.o)
+                0x000128e8                memset
+ .text.strcat   0x0001298c       0x40 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
+                0x0001298c                strcat
+ .text.strchr   0x000129cc       0xcc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
+                0x000129cc                strchr
+ .text          0x00012a98      0x1bc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
+                0x00012a98                strcmp
+ .text.strcpy   0x00012c54       0xbc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
+                0x00012c54                strcpy
  .text._strtol_l.part.0
-                0x00012b98      0x120 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
- .text.strtol   0x00012cb8       0x2c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
-                0x00012cb8                strtol
- .text.__errno  0x00012ce4        0xc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
-                0x00012ce4                __errno
+                0x00012d10      0x120 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
+ .text.strtol   0x00012e30       0x2c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
+                0x00012e30                strtol
+ .text.__errno  0x00012e5c        0xc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
+                0x00012e5c                __errno
  *(SORT_BY_ALIGNMENT(.rodata*))
  .rodata.platform_init_stage_three.str1.4
-                0x00012cf0       0x5f build/cc26x0-cc13x0/launchpad/cc2650/obj/platform.o
+                0x00012e68       0x5f build/cc26x0-cc13x0/launchpad/cc2650/obj/platform.o
                                  0x62 (size before relaxing)
- *fill*         0x00012d4f        0x1 00000000
- .rodata.leds_arch_leds
-                0x00012d50        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/leds-arch.o
-                0x00012d50                leds_arch_leds
- .rodata        0x00012d54       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/board.o
- .rodata.str1.4
-                0x00012d9c       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/board-buttons.o
- *fill*         0x00012db1        0x3 00000000
- .rodata.str1.4
-                0x00012db4       0x1a build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
- *fill*         0x00012dce        0x2 00000000
- .rodata.ieee_mode_driver
-                0x00012dd0       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
-                0x00012dd0                ieee_mode_driver
- .rodata.mode_ieee
-                0x00012e08       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
- .rodata.output_power
-                0x00012e18       0x68 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
- .rodata.str1.4
-                0x00012e80       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/soc-trng.o
- *fill*         0x00012e9b        0x1 00000000
- .rodata.spi_controller
-                0x00012e9c       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/spi-arch.o
- .rodata.shell_output_lladdr.part.0.str1.4
-                0x00012ebc        0x5 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
-                                  0x9 (size before relaxing)
- *fill*         0x00012ec1        0x3 00000000
- .rodata.shell_output_6addr.str1.4
-                0x00012ec4        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
  *fill*         0x00012ec7        0x1 00000000
+ .rodata.leds_arch_leds
+                0x00012ec8        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/leds-arch.o
+                0x00012ec8                leds_arch_leds
+ .rodata        0x00012ecc       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/board.o
+ .rodata.str1.4
+                0x00012f14       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/board-buttons.o
+ *fill*         0x00012f29        0x3 00000000
+ .rodata.str1.4
+                0x00012f2c       0x1a build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
+ *fill*         0x00012f46        0x2 00000000
+ .rodata.ieee_mode_driver
+                0x00012f48       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
+                0x00012f48                ieee_mode_driver
+ .rodata.mode_ieee
+                0x00012f80       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
+ .rodata.output_power
+                0x00012f90       0x68 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
+ .rodata.str1.4
+                0x00012ff8       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/soc-trng.o
+ *fill*         0x00013013        0x1 00000000
+ .rodata.spi_controller
+                0x00013014       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/spi-arch.o
+ .rodata.shell_output_lladdr.part.0.str1.4
+                0x00013034        0x5 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
+                                  0x9 (size before relaxing)
+ *fill*         0x00013039        0x3 00000000
+ .rodata.shell_output_6addr.str1.4
+                0x0001303c        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
+ *fill*         0x0001303f        0x1 00000000
  .rodata.shell_output_lladdr.str1.4
-                0x00012ec8        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
- *fill*         0x00012ed7        0x1 00000000
+                0x00013040        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
+ *fill*         0x0001304f        0x1 00000000
  .rodata.shell_input.str1.4
-                0x00012ed8       0x3f build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
- *fill*         0x00012f17        0x1 00000000
+                0x00013050       0x3f build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
+ *fill*         0x0001308f        0x1 00000000
  .rodata.cmd_rpl_global_repair.str1.4
-                0x00012f18       0x2a build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x00012f42        0x2 00000000
+                0x00013090       0x2a build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x000130ba        0x2 00000000
  .rodata.cmd_rpl_local_repair.str1.4
-                0x00012f44       0x21 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x00012f65        0x3 00000000
+                0x000130bc       0x21 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x000130dd        0x3 00000000
  .rodata.cmd_help.str1.4
-                0x00012f68       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x000130e0       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
                                  0x1c (size before relaxing)
- *fill*         0x00012f7d        0x3 00000000
+ *fill*         0x000130f5        0x3 00000000
  .rodata.cmd_macaddr.str1.4
-                0x00012f80       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x000130f8       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
                                  0x16 (size before relaxing)
- *fill*         0x00012f93        0x1 00000000
+ *fill*         0x0001310b        0x1 00000000
  .rodata.cmd_tsch_status.str1.4
-                0x00012f94      0x110 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x0001310c      0x110 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_tsch_schedule.str1.4
-                0x000130a4       0xa1 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x00013145        0x3 00000000
+                0x0001321c       0xa1 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x000132bd        0x3 00000000
  .rodata.cmd_tsch_set_coordinator.str1.4
-                0x00013148       0x99 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x000132c0       0x99 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
                                  0xad (size before relaxing)
- *fill*         0x000131e1        0x3 00000000
+ *fill*         0x00013359        0x3 00000000
  .rodata.cmd_rpl_nbr.str1.4
-                0x000131e4       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x0001335c       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_ipaddr.str1.4
-                0x0001320c       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00013384       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_rpl_status.str1.4
-                0x00013228      0x1e5 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x0001340d        0x3 00000000
+                0x000133a0      0x1e5 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x00013585        0x3 00000000
  .rodata.cmd_rpl_refresh_routes.str1.4
-                0x00013410       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x0001342b        0x1 00000000
+                0x00013588       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x000135a3        0x1 00000000
  .rodata.cmd_rpl_set_root.str1.4
-                0x0001342c       0xb4 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x000135a4       0xb4 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_routes.str1.4
-                0x000134e0       0x8a build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x0001356a        0x2 00000000
+                0x00013658       0x8a build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x000136e2        0x2 00000000
  .rodata.cmd_ping.str1.4
-                0x0001356c       0x9c build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x000136e4       0x9c build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_ip_neighbors.str1.4
-                0x00013608       0x53 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x0001365b        0x1 00000000
+                0x00013780       0x53 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x000137d3        0x1 00000000
  .rodata.shell_output_log_levels.str1.4
-                0x0001365c       0x23 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x0001367f        0x1 00000000
+                0x000137d4       0x23 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x000137f7        0x1 00000000
  .rodata.cmd_log.str1.4
-                0x00013680        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x000137f8        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_reboot.str1.4
-                0x00013684        0xb build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x0001368f        0x1 00000000
+                0x000137fc        0xb build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x00013807        0x1 00000000
  .rodata.str1.4
-                0x00013690      0x57f build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00013808      0x57f build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
                                 0x587 (size before relaxing)
- *fill*         0x00013c0f        0x1 00000000
+ *fill*         0x00013d87        0x1 00000000
  .rodata.CSWTCH.40
-                0x00013c10       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00013d88       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.CSWTCH.42
-                0x00013c24       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00013d9c       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.CSWTCH.44
-                0x00013c34       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00013dac       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.builtin_shell_commands
-                0x00013c44       0xd8 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
-                0x00013c44                builtin_shell_commands
+                0x00013dbc       0xd8 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00013dbc                builtin_shell_commands
  .rodata.serial_shell_output.str1.4
-                0x00013d1c        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-shell.o
+                0x00013e94        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-shell.o
  .rodata.str1.4
-                0x00013d1c       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-shell.o
- *fill*         0x00013d31        0x3 00000000
+                0x00013e94       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-shell.o
+ *fill*         0x00013ea9        0x3 00000000
  .rodata.main.str1.4
-                0x00013d34      0x108 build/cc26x0-cc13x0/launchpad/cc2650/obj/contiki-main.o
+                0x00013eac      0x108 build/cc26x0-cc13x0/launchpad/cc2650/obj/contiki-main.o
                                 0x124 (size before relaxing)
  .rodata.str1.4
-                0x00013e3c        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/ctimer.o
- *fill*         0x00013e4b        0x1 00000000
+                0x00013fb4        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/ctimer.o
+ *fill*         0x00013fc3        0x1 00000000
  .rodata.str1.4
-                0x00013e4c        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/etimer.o
+                0x00013fc4        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/etimer.o
  .rodata.log_6addr.str1.4
-                0x00013e58        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+                0x00013fd0        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
  .rodata.log_lladdr.str1.4
-                0x00013e58       0x19 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+                0x00013fd0       0x19 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
  .rodata.log_set_level.str1.4
-                0x00013e58        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+                0x00013fd0        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
  .rodata.log_level_to_str.str1.4
-                0x00013e58        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+                0x00013fd0        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
  .rodata.str1.4
-                0x00013e5c       0x81 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
- *fill*         0x00013edd        0x3 00000000
+                0x00013fd4       0x81 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+ *fill*         0x00014055        0x3 00000000
  .rodata.CSWTCH.10
-                0x00013ee0       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+                0x00014058       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
  .rodata.process_thread_stack_check_process.str1.4
-                0x00013ef4       0x53 build/cc26x0-cc13x0/launchpad/cc2650/obj/stack-check.o
+                0x0001406c       0x53 build/cc26x0-cc13x0/launchpad/cc2650/obj/stack-check.o
                                  0x63 (size before relaxing)
- *fill*         0x00013f47        0x1 00000000
+ *fill*         0x000140bf        0x1 00000000
  .rodata.str1.4
-                0x00013f48        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/stack-check.o
+                0x000140c0        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/stack-check.o
  .rodata.str1.4
-                0x00013f54       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/button-hal.o
- *fill*         0x00013f67        0x1 00000000
+                0x000140cc       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/button-hal.o
+ *fill*         0x000140df        0x1 00000000
  .rodata.str1.4
-                0x00013f68        0xe build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-line.o
- *fill*         0x00013f76        0x2 00000000
+                0x000140e0        0xe build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-line.o
+ *fill*         0x000140ee        0x2 00000000
  .rodata.linkaddr_null
-                0x00013f78        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/linkaddr.o
-                0x00013f78                linkaddr_null
+                0x000140f0        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/linkaddr.o
+                0x000140f0                linkaddr_null
  .rodata.frame802154e_parse_information_elements.str1.4
-                0x00013f80      0x102 build/cc26x0-cc13x0/launchpad/cc2650/obj/frame802154e-ie.o
+                0x000140f8      0x102 build/cc26x0-cc13x0/launchpad/cc2650/obj/frame802154e-ie.o
                                 0x116 (size before relaxing)
- *fill*         0x00014082        0x2 00000000
+ *fill*         0x000141fa        0x2 00000000
  .rodata.create_frame.str1.4
-                0x00014084       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
+                0x000141fc       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
                                  0x3b (size before relaxing)
- *fill*         0x0001409f        0x1 00000000
+ *fill*         0x00014217        0x1 00000000
  .rodata.framer_802154
-                0x000140a0        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
-                0x000140a0                framer_802154
+                0x00014218        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
+                0x00014218                framer_802154
  .rodata.flash_spi_configuration_default
-                0x000140ac        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/ext-flash.o
+                0x00014224        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/ext-flash.o
  .rodata.format_str_v.str1.4
-                0x000140b8       0x42 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
+                0x00014230       0x42 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
                                  0x46 (size before relaxing)
- *fill*         0x000140fa        0x2 00000000
+ *fill*         0x00014272        0x2 00000000
  .rodata.buffer.0
-                0x000140fc       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
+                0x00014274       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
  .rodata.buffer.1
-                0x0001410c       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
+                0x00014284       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
  .rodata.tsch_queue_add_packet.str1.4
-                0x0001411c       0x33 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x00014294       0x33 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
                                  0x47 (size before relaxing)
- *fill*         0x0001414f        0x1 00000000
+ *fill*         0x000142c7        0x1 00000000
  .rodata.process_thread_tsch_send_eb_process.str1.4
-                0x00014150       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x000142c8       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
                                  0x3b (size before relaxing)
- *fill*         0x00014177        0x1 00000000
+ *fill*         0x000142ef        0x1 00000000
  .rodata.send_packet.str1.4
-                0x00014178       0x67 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x000141df        0x1 00000000
+                0x000142f0       0x67 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x00014357        0x1 00000000
  .rodata.tsch_init.str1.4
-                0x000141e0      0x1e9 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x000143c9        0x3 00000000
+                0x00014358      0x1e9 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x00014541        0x3 00000000
  .rodata.packet_input.str1.4
-                0x000143cc       0x16 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x000143e2        0x2 00000000
+                0x00014544       0x16 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x0001455a        0x2 00000000
  .rodata.keepalive_send.str1.4
-                0x000143e4       0x1d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x00014401        0x3 00000000
+                0x0001455c       0x1d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x00014579        0x3 00000000
  .rodata.max_payload.str1.4
-                0x00014404       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x0001457c       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .rodata.tsch_scan.str1.4
-                0x00014438       0xee build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x00014526        0x2 00000000
+                0x000145b0       0xee build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x0001469e        0x2 00000000
  .rodata.str1.4
-                0x00014528       0x35 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x0001455d        0x3 00000000
- .rodata        0x00014560        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x00014562        0x2 00000000
+                0x000146a0       0x35 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x000146d5        0x3 00000000
+ .rodata        0x000146d8        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x000146da        0x2 00000000
  .rodata.tsch_broadcast_address
-                0x00014564        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x00014564                tsch_broadcast_address
+                0x000146dc        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x000146dc                tsch_broadcast_address
  .rodata.tsch_eb_address
-                0x0001456c        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x0001456c                tsch_eb_address
+                0x000146e4        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x000146e4                tsch_eb_address
  .rodata.tschmac_driver
-                0x00014574       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x00014574                tschmac_driver
+                0x000146ec       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x000146ec                tschmac_driver
  .rodata.tsch_timeslot_timing_us_10000
-                0x00014590       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-timeslot-timing.o
-                0x00014590                tsch_timeslot_timing_us_10000
+                0x00014708       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-timeslot-timing.o
+                0x00014708                tsch_timeslot_timing_us_10000
  .rodata.tsch_schedule_remove_link.part.0.str1.4
-                0x000145a8       0x39 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00014720       0x39 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
                                  0x4d (size before relaxing)
- *fill*         0x000145e1        0x3 00000000
+ *fill*         0x00014759        0x3 00000000
  .rodata.tsch_schedule_add_link.str1.4
-                0x000145e4       0x6e build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
- *fill*         0x00014652        0x2 00000000
+                0x0001475c       0x6e build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+ *fill*         0x000147ca        0x2 00000000
  .rodata.tsch_packet_parse_eb.str1.4
-                0x00014654       0x51 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
+                0x000147cc       0x51 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
                                  0x65 (size before relaxing)
- *fill*         0x000146a5        0x3 00000000
+ *fill*         0x0001481d        0x3 00000000
  .rodata.tsch_rpl_callback_leaving_network.str1.4
-                0x000146a8        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
- *fill*         0x000146b5        0x3 00000000
+                0x00014820        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
+ *fill*         0x0001482d        0x3 00000000
  .rodata.uip_icmp6_send.str1.4
-                0x000146b8       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
+                0x00014830       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
                                  0x3c (size before relaxing)
  .rodata.uip_sr_update_node.str1.4
-                0x000146e0       0x49 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x00014858       0x49 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
                                  0x62 (size before relaxing)
- *fill*         0x00014729        0x3 00000000
+ *fill*         0x000148a1        0x3 00000000
  .rodata.uip_sr_link_snprint.str1.4
-                0x0001472c       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
- *fill*         0x00014776        0x2 00000000
+                0x000148a4       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+ *fill*         0x000148ee        0x2 00000000
  .rodata.uip_ds6_defrt_add.str1.4
-                0x00014778       0x4d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x000148f0       0x4d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
                                  0x61 (size before relaxing)
- *fill*         0x000147c5        0x3 00000000
+ *fill*         0x0001493d        0x3 00000000
  .rodata.uip_ds6_nbr_update_ll.str1.4
-                0x000147c8       0xaf build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x00014940       0xaf build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
                                  0xc3 (size before relaxing)
- *fill*         0x00014877        0x1 00000000
+ *fill*         0x000149ef        0x1 00000000
  .rodata.__func__.0
-                0x00014878       0x16 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
- *fill*         0x0001488e        0x2 00000000
+                0x000149f0       0x16 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+ *fill*         0x00014a06        0x2 00000000
  .rodata.tcpip_ipv6_output.str1.4
-                0x00014890      0x117 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
+                0x00014a08      0x117 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
                                 0x12e (size before relaxing)
- *fill*         0x000149a7        0x1 00000000
+ *fill*         0x00014b1f        0x1 00000000
  .rodata.str1.4
-                0x000149a8        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
- *fill*         0x000149b5        0x3 00000000
+                0x00014b20        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
+ *fill*         0x00014b2d        0x3 00000000
  .rodata.ext_hdr_options_process.str1.4
-                0x000149b8       0x5f build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x00014b30       0x5f build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
                                  0x73 (size before relaxing)
- *fill*         0x00014a17        0x1 00000000
+ *fill*         0x00014b8f        0x1 00000000
  .rodata.uip_remove_ext_hdr.str1.4
-                0x00014a18       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
- *fill*         0x00014a3f        0x1 00000000
+                0x00014b90       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+ *fill*         0x00014bb7        0x1 00000000
  .rodata.uip_process.str1.4
-                0x00014a40      0x1d7 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
- *fill*         0x00014c17        0x1 00000000
+                0x00014bb8      0x1d7 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+ *fill*         0x00014d8f        0x1 00000000
  .rodata.ns_input.str1.4
-                0x00014c18       0x47 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
+                0x00014d90       0x47 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
                                  0x5b (size before relaxing)
- *fill*         0x00014c5f        0x1 00000000
+ *fill*         0x00014dd7        0x1 00000000
  .rodata.str1.4
-                0x00014c60       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
- *fill*         0x00014c73        0x1 00000000
+                0x00014dd8       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
+ *fill*         0x00014deb        0x1 00000000
  .rodata.input.str1.4
-                0x00014c74       0xec build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014dec       0xec build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
                                 0x100 (size before relaxing)
  .rodata.output.str1.4
-                0x00014d60       0x8d build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
- *fill*         0x00014ded        0x3 00000000
+                0x00014ed8       0x8d build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+ *fill*         0x00014f65        0x3 00000000
  .rodata.str1.4
-                0x00014df0        0xb build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
- *fill*         0x00014dfb        0x1 00000000
+                0x00014f68        0xb build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+ *fill*         0x00014f73        0x1 00000000
  .rodata.CSWTCH.397
-                0x00014dfc        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014f74        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .rodata.llprefix
-                0x00014e00        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
-                0x00014e00                llprefix
- *fill*         0x00014e02        0x2 00000000
+                0x00014f78        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014f78                llprefix
+ *fill*         0x00014f7a        0x2 00000000
  .rodata.sicslowpan_driver
-                0x00014e04       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
-                0x00014e04                sicslowpan_driver
+                0x00014f7c       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014f7c                sicslowpan_driver
  .rodata.ttl_values
-                0x00014e14        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014f8c        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .rodata.unc_ctxconf
-                0x00014e18        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
-                0x00014e18                unc_ctxconf
+                0x00014f90        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014f90                unc_ctxconf
  .rodata.unc_llconf
-                0x00014e1c        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
-                0x00014e1c                unc_llconf
+                0x00014f94        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014f94                unc_llconf
  .rodata.unc_mxconf
-                0x00014e20        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
-                0x00014e20                unc_mxconf
+                0x00014f98        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014f98                unc_mxconf
  .rodata.uiplib_ipaddr_snprint.part.0.str1.4
-                0x00014e24       0x1f build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
- *fill*         0x00014e43        0x1 00000000
+                0x00014f9c       0x1f build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
+ *fill*         0x00014fbb        0x1 00000000
  .rodata.uiplib_ipaddr_print.str1.4
-                0x00014e44        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
+                0x00014fbc        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
                                  0x13 (size before relaxing)
- *fill*         0x00014e53        0x1 00000000
+ *fill*         0x00014fcb        0x1 00000000
  .rodata.dao_ack_input.str1.4
-                0x00014e54       0x2e build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x00014fcc       0x2e build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
                                  0x42 (size before relaxing)
- *fill*         0x00014e82        0x2 00000000
+ *fill*         0x00014ffa        0x2 00000000
  .rodata.dao_input.str1.4
-                0x00014e84       0x5b build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
- *fill*         0x00014edf        0x1 00000000
+                0x00014ffc       0x5b build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+ *fill*         0x00015057        0x1 00000000
  .rodata.dio_input.str1.4
-                0x00014ee0       0x26 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
- *fill*         0x00014f06        0x2 00000000
+                0x00015058       0x26 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+ *fill*         0x0001507e        0x2 00000000
  .rodata.rpl_icmp6_update_nbr_table.str1.4
-                0x00014f08       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x00015080       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
                                  0x2a (size before relaxing)
- *fill*         0x00014f2f        0x1 00000000
+ *fill*         0x000150a7        0x1 00000000
  .rodata.rpl_icmp6_dio_output.str1.4
-                0x00014f30       0x3a build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
- *fill*         0x00014f6a        0x2 00000000
+                0x000150a8       0x3a build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+ *fill*         0x000150e2        0x2 00000000
  .rodata.rpl_neighbor_snprint.str1.4
-                0x00014f6c       0x5b build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x000150e4       0x5b build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
                                  0x5e (size before relaxing)
- *fill*         0x00014fc7        0x1 00000000
+ *fill*         0x0001513f        0x1 00000000
  .rodata.init_dag.str1.4
-                0x00014fc8       0x42 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00015140       0x42 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
                                  0x5a (size before relaxing)
- *fill*         0x0001500a        0x2 00000000
+ *fill*         0x00015182        0x2 00000000
  .rodata.rpl_dag_update_state.part.0.str1.4
-                0x0001500c       0x33 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
- *fill*         0x0001503f        0x1 00000000
+                0x00015184       0x33 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+ *fill*         0x000151b7        0x1 00000000
  .rodata.rpl_global_repair.str1.4
-                0x00015040        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
- *fill*         0x0001504d        0x3 00000000
+                0x000151b8        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+ *fill*         0x000151c5        0x3 00000000
  .rodata.rpl_process_dio.str1.4
-                0x00015050       0xeb build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
- *fill*         0x0001513b        0x1 00000000
+                0x000151c8       0xeb build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+ *fill*         0x000152b3        0x1 00000000
  .rodata.rpl_process_dis.str1.4
-                0x0001513c        0xe build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
- *fill*         0x0001514a        0x2 00000000
+                0x000152b4        0xe build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+ *fill*         0x000152c2        0x2 00000000
  .rodata.rpl_process_dao.str1.4
-                0x0001514c       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x000152c4       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
  .rodata.rpl_process_dao_ack.str1.4
-                0x00015170        0xa build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x000152e8        0xa build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
  .rodata.rpl_dag_init_root.str1.4
-                0x00015170        0xa build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
- *fill*         0x0001517a        0x2 00000000
+                0x000152e8        0xa build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+ *fill*         0x000152f2        0x2 00000000
  .rodata.resend_dao.str1.4
-                0x0001517c        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x000152f4        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .rodata.update_hbh_header.part.0.str1.4
-                0x00015188       0x7a build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+                0x00015300       0x7a build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
                                  0x92 (size before relaxing)
- *fill*         0x00015202        0x2 00000000
+ *fill*         0x0001537a        0x2 00000000
  .rodata.rpl_ext_header_srh_update.str1.4
-                0x00015204       0x49 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
- *fill*         0x0001524d        0x3 00000000
+                0x0001537c       0x49 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+ *fill*         0x000153c5        0x3 00000000
  .rodata.rpl_ext_header_hbh_update.str1.4
-                0x00015250       0x68 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+                0x000153c8       0x68 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
  .rodata.rpl_ext_header_update.str1.4
-                0x000152b8       0xbe build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
- *fill*         0x00015376        0x2 00000000
+                0x00015430       0xbe build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+ *fill*         0x000154ee        0x2 00000000
  .rodata.str1.4
-                0x00015378        0x9 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
- *fill*         0x00015381        0x3 00000000
+                0x000154f0        0x9 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+ *fill*         0x000154f9        0x3 00000000
  .rodata.rpl_lite_driver
-                0x00015384       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
-                0x00015384                rpl_lite_driver
+                0x000154fc       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x000154fc                rpl_lite_driver
  .rodata.rpl_dag_root_start.str1.4
-                0x000153d8       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
+                0x00015550       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
                                  0x38 (size before relaxing)
  .rodata.process_thread_node_process.str1.4
-                0x000153f8       0x3f node.o
+                0x00015570       0x3f node.o
                                  0x5b (size before relaxing)
- *fill*         0x00015437        0x1 00000000
+ *fill*         0x000155af        0x1 00000000
  .rodata.udp_rx_callback.str1.4
-                0x00015438       0xa9 node.o
- *fill*         0x000154e1        0x3 00000000
+                0x000155b0       0xa9 node.o
+ *fill*         0x00015659        0x3 00000000
+ .rodata.experiment_log.str1.4
+                0x0001565c        0xc node.o
  .rodata.active_connectivity_speed.str1.4
-                0x000154e4       0x67 node.o
- *fill*         0x0001554b        0x1 00000000
+                0x00015668       0x53 node.o
+ *fill*         0x000156bb        0x1 00000000
  .rodata.udp_child_rx_callback.str1.4
-                0x0001554c       0x1c node.o
+                0x000156bc       0x1c node.o
  .rodata.str1.4
-                0x00015568        0x9 node.o
- *fill*         0x00015571        0x3 00000000
+                0x000156d8        0x9 node.o
+ *fill*         0x000156e1        0x3 00000000
  .rodata.autostart_processes
-                0x00015574        0x8 node.o
-                0x00015574                autostart_processes
+                0x000156e4        0x8 node.o
+                0x000156e4                autostart_processes
  .rodata._ctype_
-                0x0001557c      0x101 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-ctype_.o)
-                0x0001557c                _ctype_
-                0x0001567d                _etext = .
+                0x000156ec      0x101 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-ctype_.o)
+                0x000156ec                _ctype_
+                0x000157ed                _etext = .
 
-.glue_7         0x00015680        0x0
- .glue_7        0x00015680        0x0 linker stubs
+.glue_7         0x000157f0        0x0
+ .glue_7        0x000157f0        0x0 linker stubs
 
-.glue_7t        0x00015680        0x0
- .glue_7t       0x00015680        0x0 linker stubs
+.glue_7t        0x000157f0        0x0
+ .glue_7t       0x000157f0        0x0 linker stubs
 
-.vfp11_veneer   0x00015680        0x0
- .vfp11_veneer  0x00015680        0x0 linker stubs
+.vfp11_veneer   0x000157f0        0x0
+ .vfp11_veneer  0x000157f0        0x0 linker stubs
 
-.v4_bx          0x00015680        0x0
- .v4_bx         0x00015680        0x0 linker stubs
+.v4_bx          0x000157f0        0x0
+ .v4_bx         0x000157f0        0x0 linker stubs
 
-.iplt           0x00015680        0x0
- .iplt          0x00015680        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/startup_gcc.o
+.iplt           0x000157f0        0x0
+ .iplt          0x000157f0        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/startup_gcc.o
 
-.data           0x20000000      0x824 load address 0x0001567d
+.data           0x20000000      0x824 load address 0x000157ed
                 0x20000000                _data = .
  *(SORT_BY_ALIGNMENT(vtable))
  *(SORT_BY_ALIGNMENT(.data*))
@@ -4983,14 +4999,14 @@ END GROUP
  .data.rng_ready_event
                 0x20000823        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/soc-trng.o
                 0x20000824                _edata = .
-                0x0001567d                _ldata = LOADADDR (.data)
+                0x000157ed                _ldata = LOADADDR (.data)
 
-.igot.plt       0x20000824        0x0 load address 0x00015ea1
+.igot.plt       0x20000824        0x0 load address 0x00016011
  .igot.plt      0x20000824        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/startup_gcc.o
 
-.ARM.exidx      0x00015ea4        0x8
+.ARM.exidx      0x00016014        0x8
  *(SORT_BY_ALIGNMENT(.ARM.exidx*))
- .ARM.exidx     0x00015ea4        0x8 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+ .ARM.exidx     0x00016014        0x8 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
 
 .bss            0x20000828     0x281e
                 0x20000828                _bss = .
@@ -5696,6 +5712,7 @@ LOAD linker stubs
  .comment       0x00000049       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/aon_rtc.o
  .comment       0x00000049       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
  .comment       0x00000049       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/printf.o
+ .comment       0x00000049       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
  .comment       0x00000049       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/snprintf.o
  .comment       0x00000049       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
  .comment       0x00000049       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
@@ -5886,111 +5903,117 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000d2f       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/printf.o
  .ARM.attributes
-                0x00000d5c       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/snprintf.o
+                0x00000d5c       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
  .ARM.attributes
-                0x00000d89       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x00000d89       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/snprintf.o
  .ARM.attributes
-                0x00000db6       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00000db6       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
  .ARM.attributes
-                0x00000de3       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-timeslot-timing.o
+                0x00000de3       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .ARM.attributes
-                0x00000e10       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x00000e10       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-timeslot-timing.o
  .ARM.attributes
-                0x00000e3d       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x00000e3d       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
  .ARM.attributes
-                0x00000e6a       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
+                0x00000e6a       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
  .ARM.attributes
-                0x00000e97       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-roots.o
+                0x00000e97       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
  .ARM.attributes
-                0x00000ec4       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-security.o
+                0x00000ec4       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-roots.o
  .ARM.attributes
-                0x00000ef1       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
+                0x00000ef1       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-security.o
  .ARM.attributes
-                0x00000f1e       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
+                0x00000f1e       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
  .ARM.attributes
-                0x00000f4b       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
+                0x00000f4b       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
  .ARM.attributes
-                0x00000f78       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
+                0x00000f78       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uipbuf.o
  .ARM.attributes
-                0x00000fa5       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x00000fa5       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
  .ARM.attributes
-                0x00000fd2       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x00000fd2       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
  .ARM.attributes
-                0x00000fff       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-udp-packet.o
+                0x00000fff       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
  .ARM.attributes
-                0x0000102c       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x0000102c       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-udp-packet.o
  .ARM.attributes
-                0x00001059       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x00001059       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
  .ARM.attributes
-                0x00001086       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
+                0x00001086       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
  .ARM.attributes
-                0x000010b3       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x000010b3       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
  .ARM.attributes
-                0x000010e0       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
+                0x000010e0       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
  .ARM.attributes
-                0x0000110d       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
+                0x0000110d       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
  .ARM.attributes
-                0x0000113a       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x0000113a       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
  .ARM.attributes
-                0x00001167       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
+                0x00001167       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .ARM.attributes
-                0x00001194       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x00001194       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
  .ARM.attributes
-                0x000011c1       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x000011c1       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
  .ARM.attributes
-                0x000011ee       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x000011ee       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
  .ARM.attributes
-                0x0000121b       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x0000121b       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
  .ARM.attributes
-                0x00001248       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+                0x00001248       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .ARM.attributes
-                0x00001275       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x00001275       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
  .ARM.attributes
-                0x000012a2       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-nbr-policy.o
+                0x000012a2       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
  .ARM.attributes
-                0x000012cf       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
+                0x000012cf       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-nbr-policy.o
  .ARM.attributes
-                0x000012fc       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
+                0x000012fc       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-mrhof.o
  .ARM.attributes
-                0x00001329       0x2d node.o
+                0x00001329       0x2d build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
  .ARM.attributes
-                0x00001356       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
+                0x00001356       0x2d node.o
  .ARM.attributes
-                0x00001373       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+                0x00001383       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
  .ARM.attributes
-                0x00001390       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
+                0x000013a0       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
  .ARM.attributes
-                0x000013ad       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
+                0x000013bd       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
  .ARM.attributes
-                0x000013ca       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
+                0x000013da       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
  .ARM.attributes
-                0x000013e7       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+                0x000013f7       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
  .ARM.attributes
-                0x00001404       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+                0x00001414       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
  .ARM.attributes
-                0x00001431       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
+                0x00001431       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
  .ARM.attributes
-                0x0000144e       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcmp.o)
+                0x0000145e       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
  .ARM.attributes
-                0x0000147b       0x1b /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcpy.o)
+                0x0000147b       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcmp.o)
  .ARM.attributes
-                0x00001496       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memmove.o)
+                0x000014a8       0x1b /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcpy.o)
  .ARM.attributes
-                0x000014c3       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memset.o)
+                0x000014c3       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memmove.o)
  .ARM.attributes
-                0x000014f0       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
+                0x000014f0       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memset.o)
  .ARM.attributes
-                0x0000151d       0x1b /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
+                0x0000151d       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
  .ARM.attributes
-                0x00001538       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
+                0x0000154a       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
  .ARM.attributes
-                0x00001565       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-ctype_.o)
+                0x00001577       0x1b /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
  .ARM.attributes
-                0x00001592       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
+                0x00001592       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
  .ARM.attributes
-                0x000015bf       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-impure.o)
+                0x000015bf       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
+ .ARM.attributes
+                0x000015ec       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-ctype_.o)
+ .ARM.attributes
+                0x00001619       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
+ .ARM.attributes
+                0x00001646       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-impure.o)
 
-.debug_frame    0x00000000      0x3ac
+.debug_frame    0x00000000      0x3f4
  .debug_frame   0x00000000       0x24 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
  .debug_frame   0x00000024       0x4c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
  .debug_frame   0x00000070       0xc8 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
@@ -6001,10 +6024,12 @@ LOAD linker stubs
  .debug_frame   0x00000200       0x28 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcmp.o)
  .debug_frame   0x00000228       0x40 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memmove.o)
  .debug_frame   0x00000268       0x2c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memset.o)
- .debug_frame   0x00000294       0x34 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
- .debug_frame   0x000002c8       0x34 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
- .debug_frame   0x000002fc       0x90 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
- .debug_frame   0x0000038c       0x20 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
+ .debug_frame   0x00000294       0x28 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
+ .debug_frame   0x000002bc       0x34 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
+ .debug_frame   0x000002f0       0x34 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
+ .debug_frame   0x00000324       0x20 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
+ .debug_frame   0x00000344       0x90 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
+ .debug_frame   0x000003d4       0x20 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
 
 Cross Reference Table
 
@@ -6784,6 +6809,7 @@ etimer_set                                        build/cc26x0-cc13x0/launchpad/
 etimer_start_time                                 build/cc26x0-cc13x0/launchpad/cc2650/obj/etimer.o
 etimer_stop                                       build/cc26x0-cc13x0/launchpad/cc2650/obj/etimer.o
                                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/ctimer.o
+experiment_log                                    node.o
 ext_flash_close                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/ext-flash.o
                                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/xmem.o
 ext_flash_erase                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/ext-flash.o
@@ -7996,6 +8022,7 @@ spi_write                                         build/cc26x0-cc13x0/launchpad/
 spi_write_byte                                    build/cc26x0-cc13x0/launchpad/cc2650/obj/spi.o
                                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/ext-flash.o
 sprintf                                           build/cc26x0-cc13x0/launchpad/cc2650/obj/sprintf.o
+                                                  node.o
 stack_check_get_reserved_size                     build/cc26x0-cc13x0/launchpad/cc2650/obj/stack-check.o
 stack_check_get_usage                             build/cc26x0-cc13x0/launchpad/cc2650/obj/stack-check.o
 stack_check_init                                  build/cc26x0-cc13x0/launchpad/cc2650/obj/stack-check.o
@@ -8011,12 +8038,16 @@ stimer_restart                                    build/cc26x0-cc13x0/launchpad/
 stimer_set                                        build/cc26x0-cc13x0/launchpad/cc2650/obj/stimer.o
                                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
                                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+strcat                                            /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
+                                                  node.o
 strchr                                            /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
                                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
                                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
 strcmp                                            /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
                                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
                                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+strcpy                                            /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
+                                                  /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
 strlen                                            /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strlen-stub.o)
                                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/tcp-socket.o
                                                   build/cc26x0-cc13x0/launchpad/cc2650/obj/puts.o

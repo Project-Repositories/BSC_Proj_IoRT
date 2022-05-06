@@ -45,6 +45,12 @@
 #include "sys/node-id.h"
 
 #include "sys/log.h"
+
+// August:
+#include "stdlib.h"
+#include "stdio.h"
+#include "string.h"
+
 #define LOG_MODULE "App"
 #define LOG_LEVEL LOG_LEVEL_INFO
 
@@ -60,6 +66,10 @@ void drive_msg(char* str) {
 	printf("[DRIVE]: %s\n",str);
 }
 
+
+void experiment_log(char* str) {
+	printf("[DATA]: %s\n",str);
+}
 
 
 /*---------------------------------------------------------------------------*/
@@ -114,7 +124,8 @@ udp_rx_callback(struct simple_udp_connection *c,
 float get_ewma(int new_RSSI) {
 	static float EWMA = 0.f;
 	const float alpha = 0.75f;
-	if (int(EWMA) == 0) {
+	// base case of EWMA
+	if ( (int)EWMA == 0) {
 		EWMA = (float)new_RSSI;
 	}
 	else {
@@ -135,7 +146,23 @@ void active_connectivity_speed(int new_RSSI) {
 	const int weak_threshold = -35; // -65;
 	const int strong_threshold = weak_threshold + 5;
 	const int worsen_threshold = 3;
-	printf("EWMA: %d\n",(int)EWMA);
+	
+	//printf("EWMA: %d\n",(int)EWMA);
+	
+	/*
+	--------- 
+	*/	
+	
+	// https://stackoverflow.com/a/69895891
+	char someStr[] = "EWMA: ";
+	char EWMA_str[5];
+	sprintf(EWMA_str,"%d",(int)EWMA);
+	strcat(someStr,EWMA_str);
+	experiment_log(someStr);
+	/*
+	--------- 
+	*/	
+
 	if (EWMA <= weak_threshold) {
 
 		if (!speed_change){
@@ -154,15 +181,15 @@ void active_connectivity_speed(int new_RSSI) {
 			}
 		  }
 
-		  if (brake){
-			// printf("%dslow down1\n", node_id);
-			drive_msg("slow down1");
-		  }
+	  if (brake){
+		// printf("%dslow down1\n", node_id);
+		drive_msg("slow down1");
+	  }
 
-		  if (accelerate) {
-			drive_msg("accelerate1");
+	  if (accelerate) {
+		drive_msg("accelerate1");
 
-		  }
+	  }
 
 	}
 	// If RSSI decreased, meaning we chose the wrong action:
@@ -188,19 +215,9 @@ void active_connectivity_speed(int new_RSSI) {
 	// EWMA has returned to 'sufficient' values after a speed change:
 	if (EWMA >= strong_threshold && speed_change){
 
-	  if (accelerate){
-		drive_msg("slow down");
-		accelerate = 0;
-		brake = 1;
-	  }
-
-	  else {
-		drive_msg("accelerate");
-		accelerate = 1;
-		brake = 0;
-	  }
-
-	  speed_change = 0 ;
+		drive_msg("base");
+		brake = accelerate = 0;	
+		speed_change = change_acceleration = 0 ;
 
 	}
 
@@ -229,11 +246,11 @@ udp_child_rx_callback(struct simple_udp_connection *c,
 	    LOG_INFO("\n");
 	    // LOG_INFO("The received RSSI: %hi\n", RSSI);
 	    RSSI = (int16_t)uipbuf_get_attr(UIPBUF_ATTR_RSSI);
-		printf("RSSI from latest ping: %hi\n", RSSI);
+		// printf("RSSI from latest ping: %hi\n", RSSI);
 		
+		// TODO:
+		// Print out LQI with the experiment_log formatting
 		
-		// float EWMA = get_ewma((int)RSSI);
-		// printf("resulting EWMA: %d\n", (int)EWMA);
 		active_connectivity_speed((int)RSSI);
 	}
 }
