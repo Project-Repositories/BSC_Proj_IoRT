@@ -54,6 +54,14 @@
 #define SEND_INTERVAL		  (10 * CLOCK_SECOND)
 #define ALPHA 0.75f
 
+
+/* Message format to distinguish messages for our driving of the robot cars */
+void drive_msg(char* str) {
+	printf("[DRIVE]: %s\n",str);
+}
+
+
+
 /*---------------------------------------------------------------------------*/
 static struct simple_udp_connection client_conn, server_conn;
 
@@ -91,6 +99,7 @@ udp_rx_callback(struct simple_udp_connection *c,
     LOG_INFO("Sent RSSI %hd to child node ", RSSI);
     LOG_INFO_6ADDR(sender_addr);
     LOG_INFO_("\n");
+    drive_msg("Coordinator received MSG from child");
   }
 }
 
@@ -104,7 +113,13 @@ udp_rx_callback(struct simple_udp_connection *c,
 
 float get_ewma(int new_RSSI) {
 	static float EWMA = 0.f;
-	EWMA = (0.75f * new_RSSI) + (1 - 0.75f) * EWMA;
+	const float alpha = 0.75f;
+	if (int(EWMA) == 0) {
+		EWMA = (float)new_RSSI;
+	}
+	else {
+		EWMA = (alpha * new_RSSI) + (1 - alpha) * EWMA;
+	}
 	return EWMA;
 }
 
@@ -116,15 +131,17 @@ void active_connectivity_speed(int new_RSSI) {
 	static bool accelerate = false;	
 	
 	float EWMA = get_ewma(new_RSSI);
-	static float EWMA_tmp = 0;
-	const int min_threshold = -65;
-	printf("EWMA: %d",(int)EWMA);
-	if (EWMA <= min_threshold) {
+	static float EWMA_tmp = 0.f;
+	const int weak_threshold = -35; // -65;
+	const int strong_threshold = weak_threshold + 5;
+	const int worsen_threshold = 3;
+	printf("EWMA: %d\n",(int)EWMA);
+	if (EWMA <= weak_threshold) {
 
 		if (!speed_change){
 			EWMA_tmp = EWMA;
 			speed_change = 1;
-			printf("%d  rssi_ewma_tmp\n",  (int)EWMA_tmp);
+			printf("temp. EWMA: %d\n",  (int)EWMA_tmp);
 
 			
 			if (random_rand() % 2) {
@@ -138,21 +155,22 @@ void active_connectivity_speed(int new_RSSI) {
 		  }
 
 		  if (brake){
-			printf("%d slow down1\n", node_id);
+			// printf("%dslow down1\n", node_id);
+			drive_msg("slow down1");
 		  }
 
 		  if (accelerate) {
-			printf("%d accelerate1\n", node_id);
+			drive_msg("accelerate1");
 
 		  }
 
 	}
 	// If RSSI decreased, meaning we chose the wrong action:
 	// (added 'speed_change &&'), though its technically unnecesarry.
-	if (speed_change && (EWMA_tmp - EWMA >= 3)){
+	if (speed_change && (EWMA_tmp - EWMA >= worsen_threshold)){
 
 	  if (accelerate && !change_acceleration){
-		printf("%d slow down2\n", node_id);
+		drive_msg("slow down2");
 		accelerate = 0;
 		brake = 1;
 		change_acceleration = 1;
@@ -160,24 +178,24 @@ void active_connectivity_speed(int new_RSSI) {
 	  }
 
 	  if (brake && !change_acceleration)  {
-		printf("%d accelerate2\n", node_id);
+		drive_msg("accelerate2");
 		accelerate = 1;
 		brake = 0;
 		change_acceleration = 1;
 	  }
 
 	}  
-
-	if (EWMA >= -60 && speed_change){
+	// EWMA has returned to 'sufficient' values after a speed change:
+	if (EWMA >= strong_threshold && speed_change){
 
 	  if (accelerate){
-		printf("%d slow down\n", node_id);
+		drive_msg("slow down");
 		accelerate = 0;
 		brake = 1;
 	  }
 
 	  else {
-		printf("%d accelerate\n", node_id);
+		drive_msg("accelerate");
 		accelerate = 1;
 		brake = 0;
 	  }
@@ -208,9 +226,9 @@ udp_child_rx_callback(struct simple_udp_connection *c,
 	    
 	    LOG_INFO("Received from ");
 	    LOG_INFO_6ADDR(sender_addr);
-	    LOG_INFO("The received RSSI: %hi\n", RSSI);
+	    LOG_INFO("\n");
+	    // LOG_INFO("The received RSSI: %hi\n", RSSI);
 	    RSSI = (int16_t)uipbuf_get_attr(UIPBUF_ATTR_RSSI);
-		//LOG_INFO("RSSI from latest ping: %hi\n", RSSI);
 		printf("RSSI from latest ping: %hi\n", RSSI);
 		
 		
