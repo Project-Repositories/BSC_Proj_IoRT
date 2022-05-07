@@ -105,7 +105,7 @@ class SimpleDriver:
             i += 1
             # fwd_motor_values = [base_speed] * 4
             current_time = time.time()
-            if current_time - previous_turn >= turn_time:
+            if False: #current_time - previous_turn >= turn_time:
                 previous_turn = current_time
                 reversal(base_speed)
 
@@ -143,7 +143,7 @@ class SimpleDriver:
                 print("align_value:{}".format(align_value))
                 print("fwd_motor_values:{}".format(fwd_motor_values))
                 print("p, i, d: {}, {}, {}".format(*self.aligner.pid.components))
-            drive(fwd_motor_values)
+            # drive(fwd_motor_values)
 
 
 def test_pid():

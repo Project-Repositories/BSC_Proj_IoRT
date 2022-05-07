@@ -14,8 +14,6 @@ def demo_UART(port_name):
             # content = [txt.strip() for txt in content]
             if content != "[INFO: TSCH      ] scanning on channel 20":
                 print("content = {0}".format(content))
-            else:
-                print("t")
             # , parity=serial.PARITY_EVEN, rtscts=1
             time.sleep(5)
 
