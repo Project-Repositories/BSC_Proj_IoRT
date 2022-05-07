@@ -5,6 +5,8 @@ from Motor import PWM
 from servo import Servo
 
 import sys  # For command-line arguments
+from traceback import print_exc # For debugging, to print the entire exception when errors occur, but also handle it gracefully
+
 from enum import Enum
 from commons import clamp
 from wall_alignment import WallAligner, Direction
@@ -38,8 +40,7 @@ class SimpleDriver:
 
         self.nodetype = nodetype
         port_name = "/dev/ttyACM0"
-        self.launchpad_comm = UART_Comm()
-        self.launchpad_comm.reboot_launchpad()
+        self.launchpad_comm = UART_Comm(port_name)
         if self.nodetype == NodeType.Coordinator:
             self.launchpad_comm.set_coordinator()
 
@@ -95,6 +96,7 @@ class SimpleDriver:
             if current_time - previous_read >= seconds_per_read:
                 previous_read = current_time
                 instruction = self.launchpad_comm.read_from_UART()
+                print(instruction)
 
         i = 0
         while True:
@@ -183,6 +185,9 @@ if __name__ == '__main__':
             nodetype = NodeType.Child
         driver = SimpleDriver(nodetype)
         driver.oscillate_simple()
-    except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program  will be  executed.
+    except KeyboardInterrupt: # Exception as e:  # When 'Ctrl+C' is pressed, the child program  will be  executed.
+        print("program was terminated.")
+        print_exc()
+    finally:
         PWM.setMotorModel(0, 0, 0, 0)
         Servo().setServoPwm('0', 90)

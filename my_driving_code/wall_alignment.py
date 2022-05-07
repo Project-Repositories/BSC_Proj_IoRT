@@ -29,7 +29,7 @@ class WallAligner:
         self.ultrasonic = Ultrasonic()
         self.pwm_Servo = Servo()
         self.pwm_Servo.setServoPwm('0', self.direction.value)
-        time.sleep(0.25)  # Wait until servo has moved
+        time.sleep(2)  # Wait until servo has moved
         # Measure the initial distance to wall:
         self.target_distance = self.ultrasonic.get_distance()
         print("target distance: {}".format(self.target_distance))
