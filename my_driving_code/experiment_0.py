@@ -4,21 +4,26 @@ import RPi.GPIO as GPIO
 from Motor import PWM
 from servo import Servo
 
+import sys  # For command-line arguments
 from enum import Enum
 from commons import clamp
 from wall_alignment import WallAligner, Direction
 from simple_pid import PID
+from parse_UART import UART_Comm, DriveInstructions
 
 
 class Head(Enum):
     FORWARDS = 1
     BACKWARDS = -1
-# TODO: Move to separate python script ("experiment_1")
-# Then, add support for Command Line Arguments, such as base speed & direction.
+
+
+class NodeType(Enum):
+    Child = 0
+    Coordinator = 1
 
 
 class SimpleDriver:
-    def __init__(self):
+    def __init__(self, nodetype):
         self.IR01 = 14
         self.IR02 = 15
         self.IR03 = 23
@@ -30,6 +35,13 @@ class SimpleDriver:
         self.direction = Direction.LEFT
         self.aligner = WallAligner(self.direction)
         self.head = Head.FORWARDS
+
+        self.nodetype = nodetype
+        port_name = "/dev/ttyACM0"
+        self.launchpad_comm = UART_Comm()
+        self.launchpad_comm.reboot_launchpad()
+        if self.nodetype == NodeType.Coordinator:
+            self.launchpad_comm.set_coordinator()
 
     def reverse_head(self):
         if self.head == Head.FORWARDS:
@@ -61,28 +73,56 @@ class SimpleDriver:
                 time.sleep(0.2)
             self.reverse_head()
 
-        turn_time = 2
-        previous_turn = time.time()
+        turn_time = 2 # Change in favor of optically reading reversal point.
+        seconds_per_read = 9  # A message is sent every 10 seconds. We see if there's a new one every 9 seconds.
+        previous_turn = previous_read = time.time()
 
-        base_speed = 1000
         # to scale alignment accordingly to the speed the PID was tested with (1000):
-        align_coeff = (base_speed / 1000) ** 0.5
+        def calculate_align_coeff(current_speed):
+            return (current_speed / 1000) ** 0.5
+
+        base_speed = DriveInstructions.BASE.value
         fwd_motor_values = [base_speed] * 4
+
+        align_coeff = calculate_align_coeff(base_speed)
+        align_value = 0
+
+        # Wait until a DriveInstruction is received,
+        # which indicates that a connection between node and coordinator has been formed
+        instruction = DriveInstructions.NONE
+        while instruction == DriveInstructions.NONE:
+            current_time = time.time()
+            if current_time - previous_read >= seconds_per_read:
+                previous_read = current_time
+                instruction = self.launchpad_comm.read_from_UART()
 
         i = 0
         while True:
+
+
             i += 1
             # fwd_motor_values = [base_speed] * 4
             current_time = time.time()
             if current_time - previous_turn >= turn_time:
                 previous_turn = current_time
                 reversal(base_speed)
+
+            if current_time - previous_read >= seconds_per_read:
+                previous_read = current_time
+                instruction = self.launchpad_comm.read_from_UART()
+                if instruction != DriveInstructions.NONE:
+                    base_speed = instruction.value
+                    align_coeff = calculate_align_coeff(base_speed)
+
             if i % 5 == 0:
-                
+
                 align_value = self.aligner.get_direction_correction(base_speed)
                 align_value *= align_coeff
-                # Clamp the alignment, to limit it from stopping a set of wheels completely, or even reversing the direction.
+
+                # Clamp the alignment, to limit it from stopping a set of wheels completely, or even reversing the
+                # direction.
                 align_value = clamp(align_value, -base_speed // 1, base_speed // 1)
+
                 # Split the "burden" of alignment in two parts:
                 # One side drives faster, another drives slower, compared to base_speed.
                 # Will result in less sudden changes of PWM in a set of wheels, and also be closer to "base speed"
@@ -97,6 +137,7 @@ class SimpleDriver:
             if i % 30 == 0:
                 print("----")
                 print("head:{}".format(self.head))
+                print("current speed:{}".format(base_speed))
                 print("align_value:{}".format(align_value))
                 print("fwd_motor_values:{}".format(fwd_motor_values))
                 print("p, i, d: {}, {}, {}".format(*self.aligner.pid.components))
@@ -127,10 +168,20 @@ def test_pid():
             print("tst_value = {}".format(tst_value))
 
 
+# TODO: add support for Command Line Arguments, such as base speed, direction, is_coordinator.
 if __name__ == '__main__':
     print('Program is starting ... ')
+
+    if len(sys.argv) < 2:
+        print("Parameter error: Please assign the robot to be either coordinator or child.")
+        exit()
+
     try:
-        driver = SimpleDriver()
+        if sys.argv[1].lower().strip() == 'true':
+            nodetype = NodeType.Coordinator
+        else:
+            nodetype = NodeType.Child
+        driver = SimpleDriver(nodetype)
         driver.oscillate_simple()
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program  will be  executed.
         PWM.setMotorModel(0, 0, 0, 0)
