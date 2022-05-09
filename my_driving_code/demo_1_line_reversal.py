@@ -24,7 +24,7 @@ class NodeType(Enum):
     Coordinator = 1
 
 
-class AlignDriver:
+class LineReversalDriver:
     """
     Aligns itself to a wall to it's right or left, depending on direction parameter.
     Drives forward for some time, then reverses after a set duration.
@@ -35,6 +35,10 @@ class AlignDriver:
         self.IR01 = 14
         self.IR02 = 15
         self.IR03 = 23
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.IR01, GPIO.IN)
+        GPIO.setup(self.IR02, GPIO.IN)
+        GPIO.setup(self.IR03, GPIO.IN)
 
         self.direction = direction # Direction.LEFT
         self.aligner = WallAligner(self.direction)
@@ -47,6 +51,11 @@ class AlignDriver:
             self.head = Head.FORWARDS
         else:
             raise ValueError("self.HEAD is of incorrect value and/or type.")
+
+    def scan_for_line(self) -> bool:
+        # Using infrared detectors
+        ir_line = GPIO.input(self.IR01) + GPIO.input(self.IR02) + GPIO.input(self.IR03)
+        return ir_line > 0
 
     def oscillate_simple(self):
         def drive(pwm_magnitudes):
@@ -84,20 +93,20 @@ class AlignDriver:
         align_coeff = calculate_align_coeff(base_speed)
         align_value = 0
 
+        has_reversed = False
         i = 0
         while True:
             i += 1
             current_time = time.time()
-            if current_time - previous_turn >= turn_time:
+            """if current_time - previous_turn >= turn_time:
                 previous_turn = current_time
                 reversal(base_speed)
-
-            if current_time - previous_read >= seconds_per_read:
-                previous_read = current_time
-                instruction = self.launchpad_comm.read_from_UART()
-                if instruction != DriveInstructions.NONE:
-                    base_speed = instruction.value
-                    align_coeff = calculate_align_coeff(base_speed)
+            """
+            if self.scan_for_line() and not has_reversed:
+                has_reversed = True
+                reversal(base_speed)
+            if has_reversed and not self.scan_for_line():
+                has_reversed = False
 
             # TODO: Change this to be a set time frequency
             if i % 5 == 0:
@@ -161,7 +170,7 @@ if __name__ == '__main__':
     print('Program is starting ... ')
 
     try:
-        driver = AlignDriver(Direction.RIGHT)
+        driver = LineReversalDriver(Direction.RIGHT)
         driver.oscillate_simple()
     except KeyboardInterrupt: # Exception as e:  # When 'Ctrl+C' is pressed, the child program  will be  executed.
         print("program was terminated.")

@@ -1,7 +1,6 @@
 # from multiprocessing import Process
 from threading import Thread
 
-
 import serial
 import time
 from enum import Enum
@@ -15,6 +14,11 @@ class DriveInstructions(Enum):
     FASTER = 4000
     BEGIN = 0
     NONE = None
+
+
+# TODO: Add logging
+# Which logs the EWMA data and actions taken, along with time passed since initializing the logger.
+# Prints to a new file every time (Check if file_name_# exists, if yes then check file_name_(#+1) and so on).
 
 
 class UART_Comm:
@@ -41,14 +45,12 @@ class UART_Comm:
         # led.colorWipe(led.strip, Color(255, 255, 51))  # Yellow wipe
         # print("after reboot: {}".format(self.read_from_UART()))
         time.sleep(self.timeout_after_action)
-        
 
     def set_coordinator(self):
         with self.ser as ser:
             ser.write(b'\nrpl-set-root 1\n')
         print("coordinator started")
         time.sleep(self.timeout_after_action)
-
 
     def async_reading(self):
         while self.run_async:
@@ -71,7 +73,6 @@ class UART_Comm:
             # if instruction != DriveInstructions.NONE:
             #    self.recent_instruction = instruction
 
-
     def start_async(self):
         print("Starting Async.")
         self.run_async = True
@@ -83,11 +84,11 @@ class UART_Comm:
         self.reader.join()
 
     def read_from_UART(self) -> DriveInstructions:
-        
+
         start_time = time.time()
         instruction = DriveInstructions.NONE
-        n_lines = 5
-        
+        # n_lines = 5
+
         with self.ser as ser:
             # messages = []
             # for n in range(n_lines):
