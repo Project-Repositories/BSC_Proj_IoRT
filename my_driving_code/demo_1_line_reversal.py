@@ -79,9 +79,8 @@ class LineReversalDriver:
                 time.sleep(0.2)
             self.reverse_head()
 
-        turn_time = 2 # Change in favor of optically reading reversal point.
-        seconds_per_read = 9  # A message is sent every 10 seconds. We see if there's a new one every 9 seconds.
-        previous_turn = previous_read = time.time()
+        align_period = self.aligner.sample_time
+        previous_align = time.time()
 
         # to scale alignment accordingly to the speed the PID was tested with (1000):
         def calculate_align_coeff(current_speed):
@@ -102,8 +101,8 @@ class LineReversalDriver:
                 previous_turn = current_time
                 reversal(base_speed)
             """
-            # TODO: Change this to be a set time frequency
-            if i % 5 == 0:
+            if current_time - previous_align >= align_period:  # if i % 5 == 0:
+                previous_align = current_time
                 # Only evaluate alignment every 5 iterations.
                 # As far as i understand, if PID is evaluated and used too often,
                 # the Derivative term becomes useless. Because its effect only lasts for a fraction of a second.

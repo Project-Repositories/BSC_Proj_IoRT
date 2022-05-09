@@ -27,4 +27,4 @@ if __name__ == '__main__':
             avg_time += time.time() - check_time
         avg_time = avg_time / n_checks
         print("-" * 3)
-        print("average time for period of {}s : {}s.\n deviation of {}s", period, avg_time, avg_time - period)
+        print("average time for period of {}s : {}s.\ndeviation of {}s".format(period, avg_time, avg_time - period))
