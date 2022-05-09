@@ -86,14 +86,14 @@ class LineReversalDriver:
         def calculate_align_coeff(current_speed):
             return (current_speed / 1000) ** 0.5
 
-        base_speed = 2000 # DriveInstructions.BASE.value
+        base_speed = 1500 # DriveInstructions.BASE.value
         fwd_motor_values = [base_speed] * 4
 
         align_coeff = calculate_align_coeff(base_speed)
         align_value = 0
 
         previous_reversal = previous_align
-        reversal_period = (0.5) * calculate_align_coeff(base_speed)
+        reversal_period = (2) * calculate_align_coeff(base_speed)
 
         i = 0
         while True:
@@ -110,6 +110,7 @@ class LineReversalDriver:
                 # the Derivative term becomes useless. Because its effect only lasts for a fraction of a second.
                 align_value = self.aligner.get_direction_correction(base_speed)
                 align_value *= align_coeff
+                align_value *= 0.1
 
                 # Clamp the alignment, to limit it from stopping a set of wheels completely, or even reversing the
                 # direction.
@@ -128,7 +129,7 @@ class LineReversalDriver:
                                        [base_speed + align_half] * 2
             # ir_line = self.scan_for_line()
             # print(ir_line)
-            if (current_time - previous_reversal >= reversal_period) and self.scan_for_line():
+            if (current_time - previous_reversal >= 2) and self.scan_for_line():
                 previous_reversal = current_time
                 reversal(base_speed)
             drive(fwd_motor_values)
