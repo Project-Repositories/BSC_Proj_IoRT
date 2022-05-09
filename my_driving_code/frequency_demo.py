@@ -12,8 +12,9 @@ if __name__ == '__main__':
             check_time = time.time()
             time.sleep(period)
             avg_time += time.time() - check_time
+        avg_time = avg_time / n_checks
         print("-" * 3)
-        print("average time for period of {}s : {}s.\n deviation of {}s", period, avg_time, avg_time - period)
+        print("average time for period of {}s : {}s.\n deviation of {}s".format(period, avg_time, avg_time - period))
 
     print("frequency demo : type 2")
     print("." * 10)
@@ -24,5 +25,6 @@ if __name__ == '__main__':
             while time.time() - check_time <= period:
                 pass
             avg_time += time.time() - check_time
+        avg_time = avg_time / n_checks
         print("-" * 3)
         print("average time for period of {}s : {}s.\n deviation of {}s", period, avg_time, avg_time - period)
