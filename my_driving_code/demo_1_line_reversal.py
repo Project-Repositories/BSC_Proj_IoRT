@@ -128,16 +128,13 @@ class LineReversalDriver:
             ir_line = self.scan_for_line()
             # print(ir_line)
             if ir_line and not has_reversed:
-                # print("1")
                 has_reversed = True
                 reversal(base_speed)
                 drive(fwd_motor_values)
                 time.sleep(.5)
             if has_reversed and not ir_line:
-                # print("2")
                 has_reversed = False
             if not has_reversed:
-                # print("3")
                 drive(fwd_motor_values)
             if i % 30 == 0:
                 print("----")
