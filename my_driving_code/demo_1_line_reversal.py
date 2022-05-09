@@ -92,7 +92,9 @@ class LineReversalDriver:
         align_coeff = calculate_align_coeff(base_speed)
         align_value = 0
 
-        has_reversed = False
+        previous_reversal = previous_align
+        reversal_period = (0.5) * calculate_align_coeff(base_speed)
+
         i = 0
         while True:
             i += 1
@@ -124,17 +126,12 @@ class LineReversalDriver:
                 elif self.direction == Direction.LEFT:
                     fwd_motor_values = [base_speed - align_half] * 2 + \
                                        [base_speed + align_half] * 2
-            ir_line = self.scan_for_line()
+            # ir_line = self.scan_for_line()
             # print(ir_line)
-            if ir_line and not has_reversed:
-                has_reversed = True
+            if (current_time - previous_reversal >= reversal_period) and self.scan_for_line():
+                previous_reversal = current_time
                 reversal(base_speed)
-                drive(fwd_motor_values)
-                time.sleep(align_coeff * 0.5)
-            if has_reversed and not ir_line:
-                has_reversed = False
-            if not has_reversed:
-                drive(fwd_motor_values)
+            drive(fwd_motor_values)
             if i % 30 == 0:
                 print("----")
                 print("head:{}".format(self.head))
