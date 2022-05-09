@@ -37,7 +37,7 @@ class WallAligner:
 
         # Needs to be evaluated experimentally:
         self.pid = PID(-50, -0.5, -20, setpoint=0)  # -50, -0.5, -25
-        self.sample_time = 0.5
+        self.sample_time = 0.15
         self.pid.sample_time = self.sample_time
         # TODO: Add "error mapping" function, which takes the current measured distance
         # then calculates the difference from the target (currently takes difference as error)

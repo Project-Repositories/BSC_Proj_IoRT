@@ -75,7 +75,7 @@ class LineReversalDriver:
                     new_speed = max(new_speed - step_size, 0)
                 else:
                     new_speed = min(new_speed + step_size, 0)
-                PWM.setMotorModel(*[new_speed] * 4)
+                PWM.setMotorModel(*([new_speed] * 4))
                 time.sleep(0.2)
             self.reverse_head()
 
@@ -86,7 +86,7 @@ class LineReversalDriver:
         def calculate_align_coeff(current_speed):
             return (current_speed / 1000) ** 0.5
 
-        base_speed = 1000 # DriveInstructions.BASE.value
+        base_speed = 2000 # DriveInstructions.BASE.value
         fwd_motor_values = [base_speed] * 4
 
         align_coeff = calculate_align_coeff(base_speed)
@@ -130,7 +130,7 @@ class LineReversalDriver:
                 has_reversed = True
                 reversal(base_speed)
                 drive(fwd_motor_values)
-                time.sleep(.5)
+                time.sleep(align_coeff * 0.5)
             if has_reversed and not ir_line:
                 has_reversed = False
             if not has_reversed:
