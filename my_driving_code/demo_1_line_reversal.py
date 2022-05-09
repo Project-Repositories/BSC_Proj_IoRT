@@ -55,7 +55,7 @@ class LineReversalDriver:
     def scan_for_line(self) -> bool:
         # Using infrared detectors
         ir_line = GPIO.input(self.IR01) + GPIO.input(self.IR02) + GPIO.input(self.IR03)
-        return ir_line > 0
+        return ir_line > 1
 
     def oscillate_simple(self):
         def drive(pwm_magnitudes):
@@ -87,7 +87,7 @@ class LineReversalDriver:
         def calculate_align_coeff(current_speed):
             return (current_speed / 1000) ** 0.5
 
-        base_speed = DriveInstructions.BASE.value
+        base_speed = 1000 # DriveInstructions.BASE.value
         fwd_motor_values = [base_speed] * 4
 
         align_coeff = calculate_align_coeff(base_speed)
@@ -102,12 +102,6 @@ class LineReversalDriver:
                 previous_turn = current_time
                 reversal(base_speed)
             """
-            if self.scan_for_line() and not has_reversed:
-                has_reversed = True
-                reversal(base_speed)
-            if has_reversed and not self.scan_for_line():
-                has_reversed = False
-
             # TODO: Change this to be a set time frequency
             if i % 5 == 0:
                 # Only evaluate alignment every 5 iterations.
@@ -131,6 +125,20 @@ class LineReversalDriver:
                 elif self.direction == Direction.LEFT:
                     fwd_motor_values = [base_speed - align_half] * 2 + \
                                        [base_speed + align_half] * 2
+            ir_line = self.scan_for_line()
+            # print(ir_line)
+            if ir_line and not has_reversed:
+                # print("1")
+                has_reversed = True
+                reversal(base_speed)
+                drive(fwd_motor_values)
+                time.sleep(.5)
+            if has_reversed and not ir_line:
+                # print("2")
+                has_reversed = False
+            if not has_reversed:
+                # print("3")
+                drive(fwd_motor_values)
             if i % 30 == 0:
                 print("----")
                 print("head:{}".format(self.head))
@@ -138,8 +146,6 @@ class LineReversalDriver:
                 print("align_value:{}".format(align_value))
                 print("fwd_motor_values:{}".format(fwd_motor_values))
                 print("p, i, d: {}, {}, {}".format(*self.aligner.pid.components))
-            drive(fwd_motor_values)
-
 
 def test_pid():
     tst_value = 10
@@ -170,7 +176,7 @@ if __name__ == '__main__':
     print('Program is starting ... ')
 
     try:
-        driver = LineReversalDriver(Direction.RIGHT)
+        driver = LineReversalDriver(Direction.LEFT)
         driver.oscillate_simple()
     except KeyboardInterrupt: # Exception as e:  # When 'Ctrl+C' is pressed, the child program  will be  executed.
         print("program was terminated.")
@@ -178,3 +184,4 @@ if __name__ == '__main__':
     finally:
         PWM.setMotorModel(0, 0, 0, 0)
         Servo().setServoPwm('0', 90)
+        Servo().setServoPwm('1',90)
