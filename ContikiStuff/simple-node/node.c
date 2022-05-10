@@ -61,14 +61,19 @@
 #define ALPHA 0.75f
 
 
+
+/* 
+	Functions for specific formatting. 
+	Newline before and after to ensure the text is separated.
+*/
 /* Message format to distinguish messages for our driving of the robot cars */
 void drive_msg(char* str) {
-	printf("[DRIVE]: %s\n",str);
+	printf("\n[DRIVE]: %s\n",str);
 }
 
-
+/* Message format to distinguish messages for our data logging*/
 void experiment_log(char* str) {
-	printf("[DATA]: %s\n",str);
+	printf("\n[DATA]: %s\n",str);
 }
 
 
@@ -78,6 +83,10 @@ static struct simple_udp_connection client_conn, server_conn;
 PROCESS(node_process, "RPL Node");
 AUTOSTART_PROCESSES(&node_process);
 /*---------------------------------------------------------------------------*/
+
+
+bool has_begun = false;
+
 static void
 udp_rx_callback(struct simple_udp_connection *c,
          const uip_ipaddr_t *sender_addr,
@@ -109,7 +118,10 @@ udp_rx_callback(struct simple_udp_connection *c,
     LOG_INFO("Sent RSSI %hd to child node ", RSSI);
     LOG_INFO_6ADDR(sender_addr);
     LOG_INFO_("\n");
-    drive_msg("Coordinator received MSG from child");
+    if (!has_begun) {
+    	has_begun = true;
+	    drive_msg("begin");
+    }
   }
 }
 
@@ -135,11 +147,14 @@ float get_ewma(int new_RSSI) {
 }
 
 
+
+/* 
+ Source: Haris' code.
+ Slightly modified. 
+*/
 void active_connectivity_speed(int new_RSSI) {
-	static bool speed_change = false;
-	static bool change_acceleration = false;
-	static bool brake = false;
-	static bool accelerate = false;	
+	static bool speed_change = false, change_acceleration = false, brake = false, accelerate = false;
+
 	
 	float EWMA = get_ewma(new_RSSI);
 	static float EWMA_tmp = 0.f;
@@ -153,7 +168,7 @@ void active_connectivity_speed(int new_RSSI) {
 	--------- 
 	*/	
 	
-	// https://stackoverflow.com/a/69895891
+	// Format and print EWMA data string
 	char someStr[] = "EWMA: ";
 	char EWMA_str[5];
 	sprintf(EWMA_str,"%d",(int)EWMA);
@@ -162,10 +177,8 @@ void active_connectivity_speed(int new_RSSI) {
 	/*
 	--------- 
 	*/	
-
 	if (EWMA <= weak_threshold) {
-
-		if (!speed_change){
+		if (!speed_change) {
 			EWMA_tmp = EWMA;
 			speed_change = 1;
 			printf("temp. EWMA: %d\n",  (int)EWMA_tmp);
@@ -179,7 +192,7 @@ void active_connectivity_speed(int new_RSSI) {
 			  accelerate = 1;
 			  brake = 0;
 			}
-		  }
+		}
 
 	  if (brake){
 		// printf("%dslow down1\n", node_id);
@@ -196,7 +209,7 @@ void active_connectivity_speed(int new_RSSI) {
 	// (added 'speed_change &&'), though its technically unnecesarry.
 	if (speed_change && (EWMA_tmp - EWMA >= worsen_threshold)){
 
-	  if (accelerate && !change_acceleration){
+	  if (accelerate && !change_acceleration) {
 		drive_msg("slow down2");
 		accelerate = 0;
 		brake = 1;
@@ -213,8 +226,7 @@ void active_connectivity_speed(int new_RSSI) {
 
 	}  
 	// EWMA has returned to 'sufficient' values after a speed change:
-	if (EWMA >= strong_threshold && speed_change){
-
+	if (EWMA >= strong_threshold ) { // && speed_change
 		drive_msg("base");
 		brake = accelerate = 0;	
 		speed_change = change_acceleration = 0 ;
@@ -250,6 +262,13 @@ udp_child_rx_callback(struct simple_udp_connection *c,
 		
 		// TODO:
 		// Print out LQI with the experiment_log formatting
+		
+	    if (!has_begun) {
+			has_begun = true;
+			drive_msg("begin");
+			// drive_msg("begin");
+			// drive_msg("begin");
+		}
 		
 		active_connectivity_speed((int)RSSI);
 	}
