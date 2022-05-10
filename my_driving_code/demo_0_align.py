@@ -1,4 +1,3 @@
-import math
 import time
 import RPi.GPIO as GPIO
 from Motor import PWM
@@ -10,8 +9,7 @@ from traceback import print_exc # For debugging, to print the entire exception w
 from enum import Enum
 from commons import clamp, Head
 from wall_alignment import WallAligner, Direction
-from simple_pid import PID
-from parse_UART import UART_Comm, DriveInstructions
+from parse_UART import DriveInstructions
 
 
 

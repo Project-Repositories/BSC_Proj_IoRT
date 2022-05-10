@@ -1,4 +1,3 @@
-import math
 import time
 import RPi.GPIO as GPIO
 from Motor import PWM
