@@ -33,7 +33,7 @@ class Logger:
             path_i += 1
             self.file_name = "data_log_{i}.csv".format(i=path_i)
 
-        self.file_path = join(self.dir,self.file_name)
+        self.file_path = join(self.dir, self.file_name)
 
         self.NA = "N/A"  # not available tag
         self.delimiter = ";"
@@ -49,6 +49,8 @@ class Logger:
             line = [str(seconds_since_start), str(input_ewma), input_instruction.name]
             line = self.delimiter.join(line) + "\n"
             file.write(line)
+
+
 class UART_Comm:
     def __init__(self, port_name):
         self.run_async = False
@@ -130,5 +132,15 @@ class UART_Comm:
                 if ("[DRIVE]: ") in content:
                     instruction_txt = content.replace("[DRIVE]: ", "")
                     instruction = self.instruction_dict.get(instruction_txt, DriveInstructions.NONE)
-        print("duration of read_function:{}".format(time.time() - start_time))
+        # print("duration of read_function:{}".format(time.time() - start_time))
         return instruction
+
+
+if __name__ == '__main__':
+    print('Program is starting ... ')
+    port_name = "COM11"
+    ser = serial.Serial(port_name, baudrate=115200, timeout=5)
+    with ser:
+        ser.write(b'\nreboot\n')
+        time.sleep(5)
+        ser.write(b'\nrpl-set-root 1\n')

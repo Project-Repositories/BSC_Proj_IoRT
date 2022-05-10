@@ -4,6 +4,7 @@ from multiprocessing import Manager
 
 from parse_UART import UART_Comm
 
+
 if __name__ == '__main__':
     print('Program is starting ... ')
     port_name = "COM8"
