@@ -4,28 +4,18 @@ import RPi.GPIO as GPIO
 from Motor import PWM
 from servo import Servo
 
-import sys  # For command-line arguments
-from traceback import print_exc # For debugging, to print the entire exception when errors occur, but also handle it gracefully
+# For command-line arguments
+import sys
+# For debugging, to print the entire exception when errors occur, but also handle it gracefully
+from traceback import print_exc
 
-from enum import Enum
-from commons import clamp
+from commons import clamp, Head, NodeType, Timer
 from wall_alignment import WallAligner, Direction
-from simple_pid import PID
 from parse_UART import UART_Comm, DriveInstructions
 
 
-class Head(Enum):
-    FORWARDS = 1
-    BACKWARDS = -1
-
-
-class NodeType(Enum):
-    Child = 0
-    Coordinator = 1
-
-
-class SimpleDriver:
-    def __init__(self, nodetype):
+class ActiveConnectivityDriver:
+    def __init__(self, direction: Direction, nodetype: NodeType):
         self.IR01 = 14
         self.IR02 = 15
         self.IR03 = 23
@@ -34,7 +24,7 @@ class SimpleDriver:
         GPIO.setup(self.IR02, GPIO.IN)
         GPIO.setup(self.IR03, GPIO.IN)
 
-        self.direction = Direction.LEFT
+        self.direction = direction  # Direction.LEFT
         self.aligner = WallAligner(self.direction)
         self.head = Head.FORWARDS
 
@@ -52,11 +42,21 @@ class SimpleDriver:
         else:
             raise ValueError("self.HEAD is of incorrect value and/or type.")
 
+    def scan_for_line(self) -> bool:
+        # Using infrared detectors
+        ir_line = GPIO.input(self.IR01) + GPIO.input(self.IR02) + GPIO.input(self.IR03)
+        return ir_line == 3  # > 1
+
     def oscillate_simple(self):
+        # ------ fundamental driving ------
         def drive(pwm_magnitudes):
             motor_values = [self.head.value * int(num) for num in pwm_magnitudes]
             PWM.setMotorModel(*motor_values)
 
+        base_speed = 1500  # DriveInstructions.BASE.value
+        fwd_motor_values = [base_speed] * 4
+
+        # ------ reversal ------
         def reversal(pwm_magnitude):
             print("reversing")
             speed_sign = self.head.value
@@ -70,54 +70,48 @@ class SimpleDriver:
                     new_speed = max(new_speed - step_size, 0)
                 else:
                     new_speed = min(new_speed + step_size, 0)
-                PWM.setMotorModel(*[new_speed] * 4)
+                PWM.setMotorModel(*([new_speed] * 4))
                 time.sleep(0.2)
             self.reverse_head()
 
-        turn_time = 2 # Change in favor of optically reading reversal point.
-        seconds_per_read = 9  # A message is sent every 10 seconds. We see if there's a new one every 9 seconds.
-        previous_turn = previous_read = time.time()
+        reversal_period = 1  # seconds  # * calculate_align_coeff(base_speed)
+        reversal_timer = Timer(reversal_period)
+        reversible = True
 
+        # ------ alignment ------
         # to scale alignment accordingly to the speed the PID was tested with (1000):
         def calculate_align_coeff(current_speed):
             return (current_speed / 1000) ** 0.5
 
-        base_speed = DriveInstructions.BASE.value
-        fwd_motor_values = [base_speed] * 4
-
+        align_period = self.aligner.sample_time
+        align_timer = Timer(align_period)
         align_coeff = calculate_align_coeff(base_speed)
         align_value = 0
 
+        # ------ communication ------
+        read_period = 9  # A message is sent every 10 seconds. We see if there's a new one every 9 seconds.
+        read_timer = Timer(read_period)
         # Wait until a DriveInstruction is received,
         # which indicates that a connection between node and coordinator has been formed
         instruction = DriveInstructions.NONE
         while instruction == DriveInstructions.NONE:
-            current_time = time.time()
-            if current_time - previous_read >= seconds_per_read:
-                previous_read = current_time
+            if read_timer.check():
                 instruction = self.launchpad_comm.read_from_UART()
-                print(instruction)
+                print("Waiting for instruction to drive. ")
 
-        i = 0
+        debug_i = 0
         while True:
+            debug_i += 1
 
-
-            i += 1
-            # fwd_motor_values = [base_speed] * 4
-            current_time = time.time()
-            if False: #current_time - previous_turn >= turn_time:
-                previous_turn = current_time
-                reversal(base_speed)
-
-            if current_time - previous_read >= seconds_per_read:
-                previous_read = current_time
-                instruction = self.launchpad_comm.read_from_UART()
+            # ------ communication ------
+            if read_timer.check():
+                instruction = self.launchpad_comm.recent_instruction
                 if instruction != DriveInstructions.NONE:
                     base_speed = instruction.value
                     align_coeff = calculate_align_coeff(base_speed)
 
-            if i % 5 == 0:
-
+            # ------ alignment ------
+            if align_timer.check():
                 align_value = self.aligner.get_direction_correction(base_speed)
                 align_value *= align_coeff
 
@@ -130,64 +124,62 @@ class SimpleDriver:
                 # Will result in less sudden changes of PWM in a set of wheels, and also be closer to "base speed"
                 align_half = align_value / 2
                 if self.direction == Direction.RIGHT:
-                    # align_half * 1.5
                     fwd_motor_values = [base_speed + align_half] * 2 + \
                                        [base_speed - align_half] * 2
                 elif self.direction == Direction.LEFT:
                     fwd_motor_values = [base_speed - align_half] * 2 + \
                                        [base_speed + align_half] * 2
-            if i % 30 == 0:
+
+            # ------ reversal  ------
+            ir_line = self.scan_for_line()
+            if not ir_line and not reversible:
+                reversal_timer = Timer(reversal_period)
+                reversible = True
+
+            if (reversal_timer.check()) and \
+                    ir_line and \
+                    reversible:
+                reversible = False
+                reversal(base_speed)
+
+            # ------ fundamental driving ------
+            drive(fwd_motor_values)
+
+            # ------ debugging ------
+            if debug_i % 30 == 0:
                 print("----")
                 print("head:{}".format(self.head))
                 print("current speed:{}".format(base_speed))
                 print("align_value:{}".format(align_value))
                 print("fwd_motor_values:{}".format(fwd_motor_values))
                 print("p, i, d: {}, {}, {}".format(*self.aligner.pid.components))
-            # drive(fwd_motor_values)
 
 
-def test_pid():
-    tst_value = 10
-    target_value = 0
-    pid = PID(1, 0, 0.0, setpoint=target_value)
-
-    def err_map_test(inp):
-        if inp > 0:
-            inp *= 1000
-        else:
-            inp *= -250
-        return inp
-
-    pid.error_map = err_map_test
-
-    for i in range(5):
-        if i % 2:
-            i *= -1
-        control = pid(i)
-        tst_value = tst_value + control
-        if i % 1 == 0:
-            print("control = {}".format(control))
-            print("tst_value = {}".format(tst_value))
-
-
-# TODO: add support for Command Line Arguments, such as base speed, direction, is_coordinator.
+# TODO: add more options for Command Line Arguments, such as  direction.
 if __name__ == '__main__':
     print('Program is starting ... ')
 
-    if len(sys.argv) < 2:
-        print("Parameter error: Please assign the robot to be either coordinator or child.")
-        exit()
-
     try:
-        if sys.argv[1].lower().strip() == 'true':
-            nodetype = NodeType.Coordinator
+        sysargs = [arg.strip().lower() for arg in sys.argv]
+        if "child" in sysargs:
+            arg_nodetype = NodeType.Child
         else:
-            nodetype = NodeType.Child
-        driver = SimpleDriver(nodetype)
+            arg_nodetype = NodeType.Coordinator
+
+        if "left" in sysargs:
+            arg_direction = Direction.LEFT
+        else:
+            arg_direction = Direction.RIGHT
+
+        print(("." * 10 + "\nStarting driver. {}\n{}\n" + "." * 10).
+              format(arg_direction, arg_nodetype))
+        driver = ActiveConnectivityDriver(arg_direction, arg_nodetype)
         driver.oscillate_simple()
-    except KeyboardInterrupt: # Exception as e:  # When 'Ctrl+C' is pressed, the child program  will be  executed.
+    except KeyboardInterrupt:  # Exception as e:  # When 'Ctrl+C' is pressed, the child program  will be  executed.
         print("program was terminated.")
         print_exc()
     finally:
         PWM.setMotorModel(0, 0, 0, 0)
         Servo().setServoPwm('0', 90)
+        Servo().setServoPwm('1', 90)
+        driver.launchpad_comm.finish_async()
