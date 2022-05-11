@@ -26,18 +26,18 @@ if __name__ == '__main__':
     try:
         for pwm in pwm_list:
             test_speed(pwm)
-            user_txt = input("Please enter the distance covered by the robot, then reset its position.\n"
+            user_txt = input("Please enter the distance covered by the robot in cm, then reset its position.\n"
                              "If you want to retry, enter 'r'").strip().lower()
             while user_txt == 'r':
                 test_speed(pwm)
-                user_txt = input("Please enter the distance covered by the robot, then reset its position.\n"
+                user_txt = input("Please enter the distance covered by the robot in cm, then reset its position.\n"
                                  "If you want to retry, enter 'r'").strip().lower()
             distance = float(user_txt)
             avg_speeds.append(distance / duration)
     finally:
         print("The avg speeds were:")
         for i in range(len(avg_speeds)):
-            print("{pwm}: {speed} m/s".format(pwm=pwm_list[i], speed=avg_speeds[i]))
+            print("{pwm}: {speed} m/s".format(pwm=pwm_list[i], speed=avg_speeds[i] * 0.01))
 
         print_exc()
         PWM.setMotorModel(0, 0, 0, 0)

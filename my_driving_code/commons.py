@@ -16,13 +16,13 @@ class NodeType(Enum):
     Child = 0
     Coordinator = 1
 
+
 class Tracking(Enum):
     LEFT1 = (-1500, -1500, 2500, 2500)
     LEFT2 = (-2000, -2000, 4000, 4000)
     FORWARD = (800, 800, 800, 800)
     RIGHT1 = (2500, 2500, -1500, -1500)
     RIGHT2 = (4000, 4000, -2000, -2000)
-
 
 
 class Timer:
