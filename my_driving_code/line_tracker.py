@@ -8,7 +8,7 @@ from servo import Servo
 
 
 class LineTracker:
-    def __init__(self):
+    def __init__(self, inverse_light: bool):
         self.IR_LEFT = 14
         self.IR_MID = 15
         self.IR_RIGHT = 23
@@ -17,11 +17,17 @@ class LineTracker:
         GPIO.setup(self.IR_MID, GPIO.IN)
         GPIO.setup(self.IR_RIGHT, GPIO.IN)
         self.recent_track = Tracking.FORWARD
+        self.inverse = inverse_light
 
     def get_tracking(self) -> Tracking:
         left: bool = bool(GPIO.input(self.IR_LEFT))
         mid: bool = bool(GPIO.input(self.IR_MID))
         right: bool = bool(GPIO.input(self.IR_RIGHT))
+
+        if self.inverse:
+            left = not left
+            mid = not mid
+            right = not right
 
         if mid:
             if left and right:
@@ -41,14 +47,15 @@ class LineTracker:
 
 if __name__ == '__main__':
     print('Program is starting ... ')
-    aligner = LineTracker()
+    aligner = LineTracker(True)
     try:
         while True:
-            align = LineTracker.get_tracking()
-            PWM.setMotorModel(*(align.value))
+            align = aligner.get_tracking()
+            PWM.setMotorModel(*align.value)
 
     finally:
         print_exc()
         PWM.setMotorModel(0, 0, 0, 0)
         Servo().setServoPwm('0', 90)
         Servo().setServoPwm('1', 90)
+        
