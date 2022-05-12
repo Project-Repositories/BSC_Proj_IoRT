@@ -25,9 +25,11 @@ m = 0.85
 class Tracking(Enum):
     LEFT1 = multiply_pwm_values((-1500, -1500, 2500, 2500),m)
     LEFT2 = multiply_pwm_values((-2000, -2000, 4000, 4000), m)
-    FORWARD = multiply_pwm_values((4000, 4000, 4000, 4000),1/5) # (2000, 2000, 2000, 2000)
+    FORWARD = multiply_pwm_values((4000, 4000, 4000, 4000),1/4) # (2000, 2000, 2000, 2000)
     RIGHT1 = multiply_pwm_values((2500, 2500, -1500, -1500), m)
     RIGHT2 = multiply_pwm_values((4000, 4000, -2000, -2000), m)
+    SLOW = (800, 800, 800, 800) # Turn mode, activated around the ends of the line
+
 
 
 class Timer:

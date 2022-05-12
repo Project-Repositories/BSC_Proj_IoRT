@@ -1,6 +1,7 @@
 import time
 import RPi.GPIO as GPIO
 from Motor import PWM
+from line_tracker import LineTracker
 from servo import Servo
 
 # For command-line arguments
@@ -13,8 +14,8 @@ from wall_alignment import WallAligner, Direction
 from parse_UART import UART_Comm, DriveInstructions
 
 
-class ActiveConnectivityDriver:
-    def __init__(self, direction: Direction, nodetype: NodeType):
+class ActiveConnectivityLineDriver:
+    def __init__(self, inverse_IR: bool, nodetype: NodeType):
         self.IR01 = 14
         self.IR02 = 15
         self.IR03 = 23
@@ -23,8 +24,9 @@ class ActiveConnectivityDriver:
         GPIO.setup(self.IR02, GPIO.IN)
         GPIO.setup(self.IR03, GPIO.IN)
 
-        self.direction = direction  # Direction.LEFT
-        self.aligner = WallAligner(self.direction)
+        self.inverse_IR = inverse_IR
+        # self.aligner = WallAligner(self.direction)
+        self.tracker = LineTracker(inverse_IR)
         self.head = Head.FORWARDS
 
         self.nodetype = nodetype
@@ -55,38 +57,6 @@ class ActiveConnectivityDriver:
         base_speed = 1500  # DriveInstructions.BASE.value
         fwd_motor_values = [base_speed] * 4
 
-        # ------ reversal ------
-        def reversal(pwm_magnitude):
-            print("reversing")
-            speed_sign = self.head.value
-            new_speed = pwm_magnitude
-            step_size = 500
-            n_steps = abs(pwm_magnitude) // step_size
-
-            # Reduce speed linearly:
-            for step in range(n_steps + 1):
-                if speed_sign is 1:
-                    new_speed = max(new_speed - step_size, 0)
-                else:
-                    new_speed = min(new_speed + step_size, 0)
-                PWM.setMotorModel(*([new_speed] * 4))
-                time.sleep(0.2)
-            self.reverse_head()
-
-        reversal_period = 1  # seconds  # * calculate_align_coeff(base_speed)
-        reversal_timer = Timer(reversal_period)
-        reversible = True
-
-        # ------ alignment ------
-        # to scale alignment accordingly to the speed the PID was tested with (1000):
-        def calculate_align_coeff(current_speed):
-            return (current_speed / 1000) ** 0.5
-
-        align_period = self.aligner.sample_time
-        align_timer = Timer(align_period)
-        align_coeff = calculate_align_coeff(base_speed)
-        align_value = 0
-
         # ------ communication ------
         read_period = 9  # A message is sent every 10 seconds. We see if there's a new one every 9 seconds.
         read_timer = Timer(read_period)
@@ -107,39 +77,10 @@ class ActiveConnectivityDriver:
                 instruction = self.launchpad_comm.recent_instruction
                 if instruction != DriveInstructions.NONE:
                     base_speed = instruction.value
-                    align_coeff = calculate_align_coeff(base_speed)
 
             # ------ alignment ------
-            if align_timer.check():
-                align_value = self.aligner.get_direction_correction(base_speed)
-                align_value *= align_coeff
+            alignment = self.tracker.get_tracking()
 
-                # Clamp the alignment, to limit it from stopping a set of wheels completely, or even reversing the
-                # direction.
-                align_value = clamp(align_value, -base_speed // 1, base_speed // 1)
-
-                # Split the "burden" of alignment in two parts:
-                # One side drives faster, another drives slower, compared to base_speed.
-                # Will result in less sudden changes of PWM in a set of wheels, and also be closer to "base speed"
-                align_half = align_value / 2
-                if self.direction == Direction.RIGHT:
-                    fwd_motor_values = [base_speed + align_half] * 2 + \
-                                       [base_speed - align_half] * 2
-                elif self.direction == Direction.LEFT:
-                    fwd_motor_values = [base_speed - align_half] * 2 + \
-                                       [base_speed + align_half] * 2
-
-            # ------ reversal  ------
-            ir_line = self.scan_for_line()
-            if not ir_line and not reversible:
-                reversal_timer = Timer(reversal_period)
-                reversible = True
-
-            if (reversal_timer.check()) and \
-                    ir_line and \
-                    reversible:
-                reversible = False
-                reversal(base_speed)
 
             # ------ fundamental driving ------
             drive(fwd_motor_values)
@@ -149,9 +90,7 @@ class ActiveConnectivityDriver:
                 print("----")
                 print("head:{}".format(self.head))
                 print("current speed:{}".format(base_speed))
-                print("align_value:{}".format(align_value))
                 print("fwd_motor_values:{}".format(fwd_motor_values))
-                print("p, i, d: {}, {}, {}".format(*self.aligner.pid.components))
 
 
 # TODO: add more options for Command Line Arguments, such as  direction.
@@ -164,15 +103,14 @@ if __name__ == '__main__':
             arg_nodetype = NodeType.Child
         else:
             arg_nodetype = NodeType.Coordinator
-
-        if "left" in sysargs:
-            arg_direction = Direction.LEFT
+        if "inverse" in sysargs:
+            arg_inverse = True
         else:
-            arg_direction = Direction.RIGHT
+            arg_inverse = False
 
         print(("." * 10 + "\nStarting driver. {}\n{}\n" + "." * 10).
-              format(arg_direction, arg_nodetype))
-        driver = ActiveConnectivityDriver(arg_direction, arg_nodetype)
+              format(arg_inverse, arg_nodetype))
+        driver = ActiveConnectivityDriver(arg_inverse, arg_nodetype)
         driver.oscillate_simple()
     except KeyboardInterrupt:  # Exception as e:  # When 'Ctrl+C' is pressed, the child program  will be  executed.
         print("program was terminated.")

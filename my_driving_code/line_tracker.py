@@ -20,6 +20,9 @@ class LineTracker:
         self.recent_track = Tracking.FORWARD
         self.inverse = inverse_light
 
+        self.turn_mode = False
+
+
     def get_tracking(self) -> Tracking:
         left: bool = bool(GPIO.input(self.IR_LEFT))
         mid: bool = bool(GPIO.input(self.IR_MID))
@@ -40,13 +43,19 @@ class LineTracker:
                 self.recent_track = Tracking.RIGHT2
                 # PWM.setMotorModel(4000, 4000, -2000, -2000)
             else:  # Drive forward
-                self.recent_track = Tracking.FORWARD
+                if self.turn_mode:
+                    self.recent_track = Tracking.SLOW
+                else:
+                    self.recent_track = Tracking.FORWARD
                 # PWM.setMotorModel(800, 800, 800, 800)
-        elif (left and right) or (not left and not mid and not right):  # If no line detected, or left and right detected,
+        elif (left and right): # left and right detected, change the speed mode
+            self.turn_mode = not self.turn_mode
+            time.sleep(0.05)
+
+        elif not left and not mid and not right:  # If no line detected,
             # use the most recent instruction instead.
             pass
         elif left:  # Turn slightly left
-            
             self.recent_track = Tracking.LEFT1
             # PWM.setMotorModel(-1500, -1500, 2500, 2500)
         elif right:  # Turn slightly right
