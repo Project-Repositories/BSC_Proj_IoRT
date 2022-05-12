@@ -7,11 +7,8 @@ import sys  # For command-line arguments
 from traceback import print_exc # For debugging, to print the entire exception when errors occur, but also handle it gracefully
 
 from enum import Enum
-from commons import clamp, Head
+from commons import clamp, Head, DriveInstructions
 from wall_alignment import WallAligner, Direction
-from parse_UART import DriveInstructions
-
-
 
 
 class AlignDriver:

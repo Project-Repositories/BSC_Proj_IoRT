@@ -9,9 +9,9 @@ import sys
 # For debugging, to print the entire exception when errors occur, but also handle it gracefully
 from traceback import print_exc
 
-from commons import clamp, Head, NodeType, Timer
+from commons import clamp, Head, NodeType, Timer, Tracking, DriveInstructions
 from wall_alignment import WallAligner, Direction
-from parse_UART import UART_Comm, DriveInstructions
+from parse_UART import UART_Comm
 
 
 class ActiveConnectivityLineDriver:
@@ -54,7 +54,7 @@ class ActiveConnectivityLineDriver:
             motor_values = [self.head.value * int(num) for num in pwm_magnitudes]
             PWM.setMotorModel(*motor_values)
 
-        base_speed = 1500  # DriveInstructions.BASE.value
+        base_speed = DriveInstructions.BASE.value
         fwd_motor_values = [base_speed] * 4
 
         # ------ communication ------
@@ -81,12 +81,15 @@ class ActiveConnectivityLineDriver:
             # ------ alignment ------
             alignment = self.tracker.get_tracking()
 
-
             # ------ fundamental driving ------
-            drive(fwd_motor_values)
+            if alignment == Tracking.FORWARD:
+                motor_values = [instruction.value] * 4
+            else:
+                motor_values = alignment
+            PWM.setMotorModel(motor_values)
 
             # ------ debugging ------
-            if debug_i % 30 == 0:
+            if debug_i % 100 == 0:
                 print("----")
                 print("head:{}".format(self.head))
                 print("current speed:{}".format(base_speed))
@@ -110,7 +113,7 @@ if __name__ == '__main__':
 
         print(("." * 10 + "\nStarting driver. {}\n{}\n" + "." * 10).
               format(arg_inverse, arg_nodetype))
-        driver = ActiveConnectivityDriver(arg_inverse, arg_nodetype)
+        driver = ActiveConnectivityLineDriver(arg_inverse, arg_nodetype)
         driver.oscillate_simple()
     except KeyboardInterrupt:  # Exception as e:  # When 'Ctrl+C' is pressed, the child program  will be  executed.
         print("program was terminated.")

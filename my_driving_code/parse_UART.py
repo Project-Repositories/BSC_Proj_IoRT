@@ -3,19 +3,10 @@ from threading import Thread
 
 import serial
 import time
-from enum import Enum
 from os.path import exists, join
 from os import mkdir
 
-
-class DriveInstructions(Enum):
-    SLOWER = 1000
-    SLOW = 1750
-    BASE = 2500
-    FAST = 3250
-    FASTER = 4000
-    BEGIN = 0
-    NONE = None
+from commons import DriveInstructions
 
 
 # TODO: Add logging
@@ -138,7 +129,7 @@ class UART_Comm:
 
 if __name__ == '__main__':
     print('Program is starting ... ')
-    port_name = "COM11"
+    port_name = "COM5"
     ser = serial.Serial(port_name, baudrate=115200, timeout=5)
     with ser:
         ser.write(b'\nreboot\n')

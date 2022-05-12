@@ -8,9 +8,9 @@ import sys
 # For debugging, to print the entire exception when errors occur, but also handle it gracefully
 from traceback import print_exc
 
-from commons import clamp, Head, NodeType, Timer
+from commons import clamp, Head, NodeType, Timer, DriveInstructions
 from wall_alignment import WallAligner, Direction
-from parse_UART import UART_Comm, DriveInstructions
+from parse_UART import UART_Comm
 
 
 class ActiveConnectivityDriver:
