@@ -1,3 +1,4 @@
+import sys
 import time
 from traceback import print_exc
 
@@ -56,8 +57,14 @@ class LineTracker:
 
 if __name__ == '__main__':
     print('Program is starting ... ')
-    aligner = LineTracker(True)
+
     try:
+        sysargs = [arg.strip().lower() for arg in sys.argv]
+        if "inverse" in sysargs:
+            arg_inverse = True
+        else:
+            arg_inverse = False
+        aligner = LineTracker(arg_inverse)
         while True:
             align = aligner.get_tracking()
             PWM.setMotorModel(*align.value)
