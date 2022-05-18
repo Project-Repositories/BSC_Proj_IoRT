@@ -103,7 +103,7 @@ if __name__ == '__main__':
             while True:
                 align = aligner.get_tracking()
                 # print(align)
-                PWM.setMotorModel(*(align.value))
+                PWM.setMotorModel(*align.value)
             
         else:
             linetrack = Old_Line_Tracking()

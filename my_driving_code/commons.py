@@ -37,6 +37,7 @@ acc_state_dict = {DriveInstructions.SLOWER: -50,
                   }
 
 
+
 class Head(Enum):
     FORWARDS = 1
     BACKWARDS = -1
@@ -58,7 +59,7 @@ m = 1  # 0.5
 class Tracking(Enum):
     LEFT1 = multiply_pwm_values((-1500, -1500, 2500, 2500), m)  # (0, 0, 2500, 2500) #
     LEFT2 = multiply_pwm_values((-2000, -2000, 4000, 4000), m)  # (0, 0, 4000, 4000)
-    FORWARD = [speed_state_dict[DriveInstructions.SLOW]] * 4
+    FORWARD = [speed_state_dict[DriveInstructions.FASTER]] * 4
     RIGHT1 = multiply_pwm_values((2500, 2500, -1500, -1500), m)  # (2500, 2500, 0, 0)
     RIGHT2 = multiply_pwm_values((4000, 4000, -2000, -2000), m)  # (4000, 4000, 0, 0)
     SLOW = (800, 800, 800, 800)  # Turn mode, activated around the ends of the line
