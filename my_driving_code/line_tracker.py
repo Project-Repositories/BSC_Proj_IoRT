@@ -35,27 +35,20 @@ class LineTracker:
 
         if mid:
             if left and right:
-                # self.turn_mode = not self.turn_mode
-                # print("test!")
+                self.turn_mode = not self.turn_mode
                 time.sleep(0.05)
             elif left:  # Turn hard left
                 self.recent_track = Tracking.LEFT2
-                # PWM.setMotorModel(-2000, -2000, 4000, 4000)
             elif right:  # Turn hard right
                 self.recent_track = Tracking.RIGHT2
-                # PWM.setMotorModel(4000, 4000, -2000, -2000)
             else:  # Drive forward
                 if self.turn_mode:
                     self.recent_track = Tracking.SLOW
                 else:
                     self.recent_track = Tracking.FORWARD
-                # PWM.setMotorModel(800, 800, 800, 800)
-        elif (left and right): # left and right detected, change the speed mode
-            pass
+        elif left and right:  # left and right detected.
+            return self.recent_track
 
-        elif not left and not mid and not right:  # If no line detected,
-            # use the most recent instruction instead.
-            pass
         elif left:  # Turn slightly left
             self.recent_track = Tracking.LEFT1
             # PWM.setMotorModel(-1500, -1500, 2500, 2500)
@@ -73,7 +66,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(IR01,GPIO.IN)
 GPIO.setup(IR02,GPIO.IN)
 GPIO.setup(IR03,GPIO.IN)
-class Line_Tracking:
+class Old_Line_Tracking:
     def run(self):
          while True:
              self.LMR=0x00
@@ -113,7 +106,7 @@ if __name__ == '__main__':
                 PWM.setMotorModel(*(align.value))
             
         else:
-            linetrack = Line_Tracking()
+            linetrack = Old_Line_Tracking()
             linetrack.run()
     finally:
         print_exc()

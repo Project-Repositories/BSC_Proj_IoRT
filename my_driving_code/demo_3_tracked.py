@@ -63,7 +63,7 @@ class ActiveConnectivityLineDriver:
         # Wait until a DriveInstruction is received,
         # which indicates that a connection between node and coordinator has been formed
         self.launchpad_comm.start_async() 
-        instruction = DriveInstructions.NONE
+        instruction = DriveInstructions.BASE  # DriveInstructions.NONE
         while instruction == DriveInstructions.NONE:
             if read_timer.check():
                 print("checking latest message") 
