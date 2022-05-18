@@ -110,7 +110,7 @@ class ActiveConnectivityLineDriver:
                 print("head:{}".format(self.head))
                 print("current speed:{}".format(current_speed))
                 print("current acceleration:{}".format(current_acc))
-                print("fwd_motor_values:{}".format(fwd_motor_values))
+                print("fwd_motor_values:{}".format(*motor_values))
 
 
 # TODO: add more options for Command Line Arguments, such as  direction.
