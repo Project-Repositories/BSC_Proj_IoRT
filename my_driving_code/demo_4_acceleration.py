@@ -61,8 +61,8 @@ class ActiveConnectivityLineDriver:
         current_acc = 0
         acc_update_period = 0.5
         acc_timer = Timer(acc_update_period)
-        max_speed = speed_state_dict[DriveInstructions.FASTER]
         min_speed = speed_state_dict[DriveInstructions.SLOWER]
+        max_speed = speed_state_dict[DriveInstructions.FASTER]
 
         # ------ communication ------
         read_period = 4  # A message is sent every 5 seconds. We see if there's a new one every 9 seconds.
@@ -70,7 +70,7 @@ class ActiveConnectivityLineDriver:
         # Wait until a DriveInstruction is received,
         # which indicates that a connection between node and coordinator has been formed
         self.launchpad_comm.start_async()
-        instruction = DriveInstructions.BASE  # DriveInstructions.NONE
+        instruction = DriveInstructions.NONE  # DriveInstructions.NONE
         while instruction == DriveInstructions.NONE:
             if read_timer.check():
                 print("checking latest message")
@@ -96,7 +96,7 @@ class ActiveConnectivityLineDriver:
             # ------ fundamental driving ------
             if acc_timer.check():
                 current_speed += current_acc
-                current_speed = clamp(current_acc, min_speed, max_speed)
+                current_speed = clamp(current_speed, min_speed, max_speed)
 
             if alignment == Tracking.FORWARD:
                 motor_values = [current_speed] * 4  # [instruction.value] * 4
