@@ -56,11 +56,11 @@ m = 1  # 0.5
 
 
 class Tracking(Enum):
-    LEFT1 = multiply_pwm_values((-1500, -1500, 2500, 2500), m)
-    LEFT2 = multiply_pwm_values((-2000, -2000, 4000, 4000), m)
+    LEFT1 = (-1500, -1500, 0, 0) # multiply_pwm_values((-1500, -1500, 2500, 2500), m)
+    LEFT2 = (-2000, -2000, 0, 0) multiply_pwm_values((-2000, -2000, 4000, 4000), m)
     FORWARD = [speed_state_dict[DriveInstructions.SLOW]] * 4
-    RIGHT1 = multiply_pwm_values((2500, 2500, -1500, -1500), m)
-    RIGHT2 = multiply_pwm_values((4000, 4000, -2000, -2000), m)
+    RIGHT1 = (0, 0, -1500, -1500) # multiply_pwm_values((2500, 2500, -1500, -1500), m)
+    RIGHT2 = (0, 0, -2000, -2000) # multiply_pwm_values((4000, 4000, -2000, -2000), m)
     SLOW = (800, 800, 800, 800)  # Turn mode, activated around the ends of the line
 
 
