@@ -35,7 +35,9 @@ class LineTracker:
 
         if mid:
             if left and right:
-                pass
+                # self.turn_mode = not self.turn_mode
+                # print("test!")
+                time.sleep(0.05)
             elif left:  # Turn hard left
                 self.recent_track = Tracking.LEFT2
                 # PWM.setMotorModel(-2000, -2000, 4000, 4000)
@@ -49,8 +51,7 @@ class LineTracker:
                     self.recent_track = Tracking.FORWARD
                 # PWM.setMotorModel(800, 800, 800, 800)
         elif (left and right): # left and right detected, change the speed mode
-            self.turn_mode = not self.turn_mode
-            time.sleep(0.05)
+            pass
 
         elif not left and not mid and not right:  # If no line detected,
             # use the most recent instruction instead.

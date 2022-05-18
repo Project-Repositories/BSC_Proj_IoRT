@@ -13,7 +13,7 @@ class DriveInstructions(Enum):
     BASE = 1000
     FAST = 1500
     FASTER = 2000
-    BEGIN = 0
+    BEGIN = 1000
     NONE = None
 
 
@@ -32,13 +32,13 @@ def multiply_pwm_values(values, coeff):
     return new_values
 
 
-m = 0.85
+m = 1 #  0.5
 
 
 class Tracking(Enum):
     LEFT1 = multiply_pwm_values((-1500, -1500, 2500, 2500), m)
     LEFT2 = multiply_pwm_values((-2000, -2000, 4000, 4000), m)
-    FORWARD = DriveInstructions.BASE
+    FORWARD = [DriveInstructions.BASE] * 4
     RIGHT1 = multiply_pwm_values((2500, 2500, -1500, -1500), m)
     RIGHT2 = multiply_pwm_values((4000, 4000, -2000, -2000), m)
     SLOW = (800, 800, 800, 800)  # Turn mode, activated around the ends of the line

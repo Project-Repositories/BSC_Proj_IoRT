@@ -62,11 +62,16 @@ class ActiveConnectivityLineDriver:
         read_timer = Timer(read_period)
         # Wait until a DriveInstruction is received,
         # which indicates that a connection between node and coordinator has been formed
+        self.launchpad_comm.start_async() 
         instruction = DriveInstructions.NONE
         while instruction == DriveInstructions.NONE:
             if read_timer.check():
-                instruction = self.launchpad_comm.read_from_UART()
-                print("Waiting for instruction to drive. ")
+                print("checking latest message") 
+                instruction = self.launchpad_comm.recent_instruction
+                if instruction != DriveInstructions.NONE:
+                    base_speed = instruction.value
+                # instruction = self.launchpad_comm.read_from_UART()
+                # print("Waiting for instruction to drive. ")
 
         debug_i = 0
         while True:
@@ -83,10 +88,12 @@ class ActiveConnectivityLineDriver:
 
             # ------ fundamental driving ------
             if alignment == Tracking.FORWARD:
-                motor_values = [instruction.value] * 4
+                motor_values = [base_speed] * 4 #  [instruction.value] * 4
+                # print("t1")
             else:
-                motor_values = alignment
-            PWM.setMotorModel(motor_values)
+                motor_values = alignment.value
+                # print("t2")
+            PWM.setMotorModel(*motor_values)
 
             # ------ debugging ------
             if debug_i % 100 == 0:
@@ -111,7 +118,7 @@ if __name__ == '__main__':
         else:
             arg_inverse = False
 
-        print(("." * 10 + "\nStarting driver. {}\n{}\n" + "." * 10).
+        print(("." * 10 + "\nStarting driver. IR inverse: {}\n{}\n" + "." * 10).
               format(arg_inverse, arg_nodetype))
         driver = ActiveConnectivityLineDriver(arg_inverse, arg_nodetype)
         driver.oscillate_simple()
@@ -123,3 +130,4 @@ if __name__ == '__main__':
         Servo().setServoPwm('0', 90)
         Servo().setServoPwm('1', 90)
         driver.launchpad_comm.finish_async()
+        driver.launchpad_comm.reboot_launchpad()
