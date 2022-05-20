@@ -7,7 +7,7 @@ from os.path import exists, join
 from os import mkdir
 
 from commons import DriveInstructions
-
+from random import randint
 
 # TODO: Add logging
 # Which logs the EWMA data and actions taken, along with time passed since initializing the logger.
@@ -42,6 +42,65 @@ class Logger:
             file.write(line)
 
 
+class ActiveConnectivity:
+    def __init__(self):
+        self.speed_changed = self.acc_changed = self.brake = self.accelerate = False
+        self.EWMA = self.EWMA_tmp = None
+        self.weak_threshold = -35
+        self.strong_threshold = self.weak_threshold + 5
+        self.worsen_threshold = 3
+
+        self.alpha = 0.75
+        self.instruction = DriveInstructions.NONE
+
+    def calibrate_ewma(self, new_RSSI):
+        if self.EWMA is None:
+            self.EWMA = new_RSSI
+        else:
+            self.EWMA = (self.alpha * new_RSSI) + (1 - self.alpha) * self.EWMA
+
+    def ACR(self, new_RSSI):
+        """
+        Active Connectivity Random choice
+        """
+        self.calibrate_ewma(new_RSSI)
+        if self.EWMA <= self.weak_threshold:
+            if not self.speed_changed:
+                self.EWMA_tmp = self.EWMA
+                self.speed_changed = True
+
+                if randint(0, 1):
+                    self.brake = True
+                    self.accelerate = False
+                    self.instruction = DriveInstructions.SLOW
+                else:
+                    self.brake = False
+                    self.accelerate = True
+                    self.instruction = DriveInstructions.FAST
+
+        """ If RSSI decreased, meaning we chose the wrong action: """
+        if self.speed_changed and \
+                (self.EWMA_tmp - self.EWMA >= self.worsen_threshold):
+            if not self.acc_changed:
+                self.acc_changed = True
+                if self.accelerate:
+                    self.accelerate = False
+                    self.brake = True
+                    self.instruction = DriveInstructions.SLOWER
+                elif self.brake:
+                    self.accelerate = True
+                    self.brake = False
+                    self.instruction = DriveInstructions.FASTER
+        """
+        RSSI has returned to 'sufficient' values after a speed change:
+        """
+        if self.EWMA >= self.strong_threshold and self.speed_changed:
+            self.brake = self.accelerate = False
+            self.acc_changed = self.speed_changed = False
+            self.instruction = DriveInstructions.BASE
+
+
+
 class UART_Comm:
     def __init__(self, port_name):
         self.run_async = False
@@ -55,6 +114,8 @@ class UART_Comm:
                                  }
         self.timeout_after_action = 3
         self.reboot_launchpad()
+
+        self.ac = ActiveConnectivity()
 
         self.recent_instruction = DriveInstructions.NONE
         self.recent_ewma = None
@@ -80,16 +141,15 @@ class UART_Comm:
                 for line in messages:
                     content = line.decode().strip()
                     print("Line:{}".format(content))
-                    if ("[DRIVE]: ") in content:
-                        instruction_txt = content.replace("[DRIVE]: ", "")
-                        instruction = self.instruction_dict[instruction_txt]
-                        if instruction != DriveInstructions.NONE:
-                            self.recent_instruction = instruction
-                    elif ("[DATA]: ") in content:
+                    if ("[DATA]: ") in content:
                         data_txt = content.replace("[DATA]: ", "")
-                        if ("EWMA: ") in data_txt:
-                            ewma_txt = data_txt.replace("EWMA: ", "")
-                            self.recent_ewma = int(ewma_txt)
+                        if ("RSSI: ") in data_txt:
+                            rssi_txt = data_txt.replace("RSSI: ", "").strip()
+                            rssi = float(rssi)
+                            self.ac.ACR(rssi)
+                            self.recent_instruction = self.ac.instruction
+                            self.recent_ewma = self.ac.EWMA
+
             if self.recent_instruction != DriveInstructions.NONE and \
                     self.recent_ewma is not None:
                 self.logger.log(self.recent_ewma, self.recent_instruction)
