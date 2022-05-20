@@ -145,7 +145,7 @@ class UART_Comm:
                         data_txt = content.replace("[DATA]: ", "")
                         if ("RSSI: ") in data_txt:
                             rssi_txt = data_txt.replace("RSSI: ", "").strip()
-                            rssi = float(rssi)
+                            rssi = float(rssi_txt)
                             self.ac.ACR(rssi)
                             self.recent_instruction = self.ac.instruction
                             self.recent_ewma = self.ac.EWMA
@@ -189,7 +189,7 @@ class UART_Comm:
 
 if __name__ == '__main__':
     print('Program is starting ... ')
-    port_name = "COM5"
+    port_name = "COM11"
     ser = serial.Serial(port_name, baudrate=115200, timeout=5)
     with ser:
         ser.write(b'\nreboot\n')
