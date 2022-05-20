@@ -270,7 +270,14 @@ udp_child_rx_callback(struct simple_udp_connection *c,
 			// drive_msg("begin");
 		}
 		
-		active_connectivity_speed((int)RSSI);
+		// Format and print EWMA data string
+		char prefixStr[] = "RSSI: ";
+		char RSSI_str[5];
+		sprintf(RSSI_str,"%d",(int)RSSI);
+		strcat(prefixStr,RSSI_str);
+		experiment_log(prefixStr);
+		
+		// active_connectivity_speed((int)RSSI);
 	}
 }
 

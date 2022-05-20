@@ -2215,14 +2215,32 @@ Discarded input sections
                 0x00000000        0xc node.o
  .text.get_ewma
                 0x00000000       0x44 node.o
+ .rodata.active_connectivity_speed.str1.4
+                0x00000000       0x4f node.o
+ .text.active_connectivity_speed
+                0x00000000      0x1cc node.o
+ .bss.EWMA.5    0x00000000        0x4 node.o
+ .bss.EWMA_tmp.3
+                0x00000000        0x4 node.o
+ .bss.accelerate.1
+                0x00000000        0x1 node.o
+ .bss.brake.2   0x00000000        0x1 node.o
+ .bss.change_acceleration.0
+                0x00000000        0x1 node.o
+ .bss.speed_change.4
+                0x00000000        0x1 node.o
  .text          0x00000000      0x254 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
  .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
  .debug_frame   0x00000000       0x30 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
  .ARM.attributes
                 0x00000000       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_muldf3.o)
+ .text          0x00000000      0x168 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
  .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
+ .debug_frame   0x00000000       0x24 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
+ .ARM.attributes
+                0x00000000       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
  .text          0x00000000      0x378 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
  .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubdf3.o)
@@ -2241,12 +2259,24 @@ Discarded input sections
  .debug_frame   0x00000000       0x24 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixunsdfsi.o)
  .ARM.attributes
                 0x00000000       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixunsdfsi.o)
+ .text          0x00000000      0x21c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
  .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .debug_frame   0x00000000       0x4c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .ARM.attributes
+                0x00000000       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+ .text          0x00000000       0xec /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
  .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
+ .debug_frame   0x00000000       0xc8 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
+ .ARM.attributes
+                0x00000000       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
+ .text          0x00000000       0x4c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
  .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
+ .debug_frame   0x00000000       0x24 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
+ .ARM.attributes
+                0x00000000       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
  .bss           0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
  .data          0x00000000        0x0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
@@ -2615,7 +2645,7 @@ END GROUP
                 0x00000000                _Min_Heap_Size = 0x0
                 0x00000400                _Min_Stack_Size = 0x400
 
-.text           0x00000000    0x157c5
+.text           0x00000000    0x15129
                 0x00000000                _text = .
  *(SORT_BY_ALIGNMENT(.vectors))
  .vectors       0x00000000       0xc8 build/cc26x0-cc13x0/launchpad/cc2650/obj/startup_gcc.o
@@ -4367,488 +4397,446 @@ END GROUP
                 0x000119e0      0x134 node.o
  .text.udp_rx_callback
                 0x00011b14       0xd4 node.o
- .text.active_connectivity_speed
-                0x00011be8      0x1cc node.o
-                0x00011be8                active_connectivity_speed
  .text.udp_child_rx_callback
-                0x00011db4       0x90 node.o
- .text          0x00011e44      0x168 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
-                0x00011e44                __mulsf3
-                0x00011e44                __aeabi_fmul
- .text          0x00011fac      0x21c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
-                0x00011fac                __aeabi_frsub
-                0x00011fb4                __subsf3
-                0x00011fb4                __aeabi_fsub
-                0x00011fb8                __aeabi_fadd
-                0x00011fb8                __addsf3
-                0x00012118                __aeabi_ui2f
-                0x00012118                __floatunsisf
-                0x00012120                __aeabi_i2f
-                0x00012120                __floatsisf
-                0x0001213c                __floatundisf
-                0x0001213c                __aeabi_ul2f
-                0x0001214c                __floatdisf
-                0x0001214c                __aeabi_l2f
- .text          0x000121c8       0xec /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
-                0x000121c8                __gtsf2
-                0x000121c8                __gesf2
-                0x000121d0                __lesf2
-                0x000121d0                __ltsf2
-                0x000121d8                __nesf2
-                0x000121d8                __eqsf2
-                0x000121d8                __cmpsf2
-                0x00012238                __aeabi_cfrcmple
-                0x00012240                __aeabi_cfcmple
-                0x00012240                __aeabi_cfcmpeq
-                0x00012250                __aeabi_fcmpeq
-                0x00012264                __aeabi_fcmplt
-                0x00012278                __aeabi_fcmple
-                0x0001228c                __aeabi_fcmpge
-                0x000122a0                __aeabi_fcmpgt
- .text          0x000122b4       0x4c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
-                0x000122b4                __fixsfsi
-                0x000122b4                __aeabi_f2iz
- .text          0x00012300       0xa0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
-                0x00012300                __aeabi_ldivmod
- .text          0x000123a0       0x30 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
-                0x000123a0                __aeabi_uldivmod
- .text          0x000123d0      0x2d4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
-                0x000123d0                __udivmoddi4
- .text          0x000126a4        0x4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
-                0x000126a4                __aeabi_ldiv0
-                0x000126a4                __aeabi_idiv0
- .text.memcmp   0x000126a8       0x68 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcmp.o)
-                0x000126a8                memcmp
- .text          0x00012710       0xec /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcpy.o)
-                0x00012710                memcpy
- .text.memmove  0x000127fc       0xf8 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memmove.o)
-                0x000127fc                memmove
- .text.memset   0x000128f4       0xa4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memset.o)
-                0x000128f4                memset
- .text.strcat   0x00012998       0x40 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
-                0x00012998                strcat
- .text.strchr   0x000129d8       0xcc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
-                0x000129d8                strchr
- .text          0x00012aa4      0x1bc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
-                0x00012aa4                strcmp
- .text.strcpy   0x00012c60       0xbc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
-                0x00012c60                strcpy
+                0x00011be8       0xc4 node.o
+ .text          0x00011cac       0xa0 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
+                0x00011cac                __aeabi_ldivmod
+ .text          0x00011d4c       0x30 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+                0x00011d4c                __aeabi_uldivmod
+ .text          0x00011d7c      0x2d4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+                0x00011d7c                __udivmoddi4
+ .text          0x00012050        0x4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
+                0x00012050                __aeabi_ldiv0
+                0x00012050                __aeabi_idiv0
+ .text.memcmp   0x00012054       0x68 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcmp.o)
+                0x00012054                memcmp
+ .text          0x000120bc       0xec /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcpy.o)
+                0x000120bc                memcpy
+ .text.memmove  0x000121a8       0xf8 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memmove.o)
+                0x000121a8                memmove
+ .text.memset   0x000122a0       0xa4 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memset.o)
+                0x000122a0                memset
+ .text.strcat   0x00012344       0x40 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
+                0x00012344                strcat
+ .text.strchr   0x00012384       0xcc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
+                0x00012384                strchr
+ .text          0x00012450      0x1bc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
+                0x00012450                strcmp
+ .text.strcpy   0x0001260c       0xbc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
+                0x0001260c                strcpy
  .text._strtol_l.part.0
-                0x00012d1c      0x120 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
- .text.strtol   0x00012e3c       0x2c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
-                0x00012e3c                strtol
- .text.__errno  0x00012e68        0xc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
-                0x00012e68                __errno
+                0x000126c8      0x120 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
+ .text.strtol   0x000127e8       0x2c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
+                0x000127e8                strtol
+ .text.__errno  0x00012814        0xc /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
+                0x00012814                __errno
  *(SORT_BY_ALIGNMENT(.rodata*))
  .rodata.platform_init_stage_three.str1.4
-                0x00012e74       0x5f build/cc26x0-cc13x0/launchpad/cc2650/obj/platform.o
+                0x00012820       0x5f build/cc26x0-cc13x0/launchpad/cc2650/obj/platform.o
                                  0x62 (size before relaxing)
- *fill*         0x00012ed3        0x1 00000000
+ *fill*         0x0001287f        0x1 00000000
  .rodata.leds_arch_leds
-                0x00012ed4        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/leds-arch.o
-                0x00012ed4                leds_arch_leds
- .rodata        0x00012ed8       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/board.o
+                0x00012880        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/leds-arch.o
+                0x00012880                leds_arch_leds
+ .rodata        0x00012884       0x48 build/cc26x0-cc13x0/launchpad/cc2650/obj/board.o
  .rodata.str1.4
-                0x00012f20       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/board-buttons.o
- *fill*         0x00012f35        0x3 00000000
+                0x000128cc       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/board-buttons.o
+ *fill*         0x000128e1        0x3 00000000
  .rodata.str1.4
-                0x00012f38       0x1a build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
- *fill*         0x00012f52        0x2 00000000
+                0x000128e4       0x1a build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
+ *fill*         0x000128fe        0x2 00000000
  .rodata.ieee_mode_driver
-                0x00012f54       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
-                0x00012f54                ieee_mode_driver
+                0x00012900       0x38 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
+                0x00012900                ieee_mode_driver
  .rodata.mode_ieee
-                0x00012f8c       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
+                0x00012938       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
  .rodata.output_power
-                0x00012f9c       0x68 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
+                0x00012948       0x68 build/cc26x0-cc13x0/launchpad/cc2650/obj/ieee-mode.o
  .rodata.str1.4
-                0x00013004       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/soc-trng.o
- *fill*         0x0001301f        0x1 00000000
+                0x000129b0       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/soc-trng.o
+ *fill*         0x000129cb        0x1 00000000
  .rodata.spi_controller
-                0x00013020       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/spi-arch.o
+                0x000129cc       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/spi-arch.o
  .rodata.shell_output_lladdr.part.0.str1.4
-                0x00013040        0x5 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
+                0x000129ec        0x5 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
                                   0x9 (size before relaxing)
- *fill*         0x00013045        0x3 00000000
+ *fill*         0x000129f1        0x3 00000000
  .rodata.shell_output_6addr.str1.4
-                0x00013048        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
- *fill*         0x0001304b        0x1 00000000
+                0x000129f4        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
+ *fill*         0x000129f7        0x1 00000000
  .rodata.shell_output_lladdr.str1.4
-                0x0001304c        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
- *fill*         0x0001305b        0x1 00000000
+                0x000129f8        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
+ *fill*         0x00012a07        0x1 00000000
  .rodata.shell_input.str1.4
-                0x0001305c       0x3f build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
- *fill*         0x0001309b        0x1 00000000
+                0x00012a08       0x3f build/cc26x0-cc13x0/launchpad/cc2650/obj/shell.o
+ *fill*         0x00012a47        0x1 00000000
  .rodata.cmd_rpl_global_repair.str1.4
-                0x0001309c       0x2a build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x000130c6        0x2 00000000
+                0x00012a48       0x2a build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x00012a72        0x2 00000000
  .rodata.cmd_rpl_local_repair.str1.4
-                0x000130c8       0x21 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x000130e9        0x3 00000000
+                0x00012a74       0x21 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x00012a95        0x3 00000000
  .rodata.cmd_help.str1.4
-                0x000130ec       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00012a98       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
                                  0x1c (size before relaxing)
- *fill*         0x00013101        0x3 00000000
+ *fill*         0x00012aad        0x3 00000000
  .rodata.cmd_macaddr.str1.4
-                0x00013104       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00012ab0       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
                                  0x16 (size before relaxing)
- *fill*         0x00013117        0x1 00000000
+ *fill*         0x00012ac3        0x1 00000000
  .rodata.cmd_tsch_status.str1.4
-                0x00013118      0x110 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00012ac4      0x110 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_tsch_schedule.str1.4
-                0x00013228       0xa1 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x000132c9        0x3 00000000
+                0x00012bd4       0xa1 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x00012c75        0x3 00000000
  .rodata.cmd_tsch_set_coordinator.str1.4
-                0x000132cc       0x99 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00012c78       0x99 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
                                  0xad (size before relaxing)
- *fill*         0x00013365        0x3 00000000
+ *fill*         0x00012d11        0x3 00000000
  .rodata.cmd_rpl_nbr.str1.4
-                0x00013368       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00012d14       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_ipaddr.str1.4
-                0x00013390       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00012d3c       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_rpl_status.str1.4
-                0x000133ac      0x1e5 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x00013591        0x3 00000000
+                0x00012d58      0x1e5 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x00012f3d        0x3 00000000
  .rodata.cmd_rpl_refresh_routes.str1.4
-                0x00013594       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x000135af        0x1 00000000
+                0x00012f40       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x00012f5b        0x1 00000000
  .rodata.cmd_rpl_set_root.str1.4
-                0x000135b0       0xb4 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00012f5c       0xb4 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_routes.str1.4
-                0x00013664       0x8a build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x000136ee        0x2 00000000
+                0x00013010       0x8a build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x0001309a        0x2 00000000
  .rodata.cmd_ping.str1.4
-                0x000136f0       0x9c build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x0001309c       0x9c build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_ip_neighbors.str1.4
-                0x0001378c       0x53 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x000137df        0x1 00000000
+                0x00013138       0x53 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x0001318b        0x1 00000000
  .rodata.shell_output_log_levels.str1.4
-                0x000137e0       0x23 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x00013803        0x1 00000000
+                0x0001318c       0x23 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x000131af        0x1 00000000
  .rodata.cmd_log.str1.4
-                0x00013804        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x000131b0        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.cmd_reboot.str1.4
-                0x00013808        0xb build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- *fill*         0x00013813        0x1 00000000
+                0x000131b4        0xb build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ *fill*         0x000131bf        0x1 00000000
  .rodata.str1.4
-                0x00013814      0x57f build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x000131c0      0x57f build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
                                 0x587 (size before relaxing)
- *fill*         0x00013d93        0x1 00000000
+ *fill*         0x0001373f        0x1 00000000
  .rodata.CSWTCH.40
-                0x00013d94       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00013740       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.CSWTCH.42
-                0x00013da8       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00013754       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.CSWTCH.44
-                0x00013db8       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00013764       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .rodata.builtin_shell_commands
-                0x00013dc8       0xd8 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
-                0x00013dc8                builtin_shell_commands
+                0x00013774       0xd8 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x00013774                builtin_shell_commands
  .rodata.serial_shell_output.str1.4
-                0x00013ea0        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-shell.o
+                0x0001384c        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-shell.o
  .rodata.str1.4
-                0x00013ea0       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-shell.o
- *fill*         0x00013eb5        0x3 00000000
+                0x0001384c       0x15 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-shell.o
+ *fill*         0x00013861        0x3 00000000
  .rodata.main.str1.4
-                0x00013eb8      0x108 build/cc26x0-cc13x0/launchpad/cc2650/obj/contiki-main.o
+                0x00013864      0x108 build/cc26x0-cc13x0/launchpad/cc2650/obj/contiki-main.o
                                 0x124 (size before relaxing)
  .rodata.str1.4
-                0x00013fc0        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/ctimer.o
- *fill*         0x00013fcf        0x1 00000000
+                0x0001396c        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/ctimer.o
+ *fill*         0x0001397b        0x1 00000000
  .rodata.str1.4
-                0x00013fd0        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/etimer.o
+                0x0001397c        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/etimer.o
  .rodata.log_6addr.str1.4
-                0x00013fdc        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+                0x00013988        0x3 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
  .rodata.log_lladdr.str1.4
-                0x00013fdc       0x19 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+                0x00013988       0x19 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
  .rodata.log_set_level.str1.4
-                0x00013fdc        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+                0x00013988        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
  .rodata.log_level_to_str.str1.4
-                0x00013fdc        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+                0x00013988        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
  .rodata.str1.4
-                0x00013fe0       0x81 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
- *fill*         0x00014061        0x3 00000000
+                0x0001398c       0x81 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+ *fill*         0x00013a0d        0x3 00000000
  .rodata.CSWTCH.10
-                0x00014064       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
+                0x00013a10       0x14 build/cc26x0-cc13x0/launchpad/cc2650/obj/log.o
  .rodata.process_thread_stack_check_process.str1.4
-                0x00014078       0x53 build/cc26x0-cc13x0/launchpad/cc2650/obj/stack-check.o
+                0x00013a24       0x53 build/cc26x0-cc13x0/launchpad/cc2650/obj/stack-check.o
                                  0x63 (size before relaxing)
- *fill*         0x000140cb        0x1 00000000
+ *fill*         0x00013a77        0x1 00000000
  .rodata.str1.4
-                0x000140cc        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/stack-check.o
+                0x00013a78        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/stack-check.o
  .rodata.str1.4
-                0x000140d8       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/button-hal.o
- *fill*         0x000140eb        0x1 00000000
+                0x00013a84       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/button-hal.o
+ *fill*         0x00013a97        0x1 00000000
  .rodata.str1.4
-                0x000140ec        0xe build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-line.o
- *fill*         0x000140fa        0x2 00000000
+                0x00013a98        0xe build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-line.o
+ *fill*         0x00013aa6        0x2 00000000
  .rodata.linkaddr_null
-                0x000140fc        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/linkaddr.o
-                0x000140fc                linkaddr_null
+                0x00013aa8        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/linkaddr.o
+                0x00013aa8                linkaddr_null
  .rodata.frame802154e_parse_information_elements.str1.4
-                0x00014104      0x102 build/cc26x0-cc13x0/launchpad/cc2650/obj/frame802154e-ie.o
+                0x00013ab0      0x102 build/cc26x0-cc13x0/launchpad/cc2650/obj/frame802154e-ie.o
                                 0x116 (size before relaxing)
- *fill*         0x00014206        0x2 00000000
+ *fill*         0x00013bb2        0x2 00000000
  .rodata.create_frame.str1.4
-                0x00014208       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
+                0x00013bb4       0x1b build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
                                  0x3b (size before relaxing)
- *fill*         0x00014223        0x1 00000000
+ *fill*         0x00013bcf        0x1 00000000
  .rodata.framer_802154
-                0x00014224        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
-                0x00014224                framer_802154
+                0x00013bd0        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
+                0x00013bd0                framer_802154
  .rodata.flash_spi_configuration_default
-                0x00014230        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/ext-flash.o
+                0x00013bdc        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/ext-flash.o
  .rodata.format_str_v.str1.4
-                0x0001423c       0x42 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
+                0x00013be8       0x42 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
                                  0x46 (size before relaxing)
- *fill*         0x0001427e        0x2 00000000
+ *fill*         0x00013c2a        0x2 00000000
  .rodata.buffer.0
-                0x00014280       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
+                0x00013c2c       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
  .rodata.buffer.1
-                0x00014290       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
+                0x00013c3c       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/strformat.o
  .rodata.tsch_queue_add_packet.str1.4
-                0x000142a0       0x33 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
+                0x00013c4c       0x33 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-queue.o
                                  0x47 (size before relaxing)
- *fill*         0x000142d3        0x1 00000000
+ *fill*         0x00013c7f        0x1 00000000
  .rodata.process_thread_tsch_send_eb_process.str1.4
-                0x000142d4       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00013c80       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
                                  0x3b (size before relaxing)
- *fill*         0x000142fb        0x1 00000000
+ *fill*         0x00013ca7        0x1 00000000
  .rodata.send_packet.str1.4
-                0x000142fc       0x67 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x00014363        0x1 00000000
+                0x00013ca8       0x67 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x00013d0f        0x1 00000000
  .rodata.tsch_init.str1.4
-                0x00014364      0x1e9 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x0001454d        0x3 00000000
+                0x00013d10      0x1e9 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x00013ef9        0x3 00000000
  .rodata.packet_input.str1.4
-                0x00014550       0x16 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x00014566        0x2 00000000
+                0x00013efc       0x16 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x00013f12        0x2 00000000
  .rodata.keepalive_send.str1.4
-                0x00014568       0x1d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x00014585        0x3 00000000
+                0x00013f14       0x1d build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x00013f31        0x3 00000000
  .rodata.max_payload.str1.4
-                0x00014588       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00013f34       0x34 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .rodata.tsch_scan.str1.4
-                0x000145bc       0xee build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x000146aa        0x2 00000000
+                0x00013f68       0xee build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x00014056        0x2 00000000
  .rodata.str1.4
-                0x000146ac       0x35 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x000146e1        0x3 00000000
- .rodata        0x000146e4        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
- *fill*         0x000146e6        0x2 00000000
+                0x00014058       0x35 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x0001408d        0x3 00000000
+ .rodata        0x00014090        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+ *fill*         0x00014092        0x2 00000000
  .rodata.tsch_broadcast_address
-                0x000146e8        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x000146e8                tsch_broadcast_address
+                0x00014094        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x00014094                tsch_broadcast_address
  .rodata.tsch_eb_address
-                0x000146f0        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x000146f0                tsch_eb_address
+                0x0001409c        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x0001409c                tsch_eb_address
  .rodata.tschmac_driver
-                0x000146f8       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x000146f8                tschmac_driver
+                0x000140a4       0x1c build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x000140a4                tschmac_driver
  .rodata.tsch_timeslot_timing_us_10000
-                0x00014714       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-timeslot-timing.o
-                0x00014714                tsch_timeslot_timing_us_10000
+                0x000140c0       0x18 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-timeslot-timing.o
+                0x000140c0                tsch_timeslot_timing_us_10000
  .rodata.tsch_schedule_remove_link.part.0.str1.4
-                0x0001472c       0x39 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+                0x000140d8       0x39 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
                                  0x4d (size before relaxing)
- *fill*         0x00014765        0x3 00000000
+ *fill*         0x00014111        0x3 00000000
  .rodata.tsch_schedule_add_link.str1.4
-                0x00014768       0x6e build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
- *fill*         0x000147d6        0x2 00000000
+                0x00014114       0x6e build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-schedule.o
+ *fill*         0x00014182        0x2 00000000
  .rodata.tsch_packet_parse_eb.str1.4
-                0x000147d8       0x51 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
+                0x00014184       0x51 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-packet.o
                                  0x65 (size before relaxing)
- *fill*         0x00014829        0x3 00000000
+ *fill*         0x000141d5        0x3 00000000
  .rodata.tsch_rpl_callback_leaving_network.str1.4
-                0x0001482c        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
- *fill*         0x00014839        0x3 00000000
+                0x000141d8        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-rpl.o
+ *fill*         0x000141e5        0x3 00000000
  .rodata.uip_icmp6_send.str1.4
-                0x0001483c       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
+                0x000141e8       0x28 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-icmp6.o
                                  0x3c (size before relaxing)
  .rodata.uip_sr_update_node.str1.4
-                0x00014864       0x49 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+                0x00014210       0x49 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
                                  0x62 (size before relaxing)
- *fill*         0x000148ad        0x3 00000000
+ *fill*         0x00014259        0x3 00000000
  .rodata.uip_sr_link_snprint.str1.4
-                0x000148b0       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
- *fill*         0x000148fa        0x2 00000000
+                0x0001425c       0x4a build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-sr.o
+ *fill*         0x000142a6        0x2 00000000
  .rodata.uip_ds6_defrt_add.str1.4
-                0x000148fc       0x4d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
+                0x000142a8       0x4d build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-route.o
                                  0x61 (size before relaxing)
- *fill*         0x00014949        0x3 00000000
+ *fill*         0x000142f5        0x3 00000000
  .rodata.uip_ds6_nbr_update_ll.str1.4
-                0x0001494c       0xaf build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+                0x000142f8       0xaf build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
                                  0xc3 (size before relaxing)
- *fill*         0x000149fb        0x1 00000000
+ *fill*         0x000143a7        0x1 00000000
  .rodata.__func__.0
-                0x000149fc       0x16 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
- *fill*         0x00014a12        0x2 00000000
+                0x000143a8       0x16 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6-nbr.o
+ *fill*         0x000143be        0x2 00000000
  .rodata.tcpip_ipv6_output.str1.4
-                0x00014a14      0x117 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
+                0x000143c0      0x117 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
                                 0x12e (size before relaxing)
- *fill*         0x00014b2b        0x1 00000000
+ *fill*         0x000144d7        0x1 00000000
  .rodata.str1.4
-                0x00014b2c        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
- *fill*         0x00014b39        0x3 00000000
+                0x000144d8        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
+ *fill*         0x000144e5        0x3 00000000
  .rodata.ext_hdr_options_process.str1.4
-                0x00014b3c       0x5f build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x000144e8       0x5f build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
                                  0x73 (size before relaxing)
- *fill*         0x00014b9b        0x1 00000000
+ *fill*         0x00014547        0x1 00000000
  .rodata.uip_remove_ext_hdr.str1.4
-                0x00014b9c       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
- *fill*         0x00014bc3        0x1 00000000
+                0x00014548       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+ *fill*         0x0001456f        0x1 00000000
  .rodata.uip_process.str1.4
-                0x00014bc4      0x1d7 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
- *fill*         0x00014d9b        0x1 00000000
+                0x00014570      0x1d7 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+ *fill*         0x00014747        0x1 00000000
  .rodata.ns_input.str1.4
-                0x00014d9c       0x47 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
+                0x00014748       0x47 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
                                  0x5b (size before relaxing)
- *fill*         0x00014de3        0x1 00000000
+ *fill*         0x0001478f        0x1 00000000
  .rodata.str1.4
-                0x00014de4       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
- *fill*         0x00014df7        0x1 00000000
+                0x00014790       0x13 build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
+ *fill*         0x000147a3        0x1 00000000
  .rodata.input.str1.4
-                0x00014df8       0xec build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x000147a4       0xec build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
                                 0x100 (size before relaxing)
  .rodata.output.str1.4
-                0x00014ee4       0x8d build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
- *fill*         0x00014f71        0x3 00000000
+                0x00014890       0x8d build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+ *fill*         0x0001491d        0x3 00000000
  .rodata.str1.4
-                0x00014f74        0xb build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
- *fill*         0x00014f7f        0x1 00000000
+                0x00014920        0xb build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+ *fill*         0x0001492b        0x1 00000000
  .rodata.CSWTCH.397
-                0x00014f80        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x0001492c        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .rodata.llprefix
-                0x00014f84        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
-                0x00014f84                llprefix
- *fill*         0x00014f86        0x2 00000000
+                0x00014930        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014930                llprefix
+ *fill*         0x00014932        0x2 00000000
  .rodata.sicslowpan_driver
-                0x00014f88       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
-                0x00014f88                sicslowpan_driver
+                0x00014934       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014934                sicslowpan_driver
  .rodata.ttl_values
-                0x00014f98        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014944        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .rodata.unc_ctxconf
-                0x00014f9c        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
-                0x00014f9c                unc_ctxconf
+                0x00014948        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014948                unc_ctxconf
  .rodata.unc_llconf
-                0x00014fa0        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
-                0x00014fa0                unc_llconf
+                0x0001494c        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x0001494c                unc_llconf
  .rodata.unc_mxconf
-                0x00014fa4        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
-                0x00014fa4                unc_mxconf
+                0x00014950        0x4 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x00014950                unc_mxconf
  .rodata.uiplib_ipaddr_snprint.part.0.str1.4
-                0x00014fa8       0x1f build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
- *fill*         0x00014fc7        0x1 00000000
+                0x00014954       0x1f build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
+ *fill*         0x00014973        0x1 00000000
  .rodata.uiplib_ipaddr_print.str1.4
-                0x00014fc8        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
+                0x00014974        0xf build/cc26x0-cc13x0/launchpad/cc2650/obj/uiplib.o
                                  0x13 (size before relaxing)
- *fill*         0x00014fd7        0x1 00000000
+ *fill*         0x00014983        0x1 00000000
  .rodata.dao_ack_input.str1.4
-                0x00014fd8       0x2e build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x00014984       0x2e build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
                                  0x42 (size before relaxing)
- *fill*         0x00015006        0x2 00000000
+ *fill*         0x000149b2        0x2 00000000
  .rodata.dao_input.str1.4
-                0x00015008       0x5b build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
- *fill*         0x00015063        0x1 00000000
+                0x000149b4       0x5b build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+ *fill*         0x00014a0f        0x1 00000000
  .rodata.dio_input.str1.4
-                0x00015064       0x26 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
- *fill*         0x0001508a        0x2 00000000
+                0x00014a10       0x26 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+ *fill*         0x00014a36        0x2 00000000
  .rodata.rpl_icmp6_update_nbr_table.str1.4
-                0x0001508c       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+                0x00014a38       0x27 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
                                  0x2a (size before relaxing)
- *fill*         0x000150b3        0x1 00000000
+ *fill*         0x00014a5f        0x1 00000000
  .rodata.rpl_icmp6_dio_output.str1.4
-                0x000150b4       0x3a build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
- *fill*         0x000150ee        0x2 00000000
+                0x00014a60       0x3a build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-icmp6.o
+ *fill*         0x00014a9a        0x2 00000000
  .rodata.rpl_neighbor_snprint.str1.4
-                0x000150f0       0x5b build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
+                0x00014a9c       0x5b build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-neighbor.o
                                  0x5e (size before relaxing)
- *fill*         0x0001514b        0x1 00000000
+ *fill*         0x00014af7        0x1 00000000
  .rodata.init_dag.str1.4
-                0x0001514c       0x42 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00014af8       0x42 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
                                  0x5a (size before relaxing)
- *fill*         0x0001518e        0x2 00000000
+ *fill*         0x00014b3a        0x2 00000000
  .rodata.rpl_dag_update_state.part.0.str1.4
-                0x00015190       0x33 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
- *fill*         0x000151c3        0x1 00000000
+                0x00014b3c       0x33 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+ *fill*         0x00014b6f        0x1 00000000
  .rodata.rpl_global_repair.str1.4
-                0x000151c4        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
- *fill*         0x000151d1        0x3 00000000
+                0x00014b70        0xd build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+ *fill*         0x00014b7d        0x3 00000000
  .rodata.rpl_process_dio.str1.4
-                0x000151d4       0xeb build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
- *fill*         0x000152bf        0x1 00000000
+                0x00014b80       0xeb build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+ *fill*         0x00014c6b        0x1 00000000
  .rodata.rpl_process_dis.str1.4
-                0x000152c0        0xe build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
- *fill*         0x000152ce        0x2 00000000
+                0x00014c6c        0xe build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+ *fill*         0x00014c7a        0x2 00000000
  .rodata.rpl_process_dao.str1.4
-                0x000152d0       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00014c7c       0x24 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
  .rodata.rpl_process_dao_ack.str1.4
-                0x000152f4        0xa build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+                0x00014ca0        0xa build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
  .rodata.rpl_dag_init_root.str1.4
-                0x000152f4        0xa build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
- *fill*         0x000152fe        0x2 00000000
+                0x00014ca0        0xa build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag.o
+ *fill*         0x00014caa        0x2 00000000
  .rodata.resend_dao.str1.4
-                0x00015300        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
+                0x00014cac        0xc build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-timers.o
  .rodata.update_hbh_header.part.0.str1.4
-                0x0001530c       0x7a build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+                0x00014cb8       0x7a build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
                                  0x92 (size before relaxing)
- *fill*         0x00015386        0x2 00000000
+ *fill*         0x00014d32        0x2 00000000
  .rodata.rpl_ext_header_srh_update.str1.4
-                0x00015388       0x49 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
- *fill*         0x000153d1        0x3 00000000
+                0x00014d34       0x49 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+ *fill*         0x00014d7d        0x3 00000000
  .rodata.rpl_ext_header_hbh_update.str1.4
-                0x000153d4       0x68 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+                0x00014d80       0x68 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
  .rodata.rpl_ext_header_update.str1.4
-                0x0001543c       0xbe build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
- *fill*         0x000154fa        0x2 00000000
+                0x00014de8       0xbe build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-ext-header.o
+ *fill*         0x00014ea6        0x2 00000000
  .rodata.str1.4
-                0x000154fc        0x9 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
- *fill*         0x00015505        0x3 00000000
+                0x00014ea8        0x9 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+ *fill*         0x00014eb1        0x3 00000000
  .rodata.rpl_lite_driver
-                0x00015508       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
-                0x00015508                rpl_lite_driver
+                0x00014eb4       0x54 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x00014eb4                rpl_lite_driver
  .rodata.rpl_dag_root_start.str1.4
-                0x0001555c       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
+                0x00014f08       0x20 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
                                  0x38 (size before relaxing)
  .rodata.process_thread_node_process.str1.4
-                0x0001557c       0x3f node.o
+                0x00014f28       0x3f node.o
                                  0x5b (size before relaxing)
- *fill*         0x000155bb        0x1 00000000
+ *fill*         0x00014f67        0x1 00000000
  .rodata.udp_rx_callback.str1.4
-                0x000155bc       0x8e node.o
- *fill*         0x0001564a        0x2 00000000
- .rodata.experiment_log.str1.4
-                0x0001564c        0xd node.o
- *fill*         0x00015659        0x3 00000000
- .rodata.active_connectivity_speed.str1.4
-                0x0001565c       0x53 node.o
- *fill*         0x000156af        0x1 00000000
+                0x00014f68       0x8e node.o
+ *fill*         0x00014ff6        0x2 00000000
+ .rodata.udp_child_rx_callback.str1.4
+                0x00014ff8       0x1b node.o
+ *fill*         0x00015013        0x1 00000000
  .rodata.str1.4
-                0x000156b0        0x9 node.o
- *fill*         0x000156b9        0x3 00000000
+                0x00015014        0x9 node.o
+ *fill*         0x0001501d        0x3 00000000
  .rodata.autostart_processes
-                0x000156bc        0x8 node.o
-                0x000156bc                autostart_processes
+                0x00015020        0x8 node.o
+                0x00015020                autostart_processes
  .rodata._ctype_
-                0x000156c4      0x101 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-ctype_.o)
-                0x000156c4                _ctype_
-                0x000157c5                _etext = .
+                0x00015028      0x101 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-ctype_.o)
+                0x00015028                _ctype_
+                0x00015129                _etext = .
 
-.glue_7         0x000157c8        0x0
- .glue_7        0x000157c8        0x0 linker stubs
+.glue_7         0x0001512c        0x0
+ .glue_7        0x0001512c        0x0 linker stubs
 
-.glue_7t        0x000157c8        0x0
- .glue_7t       0x000157c8        0x0 linker stubs
+.glue_7t        0x0001512c        0x0
+ .glue_7t       0x0001512c        0x0 linker stubs
 
-.vfp11_veneer   0x000157c8        0x0
- .vfp11_veneer  0x000157c8        0x0 linker stubs
+.vfp11_veneer   0x0001512c        0x0
+ .vfp11_veneer  0x0001512c        0x0 linker stubs
 
-.v4_bx          0x000157c8        0x0
- .v4_bx         0x000157c8        0x0 linker stubs
+.v4_bx          0x0001512c        0x0
+ .v4_bx         0x0001512c        0x0 linker stubs
 
-.iplt           0x000157c8        0x0
- .iplt          0x000157c8        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/startup_gcc.o
+.iplt           0x0001512c        0x0
+ .iplt          0x0001512c        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/startup_gcc.o
 
-.data           0x20000000      0x824 load address 0x000157c5
+.data           0x20000000      0x824 load address 0x00015129
                 0x20000000                _data = .
  *(SORT_BY_ALIGNMENT(vtable))
  *(SORT_BY_ALIGNMENT(.data*))
@@ -4998,16 +4986,16 @@ END GROUP
  .data.rng_ready_event
                 0x20000823        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/soc-trng.o
                 0x20000824                _edata = .
-                0x000157c5                _ldata = LOADADDR (.data)
+                0x00015129                _ldata = LOADADDR (.data)
 
-.igot.plt       0x20000824        0x0 load address 0x00015fe9
+.igot.plt       0x20000824        0x0 load address 0x0001594d
  .igot.plt      0x20000824        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/startup_gcc.o
 
-.ARM.exidx      0x00015fec        0x8
+.ARM.exidx      0x00015950        0x8
  *(SORT_BY_ALIGNMENT(.ARM.exidx*))
- .ARM.exidx     0x00015fec        0x8 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+ .ARM.exidx     0x00015950        0x8 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
 
-.bss            0x20000828     0x281f
+.bss            0x20000828     0x2813
                 0x20000828                _bss = .
  *(SORT_BY_ALIGNMENT(.bss*))
  .bss.count     0x20000828        0x8 build/cc26x0-cc13x0/launchpad/cc2650/obj/clock.o
@@ -5471,148 +5459,138 @@ END GROUP
                 0x20002f80                rpl_multicast_addr
  .bss.root_ipaddr.0
                 0x20002f90       0x10 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
- .bss.EWMA.5    0x20002fa0        0x4 node.o
- .bss.EWMA_tmp.3
-                0x20002fa4        0x4 node.o
  .bss.client_conn
-                0x20002fa8       0x24 node.o
+                0x20002fa0       0x24 node.o
  .bss.periodic_timer.6
-                0x20002fcc       0x10 node.o
+                0x20002fc4       0x10 node.o
  .bss.server_conn
-                0x20002fdc       0x24 node.o
+                0x20002fd4       0x24 node.o
  .bss.curr_ping_datalen
-                0x20003000        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
- .bss.node_id   0x20003002        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/node-id.o
-                0x20003002                node_id
- .bss.buflen    0x20003004        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/packetbuf.o
- .bss.bufptr    0x20003006        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/packetbuf.o
+                0x20002ff8        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+ .bss.node_id   0x20002ffa        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/node-id.o
+                0x20002ffa                node_id
+ .bss.buflen    0x20002ffc        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/packetbuf.o
+ .bss.bufptr    0x20002ffe        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/packetbuf.o
  .bss.base_drift_tick_conversion_error.0
-                0x20003008        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
+                0x20003000        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
  .bss.tick_conversion_error.2
-                0x2000300a        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
- .bss.lastport  0x2000300c        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x20003002        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
+ .bss.lastport  0x20003004        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
  .bss.uip_ext_len
-                0x2000300e        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x2000300e                uip_ext_len
- .bss.uip_len   0x20003010        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x20003010                uip_len
- .bss.uip_slen  0x20003012        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x20003012                uip_slen
+                0x20003006        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x20003006                uip_ext_len
+ .bss.uip_len   0x20003008        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x20003008                uip_len
+ .bss.uip_slen  0x2000300a        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x2000300a                uip_slen
  .bss.nd6_opt_offset
-                0x20003014        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
+                0x2000300c        0x2 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-nd6.o
  .bss.rat_offset_known
-                0x20003016        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
+                0x2000300e        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
  .bss.rf_core_last_corr_lqi
-                0x20003017        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
-                0x20003017                rf_core_last_corr_lqi
+                0x2000300f        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
+                0x2000300f                rf_core_last_corr_lqi
  .bss.rf_core_poll_mode
-                0x20003018        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
-                0x20003018                rf_core_poll_mode
+                0x20003010        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
+                0x20003010                rf_core_poll_mode
  .bss.rf_core_rx_is_full
-                0x20003019        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
-                0x20003019                rf_core_rx_is_full
+                0x20003011        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-core.o
+                0x20003011                rf_core_rx_is_full
  .bss.ble_mode_on
-                0x2000301a        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-ble.o
+                0x20003012        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rf-ble.o
  .bss.curr_ping_ttl
-                0x2000301b        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
+                0x20003013        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/shell-commands.o
  .bss.initialized
-                0x2000301c        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/ctimer.o
- .bss.fevent    0x2000301d        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/process.o
+                0x20003014        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/ctimer.o
+ .bss.fevent    0x20003015        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/process.o
  .bss.lastevent
-                0x2000301e        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/process.o
- .bss.nevents   0x2000301f        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/process.o
+                0x20003016        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/process.o
+ .bss.nevents   0x20003017        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/process.o
  .bss.poll_requested
-                0x20003020        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/process.o
+                0x20003018        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/process.o
  .bss.button_hal_periodic_event
-                0x20003021        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/button-hal.o
-                0x20003021                button_hal_periodic_event
+                0x20003019        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/button-hal.o
+                0x20003019                button_hal_periodic_event
  .bss.button_hal_press_event
-                0x20003022        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/button-hal.o
-                0x20003022                button_hal_press_event
+                0x2000301a        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/button-hal.o
+                0x2000301a                button_hal_press_event
  .bss.button_hal_release_event
-                0x20003023        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/button-hal.o
-                0x20003023                button_hal_release_event
+                0x2000301b        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/button-hal.o
+                0x2000301b                button_hal_release_event
  .bss.overflow.0
-                0x20003024        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-line.o
+                0x2000301c        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-line.o
  .bss.serial_line_event_message
-                0x20003025        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-line.o
-                0x20003025                serial_line_event_message
- .bss.hdrlen    0x20003026        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/packetbuf.o
+                0x2000301d        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/serial-line.o
+                0x2000301d                serial_line_event_message
+ .bss.hdrlen    0x2000301e        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/packetbuf.o
  .bss.initialized
-                0x20003027        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
- .bss.mac_dsn   0x20003028        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
+                0x2000301f        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
+ .bss.mac_dsn   0x20003020        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/framer-802154.o
  .bss.current_channel.1
-                0x20003029        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x20003021        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .bss.keepalive_status
-                0x2000302a        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x20003022        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .bss.last_eb_nbr_jp
-                0x2000302b        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x20003023        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .bss.tsch_join_priority
-                0x2000302c        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
-                0x2000302c                tsch_join_priority
+                0x20003024        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x20003024                tsch_join_priority
  .bss.tsch_packet_seqno
-                0x2000302d        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
+                0x20003025        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch.o
  .bss.do_wait_for_ack.19
-                0x2000302e        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x20003026        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
  .bss.mac_tx_status.22
-                0x2000302f        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x20003027        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
  .bss.packet_len.20
-                0x20003030        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
- .bss.seqno.17  0x20003031        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x20003028        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+ .bss.seqno.17  0x20003029        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
  .bss.tsch_current_channel
-                0x20003032        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
-                0x20003032                tsch_current_channel
+                0x2000302a        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x2000302a                tsch_current_channel
  .bss.tsch_current_channel_offset
-                0x20003033        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
-                0x20003033                tsch_current_channel_offset
- .bss.pos.5     0x20003034        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
+                0x2000302b        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-slot-operation.o
+                0x2000302b                tsch_current_channel_offset
+ .bss.pos.5     0x2000302c        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
  .bss.timesync_entry_count
-                0x20003035        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
+                0x2000302d        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tsch-adaptive-timesync.o
  .bss.uip_ds6_addr_size
-                0x20003036        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x20003036                uip_ds6_addr_size
+                0x2000302e        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x2000302e                uip_ds6_addr_size
  .bss.uip_ds6_netif_addr_list_offset
-                0x20003037        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
-                0x20003037                uip_ds6_netif_addr_list_offset
+                0x2000302f        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip-ds6.o
+                0x2000302f                uip_ds6_netif_addr_list_offset
  .bss.tcpip_event
-                0x20003038        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
-                0x20003038                tcpip_event
+                0x20003030        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/tcpip.o
+                0x20003030                tcpip_event
  .bss.uip_ext_bitmap
-                0x20003039        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x20003039                uip_ext_bitmap
+                0x20003031        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x20003031                uip_ext_bitmap
  .bss.uip_flags
-                0x2000303a        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x2000303a                uip_flags
+                0x20003032        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x20003032                uip_flags
  .bss.uip_last_proto
-                0x2000303b        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
-                0x2000303b                uip_last_proto
- .bss.started   0x2000303c        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
+                0x20003033        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/uip6.o
+                0x20003033                uip_last_proto
+ .bss.started   0x20003034        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/simple-udp.o
  .bss.curr_page
-                0x2000303d        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x20003035        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .bss.packetbuf_hdr_len
-                0x2000303e        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x20003036        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .bss.uncomp_hdr_len
-                0x2000303f        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
+                0x20003037        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/sicslowpan.o
  .bss.rpl_leaf_only
-                0x20003040        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
+                0x20003038        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl.o
  .bss.initialized.1
-                0x20003041        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
- .bss.accelerate.1
-                0x20003042        0x1 node.o
- .bss.brake.2   0x20003043        0x1 node.o
- .bss.change_acceleration.0
-                0x20003044        0x1 node.o
+                0x20003039        0x1 build/cc26x0-cc13x0/launchpad/cc2650/obj/rpl-dag-root.o
  .bss.has_begun
-                0x20003045        0x1 node.o
-                0x20003045                has_begun
- .bss.speed_change.4
-                0x20003046        0x1 node.o
+                0x2000303a        0x1 node.o
+                0x2000303a                has_begun
  *(SORT_BY_ALIGNMENT(COMMON))
-                0x20003047                _ebss = .
-                0x20003047                _end = .
-                0x20003047                _stack = .
+                0x2000303b                _ebss = .
+                0x2000303b                _end = .
+                0x2000303b                _stack = .
                 0x20005000                _stack_origin = (ORIGIN (SRAM) + LENGTH (SRAM))
-                0x20003047                _heap = _stack
+                0x2000303b                _heap = _stack
                 0x20005000                _eheap = _stack_origin
 
 .ccfg           0x0001ffa8       0x58
@@ -5624,13 +5602,13 @@ END GROUP
  .rel.iplt      0x00020000        0x0 build/cc26x0-cc13x0/launchpad/cc2650/obj/startup_gcc.o
 
 ._user_heap_stack
-                0x20003047      0x401
-                0x20003048                . = ALIGN (0x4)
- *fill*         0x20003047        0x1 
-                0x20003048                . = (. + _Min_Heap_Size)
-                0x20003448                . = (. + _Min_Stack_Size)
- *fill*         0x20003048      0x400 
-                0x20003448                . = ALIGN (0x4)
+                0x2000303b      0x401
+                0x2000303c                . = ALIGN (0x4)
+ *fill*         0x2000303b        0x1 
+                0x2000303c                . = (. + _Min_Heap_Size)
+                0x2000343c                . = (. + _Min_Stack_Size)
+ *fill*         0x2000303c      0x400 
+                0x2000343c                . = ALIGN (0x4)
 
 .gpram
 OUTPUT(build/cc26x0-cc13x0/launchpad/cc2650/node.elf elf32-littlearm)
@@ -5975,63 +5953,51 @@ LOAD linker stubs
  .ARM.attributes
                 0x00001356       0x2d node.o
  .ARM.attributes
-                0x00001383       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
+                0x00001383       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
  .ARM.attributes
-                0x000013a0       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
+                0x000013a0       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
  .ARM.attributes
-                0x000013bd       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
+                0x000013bd       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
  .ARM.attributes
-                0x000013da       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
+                0x000013ea       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
  .ARM.attributes
-                0x000013f7       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
+                0x00001407       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcmp.o)
  .ARM.attributes
-                0x00001414       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+                0x00001434       0x1b /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcpy.o)
  .ARM.attributes
-                0x00001431       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+                0x0000144f       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memmove.o)
  .ARM.attributes
-                0x0000145e       0x1d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_dvmd_tls.o)
+                0x0000147c       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memset.o)
  .ARM.attributes
-                0x0000147b       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcmp.o)
+                0x000014a9       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
  .ARM.attributes
-                0x000014a8       0x1b /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcpy.o)
+                0x000014d6       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
  .ARM.attributes
-                0x000014c3       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memmove.o)
+                0x00001503       0x1b /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
  .ARM.attributes
-                0x000014f0       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memset.o)
+                0x0000151e       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
  .ARM.attributes
-                0x0000151d       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
+                0x0000154b       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
  .ARM.attributes
-                0x0000154a       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
+                0x00001578       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-ctype_.o)
  .ARM.attributes
-                0x00001577       0x1b /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
+                0x000015a5       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
  .ARM.attributes
-                0x00001592       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
- .ARM.attributes
-                0x000015bf       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
- .ARM.attributes
-                0x000015ec       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-ctype_.o)
- .ARM.attributes
-                0x00001619       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
- .ARM.attributes
-                0x00001646       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-impure.o)
+                0x000015d2       0x2d /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-impure.o)
 
-.debug_frame    0x00000000      0x3f4
- .debug_frame   0x00000000       0x24 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_mulsf3.o)
- .debug_frame   0x00000024       0x4c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_addsubsf3.o)
- .debug_frame   0x00000070       0xc8 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_cmpsf2.o)
- .debug_frame   0x00000138       0x24 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_arm_fixsfsi.o)
- .debug_frame   0x0000015c       0x44 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
- .debug_frame   0x000001a0       0x2c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
- .debug_frame   0x000001cc       0x34 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
- .debug_frame   0x00000200       0x28 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcmp.o)
- .debug_frame   0x00000228       0x40 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memmove.o)
- .debug_frame   0x00000268       0x2c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memset.o)
- .debug_frame   0x00000294       0x28 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
- .debug_frame   0x000002bc       0x34 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
- .debug_frame   0x000002f0       0x34 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
- .debug_frame   0x00000324       0x20 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
- .debug_frame   0x00000344       0x90 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
- .debug_frame   0x000003d4       0x20 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
+.debug_frame    0x00000000      0x298
+ .debug_frame   0x00000000       0x44 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_ldivmod.o)
+ .debug_frame   0x00000044       0x2c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x00000070       0x34 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x000000a4       0x28 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memcmp.o)
+ .debug_frame   0x000000cc       0x40 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memmove.o)
+ .debug_frame   0x0000010c       0x2c /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-memset.o)
+ .debug_frame   0x00000138       0x28 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcat.o)
+ .debug_frame   0x00000160       0x34 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strchr.o)
+ .debug_frame   0x00000194       0x34 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcmp.o)
+ .debug_frame   0x000001c8       0x20 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strcpy.o)
+ .debug_frame   0x000001e8       0x90 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-strtol.o)
+ .debug_frame   0x00000278       0x20 /usr/local/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a(lib_a-errno.o)
 
 Cross Reference Table
 

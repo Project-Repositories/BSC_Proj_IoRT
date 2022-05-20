@@ -67,7 +67,7 @@ Modification:
 */
 #define TSCH_CONF_DEFAULT_HOPPING_SEQUENCE TSCH_HOPPING_SEQUENCE_2_2
 #define TSCH_CONF_EB_PERIOD (10 * CLOCK_SECOND)
-// IMPORTANT: Saving the day VV!!
+// IMPORTANT: Saving the day with the config parameter below!!
 #define TSCH_CONF_ASSOCIATION_POLL_FREQUENCY 1000
 
 /*******************************************************/
