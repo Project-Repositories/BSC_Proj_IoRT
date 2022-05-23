@@ -3,7 +3,7 @@ from Motor import PWM
 from line_tracker import LineTracker
 from servo import Servo
 from rpi_ws281x import Color
-from Led import led
+from Led import Led
 
 # For command-line arguments
 import sys
@@ -38,6 +38,7 @@ The point of the experiment is
     to show the cars acting mechanically, depending on some property of their connection.
 """
 
+led = Led()
 
 class E1LeadingCar:
     def __init__(self, inverse_IR: bool, RSSI_termination_threshold: int):
