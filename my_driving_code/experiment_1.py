@@ -69,6 +69,12 @@ class E1LeadingCar:
         instruction = DriveInstructions.NONE  # DriveInstructions.NONE
         while instruction == DriveInstructions.NONE:
             if read_timer.check():
+                with self.launchpad_comm.ser as ser:
+                    messages = ser.readlines()
+                    for line in messages:
+                        content = line.decode().strip()
+                        print("Line:{}".format(content))
+
                 print("checking latest message")
                 instruction = self.launchpad_comm.recent_instruction
         print("*" * 3 + " Leading car starting " + "*" * 3)
