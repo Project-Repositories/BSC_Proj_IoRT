@@ -35,18 +35,6 @@ class ActiveConnectivityLineDriver:
         if self.nodetype == NodeType.Coordinator:
             self.launchpad_comm.set_coordinator()
 
-    def reverse_head(self):
-        if self.head == Head.FORWARDS:
-            self.head = Head.BACKWARDS
-        elif self.head == Head.BACKWARDS:
-            self.head = Head.FORWARDS
-        else:
-            raise ValueError("self.HEAD is of incorrect value and/or type.")
-
-    def scan_for_line(self) -> bool:
-        # Using infrared detectors
-        ir_line = GPIO.input(self.IR01) + GPIO.input(self.IR02) + GPIO.input(self.IR03)
-        return ir_line == 3  # > 1
 
     def oscillate_simple(self):
         # ------ fundamental driving ------
@@ -85,22 +73,26 @@ class ActiveConnectivityLineDriver:
             debug_i += 1
 
             # ------ communication ------
-            if read_timer.check():
-                instruction = self.launchpad_comm.recent_instruction
-                if instruction != DriveInstructions.NONE:
-                    current_acc = acc_state_dict[instruction]
+            if self.nodetype == NodeType.Child:
+                if read_timer.check():
+                    instruction = self.launchpad_comm.recent_instruction
+                    if instruction != DriveInstructions.NONE:
+                        current_acc = acc_state_dict[instruction]
 
             # ------ alignment ------
             alignment = self.tracker.get_tracking()
 
             # ------ fundamental driving ------
-            if acc_timer.check():
+            if acc_timer.check():  # If we should update the speed by acceleration amount.
                 current_speed += current_acc
+                # Clamp it, so that we don't start to reverse, or go too fast for the line tracking to work.
                 current_speed = clamp(current_speed, min_speed, max_speed)
 
             if alignment == Tracking.FORWARD:
+                # If we are driving forwards, we can use the current speed.
                 motor_values = [current_speed] * 4  # [instruction.value] * 4
             else:
+                # Else, if we should turn to stay on the line.
                 motor_values = alignment.value
             PWM.setMotorModel(*motor_values)
 

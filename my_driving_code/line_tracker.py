@@ -22,7 +22,6 @@ class LineTracker:
 
         self.turn_mode = False
 
-
     def get_tracking(self) -> Tracking:
         left: bool = bool(GPIO.input(self.IR_LEFT))
         mid: bool = bool(GPIO.input(self.IR_MID))
@@ -63,31 +62,34 @@ IR01 = 14
 IR02 = 15
 IR03 = 23
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(IR01,GPIO.IN)
-GPIO.setup(IR02,GPIO.IN)
-GPIO.setup(IR03,GPIO.IN)
+GPIO.setup(IR01, GPIO.IN)
+GPIO.setup(IR02, GPIO.IN)
+GPIO.setup(IR03, GPIO.IN)
+
+
 class Old_Line_Tracking:
     def run(self):
-         while True:
-             self.LMR=0x00
-             if GPIO.input(IR01)==True:
-                 self.LMR=(self.LMR | 4)
-             if GPIO.input(IR02)==True:
-                 self.LMR=(self.LMR | 2)
-             if GPIO.input(IR03)==True:
-                 self.LMR=(self.LMR | 1)
-             if self.LMR==2:
-                 PWM.setMotorModel(800,800,800,800)
-             elif self.LMR==4:
-                 PWM.setMotorModel(-1500,-1500,2500,2500)
-             elif self.LMR==6:
-                 PWM.setMotorModel(-2000,-2000,4000,4000)
-             elif self.LMR==1:
-                 PWM.setMotorModel(2500,2500,-1500,-1500)
-             elif self.LMR==3:
-                 PWM.setMotorModel(4000,4000,-2000,-2000)
-             elif self.LMR==7:
-                 pass
+        while True:
+            self.LMR = 0x00
+            if GPIO.input(IR01) == True:
+                self.LMR = (self.LMR | 4)
+            if GPIO.input(IR02) == True:
+                self.LMR = (self.LMR | 2)
+            if GPIO.input(IR03) == True:
+                self.LMR = (self.LMR | 1)
+            if self.LMR == 2:
+                PWM.setMotorModel(800, 800, 800, 800)
+            elif self.LMR == 4:
+                PWM.setMotorModel(-1500, -1500, 2500, 2500)
+            elif self.LMR == 6:
+                PWM.setMotorModel(-2000, -2000, 4000, 4000)
+            elif self.LMR == 1:
+                PWM.setMotorModel(2500, 2500, -1500, -1500)
+            elif self.LMR == 3:
+                PWM.setMotorModel(4000, 4000, -2000, -2000)
+            elif self.LMR == 7:
+                pass
+
 
 if __name__ == '__main__':
     print('Program is starting ... ')
@@ -104,7 +106,7 @@ if __name__ == '__main__':
                 align = aligner.get_tracking()
                 # print(align)
                 PWM.setMotorModel(*align.value)
-            
+
         else:
             linetrack = Old_Line_Tracking()
             linetrack.run()

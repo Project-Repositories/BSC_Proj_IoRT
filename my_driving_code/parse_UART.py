@@ -9,17 +9,19 @@ from os import mkdir
 from commons import DriveInstructions
 from random import randint
 
+
 # TODO: Add logging
 # Which logs the EWMA data and actions taken, along with time passed since initializing the logger.
 # Prints to a new file every time (Check if file_name_# exists, if yes then check file_name_(#+1) and so on).
 
 class Logger:
-    def __init__(self):
+    def __init__(self, file_name="data_log"):
         self.dir = "data_logs/"
         if not exists(self.dir):
             mkdir(self.dir)
         path_i = 0
-        self.file_name = "data_log_{i}.csv".format(i=path_i)
+        self.file_ext = ".csv"
+        self.file_name = "{name}_{i}{file_ext}".format(name=file_name,i=path_i,file_ext=self.file_ext)
         while exists(join(self.dir, self.file_name)):
             path_i += 1
             self.file_name = "data_log_{i}.csv".format(i=path_i)
@@ -100,9 +102,8 @@ class ActiveConnectivity:
             self.instruction = DriveInstructions.BASE
 
 
-
 class UART_Comm:
-    def __init__(self, port_name):
+    def __init__(self, port_name, default_logging=True):
         self.run_async = False
         self.ser = serial.Serial(port_name, baudrate=115200, timeout=5)
         self.instruction_dict = {"slow down2": DriveInstructions.SLOWER,
@@ -121,7 +122,10 @@ class UART_Comm:
         self.recent_ewma = None
 
         self.reader_thread = Thread(target=self.async_reading, args=())
-        self.logger = Logger()
+        if default_logging:
+            self.logger = Logger()
+        else:
+            self.logger = None
 
     def reboot_launchpad(self):
         with self.ser as ser:
@@ -149,9 +153,15 @@ class UART_Comm:
                             self.ac.ACR(rssi)
                             self.recent_instruction = self.ac.instruction
                             self.recent_ewma = self.ac.EWMA
+                            print("EWMA is: {}".format(self.recent_ewma))
 
-            if self.recent_instruction != DriveInstructions.NONE and \
-                    self.recent_ewma is not None:
+            if self.logger is None:
+                continue
+            elif self.recent_instruction == DriveInstructions.NONE:
+                continue
+            elif self.recent_ewma is None:
+                continue
+            else:
                 self.logger.log(self.recent_ewma, self.recent_instruction)
 
     def start_async(self):

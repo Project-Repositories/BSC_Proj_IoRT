@@ -25,7 +25,6 @@ class ActiveConnectivityLineDriver:
         GPIO.setup(self.IR03, GPIO.IN)
 
         self.inverse_IR = inverse_IR
-        # self.aligner = WallAligner(self.direction)
         self.tracker = LineTracker(inverse_IR)
         self.head = Head.FORWARDS
 
@@ -43,10 +42,6 @@ class ActiveConnectivityLineDriver:
         else:
             raise ValueError("self.HEAD is of incorrect value and/or type.")
 
-    def scan_for_line(self) -> bool:
-        # Using infrared detectors
-        ir_line = GPIO.input(self.IR01) + GPIO.input(self.IR02) + GPIO.input(self.IR03)
-        return ir_line == 3  # > 1
 
     def oscillate_simple(self):
         # ------ fundamental driving ------
