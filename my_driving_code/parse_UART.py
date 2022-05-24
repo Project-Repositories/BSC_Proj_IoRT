@@ -105,7 +105,7 @@ class ActiveConnectivity:
 class UART_Comm:
     def __init__(self, port_name, default_logging=True):
         self.run_async = False
-        self.ser = serial.Serial(port_name, baudrate=115200, timeout=5)
+        self.ser = serial.Serial(port_name, baudrate=115200, timeout=2)
         self.instruction_dict = {"slow down2": DriveInstructions.SLOWER,
                                  "slow down1": DriveInstructions.SLOW,
                                  "base": DriveInstructions.BASE,

@@ -59,7 +59,8 @@ class E1LeadingCar:
         current_speed = speed_state_dict[DriveInstructions.SLOW]
 
         # ------ communication ------
-        read_period = 9  # A message is sent every 10 seconds. We see if there's a new one every 9 seconds.
+        # A message is sent every 5 seconds. We see if there's a new one every 4 seconds.
+        read_period = 4
         read_timer = Timer(read_period)
 
         # Wait until a DriveInstruction is received,
@@ -115,7 +116,8 @@ class E1StationCar:
         led.colorWipe(led.strip, led_yellow)
 
         # ------ communication ------
-        read_period = 9  # A message is sent every 10 seconds. We see if there's a new one every 9 seconds.
+        # A message is sent every 5 seconds. We see if there's a new one every 4 seconds.
+        read_period = 4
         read_timer = Timer(read_period)
 
         # Wait until a DriveInstruction is received,
