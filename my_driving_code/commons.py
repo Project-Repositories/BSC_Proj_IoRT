@@ -1,7 +1,7 @@
 # https://stackoverflow.com/a/58470178
 import time
 from enum import Enum
-
+from rpi_ws281x import Color
 
 def clamp(value, lower, upper):
     return lower if value < lower else upper if value > upper else value
@@ -77,3 +77,10 @@ class Timer:
             return True
         else:
             return False
+
+
+led_off = Color(0, 0, 0)
+led_red = Color(125, 5, 5)
+led_yellow = Color(100, 100, 10)
+led_green = Color(5, 125, 5)
+

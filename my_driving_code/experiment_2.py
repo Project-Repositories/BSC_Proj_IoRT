@@ -9,10 +9,8 @@ import sys
 # For debugging, to print the entire exception when errors occur, but also handle it gracefully
 from traceback import print_exc
 
-from commons import clamp, Head, NodeType, Timer, Tracking, DriveInstructions, speed_state_dict, acc_state_dict, \
-    led_off, led_red, led_yellow, led_green
-from wall_alignment import WallAligner, Direction
-from parse_UART import UART_Comm
+from commons import Timer, Tracking, DriveInstructions, speed_state_dict, led_off, led_yellow, led_green
+from parse_UART import UART_Comm, Logger
 
 """
 Qualitative experiment serving as proof-of-concept of IoRT testbed.
@@ -39,15 +37,20 @@ The point of the experiment is
 """
 
 
-class E1LeadingCar:
-    def __init__(self, inverse_IR: bool, RSSI_termination_threshold: int):
+
+class E2LeadingCar:
+    def __init__(self, inverse_IR: bool, RSSI_termination_threshold: int, RSSI_strong_threshold: int):
         self.tracker = LineTracker(inverse_IR)
 
         port_name = "/dev/ttyACM0"
         self.launchpad_comm = UART_Comm(port_name, default_logging=False)
+        experiment_2_lead_logger = "exp_2_lead_data"
+        self.launchpad_comm.logger = Logger(file_name=experiment_2_lead_logger)
+
         self.launchpad_comm.set_coordinator()
 
         self.RSSI_termination_threshold = RSSI_termination_threshold
+        self.RSSI_strong_threshold = RSSI_strong_threshold
 
         led.colorWipe(led.strip, led_off)
 
@@ -68,7 +71,6 @@ class E1LeadingCar:
         instruction = DriveInstructions.NONE  # DriveInstructions.NONE
         while instruction == DriveInstructions.NONE:
             if read_timer.check():
-
                 print("checking latest message")
 
                 instruction = self.launchpad_comm.recent_instruction
@@ -98,15 +100,26 @@ class E1LeadingCar:
                 print("current speed:{}".format(current_speed))
                 print("fwd_motor_values:{}".format(*motor_values))
 
-        led.colorWipe(led.strip, led_red)
+        led.colorWipe(led.strip, led_yellow)
+        while self.launchpad_comm.recent_ewma < self.RSSI_strong_threshold:
+            sleep(2)
+
+        led.colorWipe(led.strip, led_green)
+        sleep(10)
         print("Program was completed.")
 
 
-class E1StationCar:
-    def __init__(self, RSSI_termination_threshold: int):
+class E2FollowingCar:
+    def __init__(self, inverse_IR: bool, RSSI_termination_threshold: int, RSSI_strong_threshold: int):
+        self.tracker = LineTracker(inverse_IR)
+
         port_name = "/dev/ttyACM0"
         self.launchpad_comm = UART_Comm(port_name, default_logging=False)
+        experiment_2_follow_logger = "exp_2_follow_data"
+        self.launchpad_comm.logger = Logger(file_name=experiment_2_follow_logger)
+
         self.RSSI_termination_threshold = RSSI_termination_threshold
+        self.RSSI_strong_threshold = RSSI_strong_threshold
 
         led.colorWipe(led.strip, led_off)
 
@@ -132,7 +145,26 @@ class E1StationCar:
         while self.launchpad_comm.recent_ewma > self.RSSI_termination_threshold:
             sleep(2)
 
-        led.colorWipe(led.strip, led_red)
+        led.colorWipe(led.strip, led_yellow)
+
+        # ------ fundamental driving ------
+        current_speed = speed_state_dict[DriveInstructions.SLOW]
+
+        while self.launchpad_comm.recent_ewma < self.RSSI_strong_threshold:
+            # ------ alignment ------
+            alignment = self.tracker.get_tracking()
+
+            # ------ fundamental driving ------
+            if alignment == Tracking.FORWARD:
+                # If we are driving forwards, we can use the current speed.
+                motor_values = [current_speed] * 4
+            else:
+                # Else, if we should turn to stay on the line.
+                motor_values = alignment.value
+            PWM.setMotorModel(*motor_values)
+
+        led.colorWipe(led.strip, led_green)
+        sleep(10)
         print("Program was completed.")
 
 
@@ -141,6 +173,8 @@ if __name__ == '__main__':
     print('Program is starting ... ')
 
     arg_RSSI_termination_threshold = -65
+    arg_RSSI_strong_threshold = -50
+
     sysargs = [arg.strip().lower() for arg in sys.argv]
     if "inverse" in sysargs:
         arg_inverse = True
@@ -148,10 +182,10 @@ if __name__ == '__main__':
         arg_inverse = False
 
     if "child" in sysargs:
-        car = E1StationCar(arg_RSSI_termination_threshold)
+        car = E2FollowingCar(arg_inverse, arg_RSSI_termination_threshold, arg_RSSI_strong_threshold)
         print("." * 10 + "\nStarting station car.\n" + "." * 10)
     else:
-        car = E1LeadingCar(arg_inverse, arg_RSSI_termination_threshold)
+        car = E2LeadingCar(arg_inverse, arg_RSSI_termination_threshold, arg_RSSI_strong_threshold)
         print(("." * 10 + "\nStarting Leading car. IR inverse: {}\n" + "." * 10).
               format(arg_inverse))
     try:
