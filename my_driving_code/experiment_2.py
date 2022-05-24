@@ -100,10 +100,12 @@ class E2LeadingCar:
                 print("current speed:{}".format(current_speed))
                 print("fwd_motor_values:{}".format(*motor_values))
 
+        print("Leading car is stopping.")
         led.colorWipe(led.strip, led_yellow)
         while self.launchpad_comm.recent_ewma < self.RSSI_strong_threshold:
             sleep(2)
 
+        print("Connection-strength has been bolstered.")
         led.colorWipe(led.strip, led_green)
         sleep(10)
         print("Program was completed.")
@@ -150,7 +152,10 @@ class E2FollowingCar:
         # ------ fundamental driving ------
         current_speed = speed_state_dict[DriveInstructions.SLOW]
 
+        print("Following car is catching up.")
+        debug_i = 0
         while self.launchpad_comm.recent_ewma < self.RSSI_strong_threshold:
+            debug_i += 1
             # ------ alignment ------
             alignment = self.tracker.get_tracking()
 
@@ -163,6 +168,14 @@ class E2FollowingCar:
                 motor_values = alignment.value
             PWM.setMotorModel(*motor_values)
 
+            # ------ debugging ------
+            if debug_i % 100 == 0:
+                print("----")
+                print("current speed:{}".format(current_speed))
+                print("fwd_motor_values:{}".format(*motor_values))
+
+
+        print("Connection-strength has been bolstered.")
         led.colorWipe(led.strip, led_green)
         sleep(10)
         print("Program was completed.")
@@ -183,7 +196,7 @@ if __name__ == '__main__':
 
     if "child" in sysargs:
         car = E2FollowingCar(arg_inverse, arg_RSSI_termination_threshold, arg_RSSI_strong_threshold)
-        print("." * 10 + "\nStarting station car.\n" + "." * 10)
+        print("." * 10 + "\nStarting follower car.\n" + "." * 10)
     else:
         car = E2LeadingCar(arg_inverse, arg_RSSI_termination_threshold, arg_RSSI_strong_threshold)
         print(("." * 10 + "\nStarting Leading car. IR inverse: {}\n" + "." * 10).
