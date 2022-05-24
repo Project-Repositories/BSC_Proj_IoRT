@@ -13,8 +13,8 @@ from commons import Timer, Tracking, DriveInstructions, speed_state_dict, led_of
 from parse_UART import UART_Comm, Logger
 
 PWM.setMotorModel(0, 0, 0, 0)
-Servo().setServoPwm('0', 90)
-Servo().setServoPwm('1', 90)
+Servo().setServoPwm('0', 85)
+Servo().setServoPwm('1', 85)
 """
 Qualitative experiment serving as proof-of-concept of IoRT testbed.
 This experiment will have
@@ -104,7 +104,7 @@ class E2LeadingCar:
                 print("fwd_motor_values:{}".format(*motor_values))
 
         print("Leading car is stopping.")
-        PWM.setMotorMode(0, 0, 0, 0)
+        PWM.setMotorModel(0, 0, 0, 0)
 
         led.colorWipe(led.strip, led_yellow)
         while self.launchpad_comm.recent_ewma < self.RSSI_strong_threshold:
@@ -181,7 +181,7 @@ class E2FollowingCar:
                 print("fwd_motor_values:{}".format(*motor_values))
 
         print("Connection-strength has been bolstered.")
-        PWM.setMotorMode(0, 0, 0, 0)
+        PWM.setMotorModel(0, 0, 0, 0)
 
         led.colorWipe(led.strip, led_green)
         sleep(10)
