@@ -57,7 +57,7 @@
 #define UDP_CLIENT_PORT	8765
 #define UDP_SERVER_PORT	5678
 
-#define SEND_INTERVAL		  (10 * CLOCK_SECOND)
+#define SEND_INTERVAL		  (5 * CLOCK_SECOND)
 #define ALPHA 0.75f
 
 
@@ -118,6 +118,14 @@ udp_rx_callback(struct simple_udp_connection *c,
     LOG_INFO("Sent RSSI %hd to child node ", RSSI);
     LOG_INFO_6ADDR(sender_addr);
     LOG_INFO_("\n");
+    
+	// Format and print RSSI data string
+	char prefixStr[] = "RSSI: ";
+	char RSSI_str[5];
+	sprintf(RSSI_str,"%d",(int)RSSI);
+	strcat(prefixStr,RSSI_str);
+	experiment_log(prefixStr);
+    
     if (!has_begun) {
     	has_begun = true;
 	    drive_msg("begin");
@@ -270,7 +278,7 @@ udp_child_rx_callback(struct simple_udp_connection *c,
 			// drive_msg("begin");
 		}
 		
-		// Format and print EWMA data string
+		// Format and print RSSI data string
 		char prefixStr[] = "RSSI: ";
 		char RSSI_str[5];
 		sprintf(RSSI_str,"%d",(int)RSSI);
