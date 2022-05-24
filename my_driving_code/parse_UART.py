@@ -53,7 +53,7 @@ class ActiveConnectivity:
         self.worsen_threshold = 3
 
         self.alpha = 0.75
-        self.instruction = DriveInstructions.NONE
+        self.instruction = DriveInstructions.BASE
 
     def calibrate_ewma(self, new_RSSI):
         if self.EWMA is None:
