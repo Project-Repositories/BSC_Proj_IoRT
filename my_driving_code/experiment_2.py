@@ -12,6 +12,9 @@ from traceback import print_exc
 from commons import Timer, Tracking, DriveInstructions, speed_state_dict, led_off, led_yellow, led_green
 from parse_UART import UART_Comm, Logger
 
+PWM.setMotorModel(0, 0, 0, 0)
+Servo().setServoPwm('0', 90)
+Servo().setServoPwm('1', 90)
 """
 Qualitative experiment serving as proof-of-concept of IoRT testbed.
 This experiment will have

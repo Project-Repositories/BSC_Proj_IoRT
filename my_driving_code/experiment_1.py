@@ -38,6 +38,10 @@ The point of the experiment is
     to show the cars acting mechanically, depending on some property of their connection.
 """
 
+PWM.setMotorModel(0, 0, 0, 0)
+Servo().setServoPwm('0', 90)
+Servo().setServoPwm('1', 90)
+
 
 class E1LeadingCar:
     def __init__(self, inverse_IR: bool, RSSI_termination_threshold: int):
