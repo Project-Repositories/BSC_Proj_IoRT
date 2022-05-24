@@ -162,7 +162,6 @@ class UART_Comm:
             elif self.recent_ewma is None:
                 continue
             else:
-                print("logging!")
                 self.logger.log(self.recent_ewma, self.recent_instruction)
 
     def start_async(self):

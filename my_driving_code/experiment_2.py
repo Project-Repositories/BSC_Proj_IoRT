@@ -104,6 +104,8 @@ class E2LeadingCar:
                 print("fwd_motor_values:{}".format(*motor_values))
 
         print("Leading car is stopping.")
+        PWM.setMotorMode(0, 0, 0, 0)
+
         led.colorWipe(led.strip, led_yellow)
         while self.launchpad_comm.recent_ewma < self.RSSI_strong_threshold:
             sleep(2)
@@ -179,6 +181,8 @@ class E2FollowingCar:
                 print("fwd_motor_values:{}".format(*motor_values))
 
         print("Connection-strength has been bolstered.")
+        PWM.setMotorMode(0, 0, 0, 0)
+
         led.colorWipe(led.strip, led_green)
         sleep(10)
         print("Program was completed.")
@@ -189,7 +193,7 @@ if __name__ == '__main__':
     print('Program is starting ... ')
 
     arg_RSSI_termination_threshold = -65
-    arg_RSSI_strong_threshold = -50
+    arg_RSSI_strong_threshold = -40
 
     sysargs = [arg.strip().lower() for arg in sys.argv]
     if "inverse" in sysargs:

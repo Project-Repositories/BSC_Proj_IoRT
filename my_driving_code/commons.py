@@ -80,7 +80,7 @@ class Timer:
 
 
 led_off = Color(0, 0, 0)
-led_red = Color(125, 5, 5)
-led_yellow = Color(100, 100, 10)
-led_green = Color(5, 125, 5)
+led_red = Color(125, 0, 0)
+led_yellow = Color(50, 50, 0)
+led_green = Color(0, 125, 0)
 
