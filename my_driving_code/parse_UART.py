@@ -21,10 +21,10 @@ class Logger:
             mkdir(self.dir)
         path_i = 0
         self.file_ext = ".csv"
-        self.file_name = "{name}_{i}{file_ext}".format(name=file_name,i=path_i,file_ext=self.file_ext)
+        self.full_file_name = "{name}_{i}{ext}".format(name=file_name, i=path_i,ext=self.file_ext)
         while exists(join(self.dir, self.file_name)):
             path_i += 1
-            self.file_name = "data_log_{i}.csv".format(i=path_i)
+            self.file_name = "{name}_{i}{ext}".format(name=file_name, i=path_i, ext=self.file_ext)
 
         self.file_path = join(self.dir, self.file_name)
 
