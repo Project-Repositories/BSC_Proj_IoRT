@@ -22,11 +22,11 @@ class Logger:
         path_i = 0
         self.file_ext = ".csv"
         self.full_file_name = "{name}_{i}{ext}".format(name=file_name, i=path_i,ext=self.file_ext)
-        while exists(join(self.dir, self.file_name)):
+        while exists(join(self.dir, self.full_file_name)):
             path_i += 1
-            self.file_name = "{name}_{i}{ext}".format(name=file_name, i=path_i, ext=self.file_ext)
+            self.full_file_name = "{name}_{i}{ext}".format(name=file_name, i=path_i, ext=self.file_ext)
 
-        self.file_path = join(self.dir, self.file_name)
+        self.file_path = join(self.dir, self.full_file_name)
 
         self.NA = "N/A"  # not available tag
         self.delimiter = ";"
