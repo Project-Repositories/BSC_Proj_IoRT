@@ -192,7 +192,7 @@ class E2FollowingCar:
 if __name__ == '__main__':
     print('Program is starting ... ')
 
-    arg_RSSI_termination_threshold = -60
+    arg_RSSI_termination_threshold = -65
     arg_RSSI_strong_threshold = -50
 
     sysargs = [arg.strip().lower() for arg in sys.argv]
