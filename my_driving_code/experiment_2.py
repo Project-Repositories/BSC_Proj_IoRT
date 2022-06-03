@@ -116,6 +116,7 @@ class E2LeadingCar:
         print("Program was completed.")
         while True:
             print("stalling... keeps collecting data...")
+            sleep(3)
 
 
 class E2FollowingCar:
@@ -190,6 +191,7 @@ class E2FollowingCar:
         print("Program was completed.")
         while True:
             print("stalling... keeps collecting data...")
+            sleep(3)
 
 
 # TODO: add more options for Command Line Arguments, such as  direction.

@@ -113,6 +113,7 @@ class E1LeadingCar:
         print("Program was completed.")
         while True:
             print("stalling... keeps collecting data...")
+            sleep(3)
 
 
 class E1StationCar:
@@ -153,6 +154,7 @@ class E1StationCar:
         print("Program was completed.")
         while True:
             print("stalling... keeps collecting data...")
+            sleep(3)
 
 
 
