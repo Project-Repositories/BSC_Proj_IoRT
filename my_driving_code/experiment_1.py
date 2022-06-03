@@ -12,7 +12,7 @@ from traceback import print_exc
 from commons import clamp, Head, NodeType, Timer, Tracking, DriveInstructions, speed_state_dict, acc_state_dict, \
     led_off, led_red, led_yellow, led_green
 from wall_alignment import WallAligner, Direction
-from parse_UART import UART_Comm
+from parse_UART import UART_Comm, Logger
 
 """
 Qualitative experiment serving as proof-of-concept of IoRT testbed.
@@ -30,9 +30,11 @@ Procedure:
     * When connection is formed between the cars, the leading car begins driving at a slow speed,
         adjusting its direction with sharp turns to track a line of tape.
     * The cars frequently sends messages between each other (1 msg each, every 10seconds).
-    * When the leading car measures the RSSI    below a certain threshold, it stops driving.
+    * When the leading car measures the RSSI below a certain threshold, it stops driving.
     * The current status of the cars are displayed using the color of their LEDs.
-No data is stored during this experiment. The result will be a video recording of the car.
+There's 2 results from this experiment
+    1. A video recording of the car, which shows proof-of-concept of testbed
+    2. A logfile which includes the RSSI measurements received during the experiment.
 
 The point of the experiment is 
     to show the cars acting mechanically, depending on some property of their connection.
@@ -49,6 +51,9 @@ class E1LeadingCar:
 
         port_name = "/dev/ttyACM0"
         self.launchpad_comm = UART_Comm(port_name, default_logging=False)
+        experiment_1_lead_logger = "exp_1_lead_data"
+        self.launchpad_comm.logger = Logger(file_name=experiment_1_lead_logger)
+
         self.launchpad_comm.set_coordinator()
 
         self.RSSI_termination_threshold = RSSI_termination_threshold
@@ -73,7 +78,6 @@ class E1LeadingCar:
         instruction = DriveInstructions.NONE  # DriveInstructions.NONE
         while instruction == DriveInstructions.NONE:
             if read_timer.check():
-
                 print("checking latest message")
 
                 instruction = self.launchpad_comm.recent_instruction
@@ -104,13 +108,20 @@ class E1LeadingCar:
                 print("fwd_motor_values:{}".format(*motor_values))
 
         led.colorWipe(led.strip, led_red)
+        PWM.setMotorModel(0, 0, 0, 0)
+
         print("Program was completed.")
+        while True:
+            print("stalling... keeps collecting data...")
 
 
 class E1StationCar:
     def __init__(self, RSSI_termination_threshold: int):
         port_name = "/dev/ttyACM0"
         self.launchpad_comm = UART_Comm(port_name, default_logging=False)
+        experiment_1_station_logger = "exp_1_station_data"
+        self.launchpad_comm.logger = Logger(file_name=experiment_1_station_logger)
+
         self.RSSI_termination_threshold = RSSI_termination_threshold
 
         led.colorWipe(led.strip, led_off)
@@ -140,6 +151,9 @@ class E1StationCar:
 
         led.colorWipe(led.strip, led_red)
         print("Program was completed.")
+        while True:
+            print("stalling... keeps collecting data...")
+
 
 
 # TODO: add more options for Command Line Arguments, such as  direction.

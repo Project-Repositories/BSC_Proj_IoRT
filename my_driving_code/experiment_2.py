@@ -114,6 +114,8 @@ class E2LeadingCar:
         led.colorWipe(led.strip, led_green)
         sleep(10)
         print("Program was completed.")
+        while True:
+            print("stalling... keeps collecting data...")
 
 
 class E2FollowingCar:
@@ -186,6 +188,8 @@ class E2FollowingCar:
         led.colorWipe(led.strip, led_green)
         sleep(10)
         print("Program was completed.")
+        while True:
+            print("stalling... keeps collecting data...")
 
 
 # TODO: add more options for Command Line Arguments, such as  direction.
