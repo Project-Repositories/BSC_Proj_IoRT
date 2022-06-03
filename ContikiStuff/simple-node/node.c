@@ -257,16 +257,19 @@ udp_child_rx_callback(struct simple_udp_connection *c,
          const uint8_t *data,
          uint16_t datalen)
 {
-	int16_t RSSI;
-	if(datalen >= sizeof(RSSI)) {
-	    memcpy(&RSSI, data, sizeof(RSSI));
+	int16_t RSSI_parent;
+	if(datalen >= sizeof(RSSI_parent)) {
+		// RSSI of the message that was received by parent:
+	    memcpy(&RSSI_parent, data, sizeof(RSSI_parent)); 
 	    
 	    LOG_INFO("Received from ");
 	    LOG_INFO_6ADDR(sender_addr);
 	    LOG_INFO("\n");
-	    // LOG_INFO("The received RSSI: %hi\n", RSSI);
-	    RSSI = (int16_t)uipbuf_get_attr(UIPBUF_ATTR_RSSI);
-		// printf("RSSI from latest ping: %hi\n", RSSI);
+	    // LOG_INFO("The received RSSI: %hi\n", RSSI_parent);
+	    
+	    // RSSI of the message that is now received by child: 
+	    // int16_t RSSI_child = (int16_t)uipbuf_get_attr(UIPBUF_ATTR_RSSI);
+		// printf("RSSI from latest ping: %hi\n", RSSI_child);
 		
 		// TODO:
 		// Print out LQI with the experiment_log formatting
@@ -274,14 +277,15 @@ udp_child_rx_callback(struct simple_udp_connection *c,
 	    if (!has_begun) {
 			has_begun = true;
 			drive_msg("begin");
-			// drive_msg("begin");
-			// drive_msg("begin");
 		}
+		
 		
 		// Format and print RSSI data string
 		char prefixStr[] = "RSSI: ";
 		char RSSI_str[5];
-		sprintf(RSSI_str,"%d",(int)RSSI);
+		// We use the RSSI_parent so that both cars are acting on the same value.
+		// since the RSSI_child and RSSI_parent might differ.
+		sprintf(RSSI_str,"%d",(int)RSSI_parent);
 		strcat(prefixStr,RSSI_str);
 		experiment_log(prefixStr);
 		
