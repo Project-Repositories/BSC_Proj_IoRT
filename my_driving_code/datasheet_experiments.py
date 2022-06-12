@@ -2,6 +2,7 @@ import sys
 import time
 
 from Motor import PWM
+from Ultrasonic import Ultrasonic
 from commons import Timer, Tracking
 from line_tracker import LineTracker
 from servo import Servo
@@ -152,10 +153,57 @@ def climb_steep_terrain_experiment():
     pass
 
 
+def sonic_range():
+    """
+    The purpose of this experiment is to find the range of the ultrasonic sensor.
+    We repeatedly measure and print the distance of the sensor.
+    Following this, we point the sensor towards something very far away.
+    It should be able to give us a reading. But to verify if it's correct,
+    slightly change the angle and see if the measurement changes.
+    If it does not change, then we reduce the distance towards the object,
+    until we get valid measurements.
+    """
+
+    ul = Ultrasonic()
+    try:
+        while True:
+            distance = ul.get_distance()
+            print("distance of UltraSonicSensor: {}".format(distance))
+            time.sleep(3)
+    except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program  will be  executed.
+        turn_off_car()
+
+
+def battery_life():
+    """
+    The purpose of this experiment is to find how long the robot can continuously drive before the
+    energy levels of the battery is too low to function.
+    We begin by fully charging the battery, and noting the current time at the start of the experiment.
+    Then, we make the robot drive back and forth in an enclosed space, at its maximum speed.
+    When the robot stops moving, we note how much time has passed.
+    """
+    duration = 0.5
+    timer = Timer(duration)
+    try:
+        while True:
+            max_PWM = 4095
+            PWM.setMotorModel(max_PWM, max_PWM, max_PWM, max_PWM)
+            while not timer.check():
+                pass
+            max_PWM = -4095
+            PWM.setMotorModel(max_PWM, max_PWM, max_PWM, max_PWM)
+            while not timer.check():
+                pass
+
+    except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program  will be  executed.
+        turn_off_car()
+
+
 
 if __name__ == '__main__':
     print('Program is starting ... ')
 
+<<<<<<< HEAD
     try:
         sysargs = [arg.strip().lower() for arg in sys.argv]
         if "maxspeed" in sysargs:
@@ -177,6 +225,3 @@ if __name__ == '__main__':
     finally:
         print("Program completed.")
         turn_off_car()
-
-
-
