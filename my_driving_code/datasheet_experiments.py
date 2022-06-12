@@ -56,7 +56,7 @@ def min_speed_experiment():
     """
     duration = 5
     timer = Timer(duration)
-    min_PWM = 100
+    min_PWM = 500
     PWM.setMotorModel(min_PWM, min_PWM, min_PWM, min_PWM)
     while not timer.check():
         pass
@@ -104,8 +104,8 @@ def turn_speed_experiment():
     duration = 5
     timer = Timer(duration)
     # ------ alignment ------
-    turn_values = Tracking.RIGHT2
-    PWM.setMotorModel(turn_values)
+    turn_values = Tracking.RIGHT2.value
+    PWM.setMotorModel(*turn_values)
     while not timer.check():
         pass
     turn_off_car()
@@ -118,7 +118,7 @@ def direction_flip_speed_experiment():
     then reverses the direction, and drives at its max speed backwards.
     The point is to figure out how quickly the robot can accelerate.
     """
-    duration = 3
+    duration = 1.5
     timer = Timer(duration)
     max_PWM = 4095
     PWM.setMotorModel(max_PWM, max_PWM, max_PWM, max_PWM)
@@ -156,24 +156,27 @@ def climb_steep_terrain_experiment():
 if __name__ == '__main__':
     print('Program is starting ... ')
 
-    sysargs = [arg.strip().lower() for arg in sys.argv]
-    if "maxspeed" in sysargs:
-        max_speed_experiment()
-    elif "minspeed" in sysargs:
-        min_speed_experiment()
-    elif "maxtrack" in sysargs:
-        line_track_max_speed_experiment()
-    elif "turnspeed" in sysargs:
-        turn_speed_experiment()
-    elif "fliptime" in sysargs:
-        direction_flip_speed_experiment()
-    elif "maxtrack" in sysargs:
-        line_track_max_speed_experiment()
-    elif "brakelength" in sysargs:
-        brake_length_experiment()
-
-    print("Program completed.")
-    turn_off_car()
+    try:
+        sysargs = [arg.strip().lower() for arg in sys.argv]
+        if "maxspeed" in sysargs:
+            max_speed_experiment()
+        elif "minspeed" in sysargs:
+            min_speed_experiment()
+        elif "maxtrack" in sysargs:
+            line_track_max_speed_experiment()
+        elif "turnspeed" in sysargs:
+            turn_speed_experiment()
+        elif "fliptime" in sysargs:
+            direction_flip_speed_experiment()
+        elif "maxtrack" in sysargs:
+            line_track_max_speed_experiment()
+        elif "brakelength" in sysargs:
+            brake_length_experiment()
+        elif "off" in sysargs:
+            turn_off_car()
+    finally:
+        print("Program completed.")
+        turn_off_car()
 
 
 
