@@ -208,7 +208,7 @@ if __name__ == '__main__':
         arg_inverse = False
 
     if "child" in sysargs:
-        car = E2FollowingCar(arg_inverse, arg_RSSI_termination_threshold - 5, arg_RSSI_strong_threshold)
+        car = E2FollowingCar(arg_inverse, arg_RSSI_termination_threshold, arg_RSSI_strong_threshold)
         print("." * 10 + "\nStarting follower car.\n" + "." * 10)
     else:
         car = E2LeadingCar(arg_inverse, arg_RSSI_termination_threshold, arg_RSSI_strong_threshold)

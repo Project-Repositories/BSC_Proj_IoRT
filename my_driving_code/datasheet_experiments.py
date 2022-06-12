@@ -179,7 +179,7 @@ def battery_life():
     The purpose of this experiment is to find how long the robot can continuously drive before the
     energy levels of the battery is too low to function.
     We begin by fully charging the battery, and noting the current time at the start of the experiment.
-    Then, we make the robot drive back and forth in an enclosed space, at its maximum speed.
+    Then, we make the robot drive back and forth in an enclosed space, at its minimum speed.
     When the robot stops moving, we note how much time has passed.
     """
     duration = 0.5
