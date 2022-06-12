@@ -203,7 +203,6 @@ def battery_life():
 if __name__ == '__main__':
     print('Program is starting ... ')
 
-<<<<<<< HEAD
     try:
         sysargs = [arg.strip().lower() for arg in sys.argv]
         if "maxspeed" in sysargs:
@@ -220,6 +219,10 @@ if __name__ == '__main__':
             line_track_max_speed_experiment()
         elif "brakelength" in sysargs:
             brake_length_experiment()
+        elif "sonicrange" in sysargs:
+            sonic_range()
+        elif "batterylife" in sysargs:
+            battery_life()
         elif "off" in sysargs:
             turn_off_car()
     finally:
