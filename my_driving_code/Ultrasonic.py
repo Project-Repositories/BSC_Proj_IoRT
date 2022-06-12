@@ -32,7 +32,7 @@ class Ultrasonic:
         while GPIO.input(self.echo_pin) != value and (passed_time < timeout):
             passed_time = (time.time() - start_time) # * sec_to_microsec  # microseconds.
 
-    def get_distance(self, num_measurements: int = 5):
+    def get_distance(self, num_measurements: int = 5) -> int:
         sound_speed_cm_per_second = 34300
         distance_cm = [0] * num_measurements
         for i in range(num_measurements):
