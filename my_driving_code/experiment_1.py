@@ -157,8 +157,6 @@ class E1StationCar:
             sleep(3)
 
 
-
-# TODO: add more options for Command Line Arguments, such as  direction.
 if __name__ == '__main__':
     print('Program is starting ... ')
 

@@ -1,2 +1,5 @@
-PySerial
+PySerial~=3.5
 simple-pid
+matplotlib~=3.5.2
+numpy~=1.22.4
+pandas~=1.4.2
