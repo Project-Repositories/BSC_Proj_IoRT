@@ -32,8 +32,17 @@ class Ultrasonic:
         while GPIO.input(self.echo_pin) != value and (passed_time < timeout):
             passed_time = (time.time() - start_time) # * sec_to_microsec  # microseconds.
 
-    def get_distance(self, num_measurements: int = 5) -> int:
+    def calculate_distance(self, pulse_length: float) -> int:
+        """
+        Calculates the distance in centimeters,
+        using the amount of time it takes for the echo signal to return.
+        """
         sound_speed_cm_per_second = 34300
+        distance = pulse_length * sound_speed_cm_per_second  # distance = time * speed
+        distance /= 2  # divide by 2 since the soundwave travels forth and back before received.
+        return distance
+
+    def get_distance(self, num_measurements: int = 5) -> int:
         distance_cm = [0] * num_measurements
         for i in range(num_measurements):
             self.send_trigger_pulse()
@@ -42,10 +51,8 @@ class Ultrasonic:
             self.wait_for_echo(False, 2)
             finish = time.time()
             pulse_len = finish - start
-            distance = pulse_len * sound_speed_cm_per_second  # distance = time * speed
-            distance /= 2  # divide by 2 since the soundwave travels forth and back before received.
-            distance_cm[i] = distance
-            
+            distance_cm[i] = self.calculate_distance(pulse_len)
+
         distance_cm = sorted(distance_cm)
         if num_measurements % 2:  # case of Odd
             # take the median value of the distances
