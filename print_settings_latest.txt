@@ -1,0 +1,5 @@
+bedtemp 45*
+topbottom pattern = lines
+Outer walls before inner walls = true
+line width = 0.4mm (from 0.5mm)
+horizontal expansion = -0.3mm (from 0)
