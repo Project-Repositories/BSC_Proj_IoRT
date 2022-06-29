@@ -1,9 +1,12 @@
 import time
 from multiprocessing import Value
 
-from Motor import PWM
+from Hardware_Controllers.Motor import PWM
 import RPi.GPIO as GPIO
 
+"""
+This is the original line-tracking program, provided by Freenove.
+"""
 
 class Line_Tracking:
     def __init__(self):
@@ -126,7 +129,7 @@ class Line_Tracking:
     def run4(self):
         can_inverse = False
         direction = -1
-
+ 
         action_dict = {1: (2500, 2500, -1500, -1500), 2: (600, 600, 600, 600),
                        3: (4000, 4000, -2000, -2000), 4: (-1500, -1500, 2500, 2500),
                        6: (-2000, -2000, 4000, 4000)}
