@@ -13,7 +13,7 @@ from Hardware_Controllers.parse_UART import UART_Comm
 
 
 class ActiveConnectivityLineDriver:
-    def __init__(self, inverse_IR: bool, nodetype: NodeType):
+    def __init__(self, inverse_IR: bool, node_type: NodeType):
         self.IR01 = 14
         self.IR02 = 15
         self.IR03 = 23
@@ -26,10 +26,10 @@ class ActiveConnectivityLineDriver:
         self.tracker = LineTracker(inverse_IR)
         self.head = Head.FORWARDS
 
-        self.nodetype = nodetype
+        self.node_type = node_type
         port_name = "/dev/ttyACM0"
         self.launchpad_comm = UART_Comm(port_name)
-        if self.nodetype == NodeType.Coordinator:
+        if self.node_type == NodeType.Coordinator:
             self.launchpad_comm.set_coordinator()
 
     def reverse_head(self):

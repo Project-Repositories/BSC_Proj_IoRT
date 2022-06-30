@@ -4,7 +4,7 @@ from Hardware_Controllers.servo import Servo
 
 from traceback import print_exc # For debugging, to print the entire exception when errors occur, but also handle it gracefully
 
-from Misc_Code.commons import clamp, Head, DriveInstructions
+from Misc_Code.commons import clamp, Head, DriveInstructions, Timer
 from Control_Programs.wall_alignment import WallAligner, Direction
 
 
@@ -12,7 +12,6 @@ class AlignDriver:
     """
     Aligns itself to a wall to it's right or left, depending on direction parameter.
     Drives forward for some time, then reverses after a set duration.
-
     """
 
     def __init__(self, direction: Direction):
@@ -35,7 +34,8 @@ class AlignDriver:
     def oscillate_simple(self):
         def drive(pwm_magnitudes):
             motor_values = [self.head.value * int(num) for num in pwm_magnitudes]
-            PWM.setMotorModel(*motor_values)
+            PWM.setMotorPWM(motor_values)
+
 
         def reversal(pwm_magnitude):
             print("reversing")
@@ -54,11 +54,10 @@ class AlignDriver:
                 time.sleep(0.2)
             self.reverse_head()
 
-        turn_time = 2 # Change in favor of optically reading reversal point.
-        seconds_per_read = 9  # A message is sent every 10 seconds. We see if there's a new one every 9 seconds.
-        previous_turn = previous_read = time.time()
+        turn_timer = Timer(2)
 
         # to scale alignment accordingly to the speed the PID was tested with (1000):
+        # this formula for calculating the coefficient is intuitively derived.
         def calculate_align_coeff(current_speed):
             return (current_speed / 1000) ** 0.5
 
@@ -71,43 +70,27 @@ class AlignDriver:
         i = 0
         while True:
             i += 1
-            current_time = time.time()
-            if current_time - previous_turn >= turn_time:
-                previous_turn = current_time
+            if turn_timer.check():
                 reversal(base_speed)
 
-            if current_time - previous_read >= seconds_per_read:
-                previous_read = current_time
-                instruction = self.launchpad_comm.read_from_UART()
-                if instruction != DriveInstructions.NONE:
-                    base_speed = instruction.value
-                    align_coeff = calculate_align_coeff(base_speed)
+            align_value = self.aligner.get_direction_correction()
+            align_value *= align_coeff
 
-            # TODO: Change this to be a set time frequency
-            if i % 5 == 0:
-                # Only evaluate alignment every 5 iterations.
-                # As far as i understand, if PID is evaluated and used too often,
-                # the Derivative term becomes useless. Because its effect only lasts for a fraction of a second.
-                align_value = self.aligner.get_direction_correction(base_speed)
-                align_value *= align_coeff
-                # align_value *= 0.1
+            # Clamp the alignment, to limit it from stopping a set of wheels completely, or even reversing the
+            # direction.
+            align_value = clamp(align_value, -base_speed, base_speed)
 
-                # Clamp the alignment, to limit it from stopping a set of wheels completely, or even reversing the
-                # direction.
-                align_value = clamp(align_value, -base_speed, base_speed)
-
-                # Split the "burden" of alignment in two parts:
-                # One side drives faster, another drives slower, compared to base_speed.
-                # Will result in less sudden changes of PWM in a set of wheels, and also be closer to "base speed"
-                align_half = align_value / 2
-                if self.direction == Direction.RIGHT:
-                    # align_half * 1.5
-                    fwd_motor_values = [base_speed + align_half] * 2 + \
-                                       [base_speed - align_half] * 2
-                elif self.direction == Direction.LEFT:
-                    fwd_motor_values = [base_speed - align_half] * 2 + \
-                                       [base_speed + align_half] * 2
-            if i % 30 == 0:
+            # Split the "burden" of alignment in two parts:
+            # One side drives faster, another drives slower, compared to base_speed.
+            # Will result in less sudden changes of PWM in a set of wheels, and also be closer to "base speed"
+            align_half = align_value / 2
+            if self.direction == Direction.RIGHT:
+                fwd_motor_values = [base_speed + align_half] * 2 + \
+                                   [base_speed - align_half] * 2
+            elif self.direction == Direction.LEFT:
+                fwd_motor_values = [base_speed - align_half] * 2 + \
+                                   [base_speed + align_half] * 2
+            if i % 50 == 0:  # Debugging messages
                 print("----")
                 print("head:{}".format(self.head))
                 print("current speed:{}".format(base_speed))

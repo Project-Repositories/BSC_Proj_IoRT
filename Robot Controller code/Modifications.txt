@@ -21,3 +21,8 @@ Line_Tracking.py to line_tracker.py
     run()
         Changed bitwise-or function into arithmetic addition (seemingly not semantically different, so its clearer to read).
         then made code clearer to read, and added direction-change when reaching the end of black tape.
+
+
+Motor.py()
+    Added the function which serves as a wrapper of Motor.setMotorModel(),
+    to use an iterable of 4 values instead of 4 parameters.

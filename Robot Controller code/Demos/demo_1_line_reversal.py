@@ -6,8 +6,24 @@ from Hardware_Controllers.servo import Servo
 from traceback import \
     print_exc  # For debugging, to print the entire exception when errors occur, but also handle it gracefully
 
-from Misc_Code.commons import clamp, Head
+from Misc_Code.commons import clamp, Head, Timer
 from Control_Programs.wall_alignment import WallAligner, Direction
+
+
+class IRSensors:
+    def __init__(self):
+        self.IR01 = 14
+        self.IR02 = 15
+        self.IR03 = 23
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.IR01, GPIO.IN)
+        GPIO.setup(self.IR02, GPIO.IN)
+        GPIO.setup(self.IR03, GPIO.IN)
+
+    def scan_for_line(self) -> bool:
+        # Using infrared detectors
+        ir_line = GPIO.input(self.IR01) + GPIO.input(self.IR02) + GPIO.input(self.IR03)
+        return ir_line == 3
 
 
 class LineReversalDriver:
@@ -18,17 +34,10 @@ class LineReversalDriver:
     """
 
     def __init__(self, direction: Direction):
-        self.IR01 = 14
-        self.IR02 = 15
-        self.IR03 = 23
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.IR01, GPIO.IN)
-        GPIO.setup(self.IR02, GPIO.IN)
-        GPIO.setup(self.IR03, GPIO.IN)
-
         self.direction = direction  # Direction.LEFT
         self.aligner = WallAligner(self.direction)
         self.head = Head.FORWARDS
+        self.IR_sensors = IRSensors()
 
     def reverse_head(self):
         if self.head == Head.FORWARDS:
@@ -37,11 +46,6 @@ class LineReversalDriver:
             self.head = Head.FORWARDS
         else:
             raise ValueError("self.HEAD is of incorrect value and/or type.")
-
-    def scan_for_line(self) -> bool:
-        # Using infrared detectors
-        ir_line = GPIO.input(self.IR01) + GPIO.input(self.IR02) + GPIO.input(self.IR03)
-        return ir_line == 3  # > 1
 
     def oscillate_simple(self):
         def drive(pwm_magnitudes):
@@ -71,26 +75,20 @@ class LineReversalDriver:
         # to scale alignment accordingly to the speed the PID was tested with (1000):
         def calculate_align_coeff(current_speed):
             return (current_speed / 1000) ** 0.5
-        align_period = self.aligner.sample_time
-        previous_align = time.time()
+
+        align_timer = Timer(self.aligner.sample_time)
         align_coeff = calculate_align_coeff(base_speed)
 
-
-
-        previous_reversal = previous_align
-        reversal_period = 2  # seconds  # * calculate_align_coeff(base_speed)
+        reversal_timer = Timer(2)
         reversible = True
 
         i = 0
         while True:
             i += 1
-            current_time = time.time()
 
-            if current_time - previous_align >= align_period:  # if i % 5 == 0:
-                previous_align = current_time
-                align_value = self.aligner.get_direction_correction(base_speed)
+            if align_timer.check():
+                align_value = self.aligner.get_direction_correction()
                 align_value *= align_coeff
-
 
                 # Clamp the alignment, to limit it from stopping a set of wheels completely, or even reversing the
                 # direction.
@@ -106,18 +104,17 @@ class LineReversalDriver:
                 elif self.direction == Direction.LEFT:
                     fwd_motor_values = [base_speed - align_half] * 2 + \
                                        [base_speed + align_half] * 2
-            ir_line = self.scan_for_line()
+
+            # Reversing direction:
+            ir_line = self.IR_sensors.scan_for_line()
             # print(ir_line)
             if not ir_line:
                 reversible = True
-
-            if (current_time - previous_reversal >= reversal_period) and \
-                    ir_line and \
-                    reversible:
-                previous_reversal = current_time
+            if ir_line and reversible and reversal_timer.check():
                 reversible = False
                 reversal(base_speed)
             drive(fwd_motor_values)
+            # Debugging:
             if i % 30 == 0:
                 print("----")
                 print("head:{}".format(self.head))
