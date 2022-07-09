@@ -72,9 +72,9 @@ class Ultrasonic:
         if direction not in (left_str, right_str):
             raise ValueError("Direction string is invalid")
         if direction == left_str:
-            self.PWM.setMotorModel(-1500, -1500, 1500, 1500)
+            self.PWM.set_motor_model(-1500, -1500, 1500, 1500)
         elif direction == right_str:
-            self.PWM.setMotorModel(1500, 1500, -1500, -1500)
+            self.PWM.set_motor_model(1500, 1500, -1500, -1500)
 
     def turn_around_car(self):
         time_to_turn = 2
@@ -88,26 +88,26 @@ class Ultrasonic:
 
         if (left < close_distance and mid < close_distance and right < close_distance) or mid < close_distance:
             # Drive backwards
-            self.PWM.setMotorModel(-1450, -1450, -1450, -1450)
+            self.PWM.set_motor_model(-1450, -1450, -1450, -1450)
             time.sleep(0.1)
             if left < right:
                 self.rotate_car("r")
             else:
                 self.rotate_car("l")
         elif left < close_distance and mid < close_distance:
-            PWM.setMotorModel(1500, 1500, -1500, -1500)
+            PWM.set_motor_model(1500, 1500, -1500, -1500)
         elif right < close_distance and mid < close_distance:
-            PWM.setMotorModel(-1500, -1500, 1500, 1500)
+            PWM.set_motor_model(-1500, -1500, 1500, 1500)
         elif left < closer_distance:
-            PWM.setMotorModel(2000, 2000, -500, -500)
+            PWM.set_motor_model(2000, 2000, -500, -500)
             if left < closest_distance:
-                PWM.setMotorModel(1500, 1500, -1000, -1000)
+                PWM.set_motor_model(1500, 1500, -1000, -1000)
         elif right < closer_distance:
-            PWM.setMotorModel(-500, -500, 2000, 2000)
+            PWM.set_motor_model(-500, -500, 2000, 2000)
             if right < closest_distance:
-                PWM.setMotorModel(-1500, -1500, 1500, 1500)
+                PWM.set_motor_model(-1500, -1500, 1500, 1500)
         else:
-            self.PWM.setMotorModel(600, 600, 600, 600)
+            self.PWM.set_motor_model(600, 600, 600, 600)
 
     def run_motor_2(self, left, mid, right):
         close_distance = 30
@@ -116,12 +116,12 @@ class Ultrasonic:
 
         if (left < close_distance and mid < close_distance and right < close_distance) or mid < close_distance:
             # Drive backwards
-            self.PWM.setMotorModel(-1450, -1450, -1450, -1450)
+            self.PWM.set_motor_model(-1450, -1450, -1450, -1450)
             time.sleep(0.1)
             # Turn around
             self.turn_around_car()
         else:
-            self.PWM.setMotorModel(600, 600, 600, 600)
+            self.PWM.set_motor_model(600, 600, 600, 600)
 
     def run(self):
         self.PWM = Motor()
@@ -166,5 +166,5 @@ if __name__ == '__main__':
     try:
         ultrasonic.run()
     except KeyboardInterrupt:  # When 'Ctrl+C' is pressed, the child program destroy() will be  executed.
-        PWM.setMotorModel(0, 0, 0, 0)
+        PWM.set_motor_model(0, 0, 0, 0)
         ultrasonic.pwm_S.setServoPwm('0', 90)

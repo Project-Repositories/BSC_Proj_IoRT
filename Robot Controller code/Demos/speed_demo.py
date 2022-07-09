@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     def drive(pwm_magnitude):
         motor_values = [pwm_magnitude] * 4
-        PWM.setMotorModel(*motor_values)
+        PWM.set_motor_model(*motor_values)
 
 
     def test_speed(pwm_magnitude):
@@ -40,6 +40,6 @@ if __name__ == '__main__':
             print("{pwm}: {speed} m/s".format(pwm=pwm_list[i], speed=avg_speeds[i] * 0.01))
 
         print_exc()
-        PWM.setMotorModel(0, 0, 0, 0)
+        PWM.set_motor_model(0, 0, 0, 0)
         Servo().setServoPwm('0', 90)
         Servo().setServoPwm('1', 90)

@@ -9,7 +9,7 @@ import sys
 from traceback import print_exc
 
 from Misc_Code.commons import Head, NodeType, Timer, Tracking, DriveInstructions
-from Hardware_Controllers.parse_UART import UART_Comm
+from Hardware_Controllers.parse_UART import UARTCommunication
 
 
 class LineDriver:
@@ -23,7 +23,7 @@ class LineDriver:
             debug_i += 1
             # ------ alignment ------
             alignment = self.tracker.get_alignment()
-            PWM.setMotorPWM(alignment)
+            PWM.set_motor_model_by_iterable(alignment)
 
 
 if __name__ == '__main__':
@@ -44,6 +44,6 @@ if __name__ == '__main__':
         print("program was terminated.")
     finally:
         print_exc()
-        PWM.setMotorModel(0, 0, 0, 0)
+        PWM.set_motor_model(0, 0, 0, 0)
         Servo().setServoPwm('0', 90)
         Servo().setServoPwm('1', 90)

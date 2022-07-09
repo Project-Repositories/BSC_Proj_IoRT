@@ -34,7 +34,7 @@ class AlignDriver:
     def oscillate_simple(self):
         def drive(pwm_magnitudes):
             motor_values = [self.head.value * int(num) for num in pwm_magnitudes]
-            PWM.setMotorPWM(motor_values)
+            PWM.set_motor_model_by_iterable(motor_values)
 
 
         def reversal(pwm_magnitude):
@@ -50,7 +50,7 @@ class AlignDriver:
                     new_speed = max(new_speed - step_size, 0)
                 else:
                     new_speed = min(new_speed + step_size, 0)
-                PWM.setMotorModel(*[new_speed] * 4)
+                PWM.set_motor_model(*[new_speed] * 4)
                 time.sleep(0.2)
             self.reverse_head()
 
@@ -110,6 +110,6 @@ if __name__ == '__main__':
         print("program was terminated.")
         print_exc()
     finally:
-        PWM.setMotorModel(0, 0, 0, 0)
+        PWM.set_motor_model(0, 0, 0, 0)
         Servo().setServoPwm('0', 90)
         Servo().setServoPwm('1', 90)

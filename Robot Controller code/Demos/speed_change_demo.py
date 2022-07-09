@@ -10,6 +10,6 @@ if __name__ == '__main__':
         current_speed -= step
         time.sleep(0.01)
         motor_values = [current_speed] * 4
-        PWM.setMotorModel(*motor_values)
-    PWM.setMotorModel(0,0,0,0)
+        PWM.set_motor_model(*motor_values)
+    PWM.set_motor_model(0, 0, 0, 0)
         

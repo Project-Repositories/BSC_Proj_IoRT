@@ -10,9 +10,9 @@ import sys
 from traceback import print_exc
 
 from Misc_Code.commons import Timer, Tracking, DriveInstructions, speed_state_dict, led_off, led_yellow, led_green
-from Hardware_Controllers.parse_UART import UART_Comm, Logger
+from Hardware_Controllers.parse_UART import UARTCommunication, Logger
 
-PWM.setMotorModel(0, 0, 0, 0)
+PWM.set_motor_model(0, 0, 0, 0)
 Servo().setServoPwm('0', 85)
 Servo().setServoPwm('1', 85)
 """
@@ -45,7 +45,7 @@ class E2LeadingCar:
         self.tracker = LineTracker(inverse_IR)
 
         port_name = "/dev/ttyACM0"
-        self.launchpad_comm = UART_Comm(port_name, default_logging=False)
+        self.launchpad_comm = UARTCommunication(port_name)
         experiment_2_lead_logger = "exp_2_lead_data"
         self.launchpad_comm.logger = Logger(file_name=experiment_2_lead_logger)
 
@@ -95,7 +95,7 @@ class E2LeadingCar:
             else:
                 # Else, if we should turn to stay on the line.
                 motor_values = alignment.value
-            PWM.setMotorModel(*motor_values)
+            PWM.set_motor_model(*motor_values)
 
             # ------ debugging ------
             if debug_i % 100 == 0:
@@ -104,7 +104,7 @@ class E2LeadingCar:
                 print("fwd_motor_values:{}".format(*motor_values))
 
         print("Leading car is stopping.")
-        PWM.setMotorModel(0, 0, 0, 0)
+        PWM.set_motor_model(0, 0, 0, 0)
 
         led.colorWipe(led.strip, led_yellow)
         while self.launchpad_comm.recent_ewma < self.RSSI_strong_threshold:
@@ -124,7 +124,7 @@ class E2FollowingCar:
         self.tracker = LineTracker(inverse_IR)
 
         port_name = "/dev/ttyACM0"
-        self.launchpad_comm = UART_Comm(port_name, default_logging=False)
+        self.launchpad_comm = UARTCommunication(port_name, default_logging=False)
         experiment_2_follow_logger = "exp_2_follow_data"
         self.launchpad_comm.logger = Logger(file_name=experiment_2_follow_logger)
 
@@ -175,7 +175,7 @@ class E2FollowingCar:
             else:
                 # Else, if we should turn to stay on the line.
                 motor_values = alignment.value
-            PWM.setMotorModel(*motor_values)
+            PWM.set_motor_model(*motor_values)
 
             # ------ debugging ------
             if debug_i % 100 == 0:
@@ -184,7 +184,7 @@ class E2FollowingCar:
                 print("fwd_motor_values:{}".format(*motor_values))
 
         print("Connection-strength has been bolstered.")
-        PWM.setMotorModel(0, 0, 0, 0)
+        PWM.set_motor_model(0, 0, 0, 0)
 
         led.colorWipe(led.strip, led_green)
         sleep(10)
@@ -220,7 +220,7 @@ if __name__ == '__main__':
         print("program was terminated.")
     finally:
         print_exc()
-        PWM.setMotorModel(0, 0, 0, 0)
+        PWM.set_motor_model(0, 0, 0, 0)
         Servo().setServoPwm('0', 90)
         Servo().setServoPwm('1', 90)
         car.launchpad_comm.finish_async()

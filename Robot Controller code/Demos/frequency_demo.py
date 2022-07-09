@@ -1,5 +1,9 @@
 import time
 
+"""
+This program was used to evaluate how often i could check conditions in the main 'while' loop
+"""
+
 if __name__ == '__main__':
     print('Program is starting ... ')
     print("frequency demo : type 1")

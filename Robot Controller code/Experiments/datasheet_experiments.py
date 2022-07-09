@@ -13,7 +13,7 @@ Auxiliary functions
 
 
 def turn_off_car():
-    PWM.setMotorModel(0, 0, 0, 0)
+    PWM.set_motor_model(0, 0, 0, 0)
     Servo().setServoPwm('0', 85)
     Servo().setServoPwm('1', 85)
 
@@ -42,7 +42,7 @@ def max_speed_experiment():
     duration = 5
     timer = Timer(duration)
     max_PWM = 4095
-    PWM.setMotorModel(max_PWM, max_PWM, max_PWM, max_PWM)
+    PWM.set_motor_model(max_PWM, max_PWM, max_PWM, max_PWM)
     while not timer.check():
         pass
     turn_off_car()
@@ -58,7 +58,7 @@ def min_speed_experiment():
     duration = 5
     timer = Timer(duration)
     min_PWM = 500
-    PWM.setMotorModel(min_PWM, min_PWM, min_PWM, min_PWM)
+    PWM.set_motor_model(min_PWM, min_PWM, min_PWM, min_PWM)
     while not timer.check():
         pass
     turn_off_car()
@@ -87,7 +87,7 @@ def line_track_max_speed_experiment():
         else:
             # Else, if we should turn to stay on the line.
             motor_values = alignment.value
-        PWM.setMotorModel(*motor_values)
+        PWM.set_motor_model(*motor_values)
     turn_off_car()
 
 
@@ -106,7 +106,7 @@ def turn_speed_experiment():
     timer = Timer(duration)
     # ------ alignment ------
     turn_values = Tracking.RIGHT2.value
-    PWM.setMotorModel(*turn_values)
+    PWM.set_motor_model(*turn_values)
     while not timer.check():
         pass
     turn_off_car()
@@ -122,11 +122,11 @@ def direction_flip_speed_experiment():
     duration = 1.5
     timer = Timer(duration)
     max_PWM = 4095
-    PWM.setMotorModel(max_PWM, max_PWM, max_PWM, max_PWM)
+    PWM.set_motor_model(max_PWM, max_PWM, max_PWM, max_PWM)
     while not timer.check():
         pass
     max_PWM = -4095
-    PWM.setMotorModel(max_PWM, max_PWM, max_PWM, max_PWM)
+    PWM.set_motor_model(max_PWM, max_PWM, max_PWM, max_PWM)
     while not timer.check():
         pass
     turn_off_car()
@@ -187,11 +187,11 @@ def battery_life():
     try:
         while True:
             max_PWM = 4095
-            PWM.setMotorModel(max_PWM, max_PWM, max_PWM, max_PWM)
+            PWM.set_motor_model(max_PWM, max_PWM, max_PWM, max_PWM)
             while not timer.check():
                 pass
             max_PWM = -4095
-            PWM.setMotorModel(max_PWM, max_PWM, max_PWM, max_PWM)
+            PWM.set_motor_model(max_PWM, max_PWM, max_PWM, max_PWM)
             while not timer.check():
                 pass
 

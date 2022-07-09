@@ -3,6 +3,7 @@ import time
 from enum import Enum
 from rpi_ws281x import Color
 
+
 def clamp(value, lower, upper):
     return lower if value < lower else upper if value > upper else value
 
@@ -35,7 +36,6 @@ acc_state_dict = {DriveInstructions.SLOWER: -50,
                   DriveInstructions.BEGIN: 0,
                   DriveInstructions.NONE: None
                   }
-
 
 
 class Head(Enum):
@@ -83,4 +83,3 @@ led_off = Color(0, 0, 0)
 led_red = Color(125, 0, 0)
 led_yellow = Color(50, 50, 0)
 led_green = Color(0, 125, 0)
-

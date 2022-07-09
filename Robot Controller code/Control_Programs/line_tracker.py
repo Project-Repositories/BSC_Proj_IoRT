@@ -84,10 +84,10 @@ if __name__ == '__main__':
         aligner = LineTracker(arg_inverse)
         while True:
             align = aligner.get_alignment()
-            PWM.setMotorPWM(align)
-            PWM.setMotorModel(align)
+            PWM.set_motor_model_by_iterable(align)
+            PWM.set_motor_model(align)
     finally:
         print_exc()
-        PWM.setMotorModel(0, 0, 0, 0)
+        PWM.set_motor_model(0, 0, 0, 0)
         Servo().setServoPwm('0', 90)
         Servo().setServoPwm('1', 90)

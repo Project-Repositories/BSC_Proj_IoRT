@@ -11,7 +11,7 @@ from traceback import print_exc
 
 from Misc_Code.commons import NodeType, Timer, Tracking, DriveInstructions, speed_state_dict, acc_state_dict, \
     led_off, led_red, led_yellow, led_green
-from Hardware_Controllers.parse_UART import UART_Comm, Logger
+from Hardware_Controllers.parse_UART import UARTCommunication, Logger
 
 """
 Qualitative experiment serving as proof-of-concept of IoRT testbed.
@@ -39,7 +39,7 @@ The point of the experiment is
     to show the cars acting mechanically, depending on some property of their connection.
 """
 
-PWM.setMotorModel(0, 0, 0, 0)
+PWM.set_motor_model(0, 0, 0, 0)
 Servo().setServoPwm('0', 90)
 Servo().setServoPwm('1', 90)
 
@@ -49,7 +49,7 @@ class E1LeadingCar:
         self.tracker = LineTracker(inverse_IR)
 
         port_name = "/dev/ttyACM0"
-        self.launchpad_comm = UART_Comm(port_name, default_logging=False)
+        self.launchpad_comm = UARTCommunication(port_name)
         experiment_1_lead_logger = "exp_1_lead_data"
         self.launchpad_comm.logger = Logger(file_name=experiment_1_lead_logger)
 
@@ -98,7 +98,7 @@ class E1LeadingCar:
             else:
                 # Else, if we should turn to stay on the line.
                 motor_values = alignment.value
-            PWM.setMotorModel(*motor_values)
+            PWM.set_motor_model(*motor_values)
 
             # ------ debugging ------
             if debug_i % 100 == 0:
@@ -107,7 +107,7 @@ class E1LeadingCar:
                 print("fwd_motor_values:{}".format(*motor_values))
 
         led.colorWipe(led.strip, led_red)
-        PWM.setMotorModel(0, 0, 0, 0)
+        PWM.set_motor_model(0, 0, 0, 0)
 
         print("Program was completed.")
         while True:
@@ -118,7 +118,7 @@ class E1LeadingCar:
 class E1StationCar:
     def __init__(self, RSSI_termination_threshold: int):
         port_name = "/dev/ttyACM0"
-        self.launchpad_comm = UART_Comm(port_name, default_logging=False)
+        self.launchpad_comm = UARTCommunication(port_name, default_logging=False)
         experiment_1_station_logger = "exp_1_station_data"
         self.launchpad_comm.logger = Logger(file_name=experiment_1_station_logger)
 
@@ -179,7 +179,7 @@ if __name__ == '__main__':
         print("program was terminated.")
     finally:
         print_exc()
-        PWM.setMotorModel(0, 0, 0, 0)
+        PWM.set_motor_model(0, 0, 0, 0)
         Servo().setServoPwm('0', 90)
         Servo().setServoPwm('1', 90)
         car.launchpad_comm.finish_async()

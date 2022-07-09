@@ -1,12 +1,12 @@
 import time
 
-from Hardware_Controllers.parse_UART import UART_Comm
+from Hardware_Controllers.parse_UART import UARTCommunication
 
 
 if __name__ == '__main__':
     print('Program is starting ... ')
     port_name = "COM8"
-    comm = UART_Comm(port_name)
+    comm = UARTCommunication(port_name)
     comm.start_async()
     i = 0
     try:

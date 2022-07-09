@@ -75,19 +75,22 @@ class Motor:
             self.pwm.setMotorPwm(4, 4095)
             self.pwm.setMotorPwm(5, 4095)
 
-    def setMotorModel(self, duty1, duty2, duty3, duty4):
+    def set_motor_model(self, duty1, duty2=None, duty3=None, duty4=None):
         duty1, duty2, duty3, duty4 = self.duty_range(duty1, duty2, duty3, duty4)
         self.left_Upper_Wheel(-duty1)
         self.left_Lower_Wheel(-duty2)
         self.right_Upper_Wheel(-duty3)
         self.right_Lower_Wheel(-duty4)
 
-    def setMotorPWM(self, motor_values_iterable: Union[tuple[int], list[int]]):
+    def set_motor_model_by_iterable(self, motor_values_iterable: Union[tuple[int], list[int]]):
+        """
+        Wrapper of Motor.set_motor_model which takes a single iterable, instead of 4 parameters.
+        """
         if len(motor_values_iterable) != 4:
             raise ValueError("setMotorPWM needs an iterable with 4 values, one for each wheel, in the order of "
                              "LEFT FORWARD, LEFT BACKWARD, RIGHT FORWARD, RIGHT BACKWARD")
         else:
-            self.setMotorModel(*motor_values_iterable)
+            self.set_motor_model(*motor_values_iterable)
 
 
 # Use the PWM object from this module to use the Motor class.
@@ -96,19 +99,19 @@ PWM = Motor()
 
 
 def loop():
-    PWM.setMotorModel(2000, 2000, 2000, 2000)  # Forward
+    PWM.set_motor_model(2000, 2000, 2000, 2000)  # Forward
     time.sleep(3)
-    PWM.setMotorModel(-2000, -2000, -2000, -2000)  # Back
+    PWM.set_motor_model(-2000, -2000, -2000, -2000)  # Back
     time.sleep(3)
-    PWM.setMotorModel(-500, -500, 2000, 2000)  # Left
+    PWM.set_motor_model(-500, -500, 2000, 2000)  # Left
     time.sleep(3)
-    PWM.setMotorModel(2000, 2000, -500, -500)  # Right
+    PWM.set_motor_model(2000, 2000, -500, -500)  # Right
     time.sleep(3)
-    PWM.setMotorModel(0, 0, 0, 0)  # Stop
+    PWM.set_motor_model(0, 0, 0, 0)  # Stop
 
 
 def destroy():
-    PWM.setMotorModel(0, 0, 0, 0)
+    PWM.set_motor_model(0, 0, 0, 0)
 
 
 if __name__ == '__main__':

@@ -45,14 +45,14 @@ class Logger:
 
 
 class ActiveConnectivity:
-    def __init__(self):
+    def __init__(self, alpha=0.75):
         self.speed_changed = self.acc_changed = self.brake = self.accelerate = False
         self.EWMA = self.EWMA_tmp = None
         self.weak_threshold = -35
         self.strong_threshold = self.weak_threshold + 5
         self.worsen_threshold = 3
 
-        self.alpha = 0.75
+        self.alpha = alpha
         self.instruction = DriveInstructions.BASE
 
     def calibrate_ewma(self, new_RSSI):
@@ -63,7 +63,7 @@ class ActiveConnectivity:
 
     def ACR(self, new_RSSI):
         """
-        Active Connectivity Random choice
+        Active Connectivity Random choice to speed up or slow down
         """
         self.calibrate_ewma(new_RSSI)
         if self.EWMA <= self.weak_threshold:
@@ -102,8 +102,8 @@ class ActiveConnectivity:
             self.instruction = DriveInstructions.BASE
 
 
-class UART_Comm:
-    def __init__(self, port_name, default_logging=True):
+class UARTCommunication:
+    def __init__(self, port_name):
         self.run_async = False
         self.ser = serial.Serial(port_name, baudrate=115200, timeout=2)
         self.instruction_dict = {"slow down2": DriveInstructions.SLOWER,
@@ -122,10 +122,11 @@ class UART_Comm:
         self.recent_ewma = None
 
         self.reader_thread = Thread(target=self.async_reading, args=())
-        if default_logging:
-            self.logger = Logger()
-        else:
-            self.logger = None
+
+        self.logger = None
+
+    def set_logger(self,logger):
+        self.logger = logger
 
     def reboot_launchpad(self):
         with self.ser as ser:
@@ -199,8 +200,8 @@ class UART_Comm:
 
 if __name__ == '__main__':
     print('Program is starting ... ')
-    port_name = "COM11"
-    ser = serial.Serial(port_name, baudrate=115200, timeout=5)
+    demo_port_name = "COM11"
+    ser = serial.Serial(demo_port_name, baudrate=115200, timeout=5)
     with ser:
         ser.write(b'\nreboot\n')
         time.sleep(5)

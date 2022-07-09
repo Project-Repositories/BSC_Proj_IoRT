@@ -112,17 +112,17 @@ class Server:
     def stopMode(self):
         try:
             stop_thread(self.infraredRun)
-            self.PWM.setMotorModel(0,0,0,0)
+            self.PWM.set_motor_model(0, 0, 0, 0)
         except:
             pass
         try:
             stop_thread(self.lightRun)
-            self.PWM.setMotorModel(0,0,0,0)
+            self.PWM.set_motor_model(0, 0, 0, 0)
         except:
             pass            
         try:
             stop_thread(self.ultrasonicRun)
-            self.PWM.setMotorModel(0,0,0,0)
+            self.PWM.set_motor_model(0, 0, 0, 0)
             self.servo.setServoPwm('0',90)
             self.servo.setServoPwm('1',90)
         except:
@@ -191,7 +191,7 @@ class Server:
                             data4=int(data[4])
                             if data1==None or data2==None or data2==None or data3==None:
                                 continue
-                            self.PWM.setMotorModel(data1,data2,data3,data4)
+                            self.PWM.set_motor_model(data1, data2, data3, data4)
                         except:
                             pass
                     elif cmd.CMD_SERVO in data:
